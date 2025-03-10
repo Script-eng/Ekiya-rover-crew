@@ -1,6 +1,4 @@
-Sure! Here is a simple README template for the Ekiya Rover Crew Blog:
 
-```markdown
 # Ekiya Rover Crew Blog
 
 Welcome to the Ekiya Rover Crew Blog repository! This project contains the source code for the Ekiya Rover Crew Blog, a platform for sharing news, updates, and stories from the Ekiya Rover Crew.
@@ -36,6 +34,4 @@ For any questions or inquiries, please contact the Ekiya Rover Crew at [email@ex
 ---
 
 Thank you for visiting the Ekiya Rover Crew Blog repository!
-```
 
-Feel free to modify this template to better suit your project's needs.
