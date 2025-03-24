@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekiya Rover Crew - Contact Us</title>
+    <!-- Adding Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 50px 0;
+        }
+        
+        .contact-info h3 {
+            color: var(--forest-green);
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--sand-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .contact-icon i {
+            color: var(--rust-brown);
+            font-size: 20px;
+        }
+        
+        .contact-text h4 {
+            margin: 0 0 5px;
+            color: var(--rust-brown);
+        }
+        
+        .contact-text p {
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        .contact-text a {
+            color: var(--carbon-black);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-text a:hover {
+            color: var(--rust-brown);
+        }
+        
+        .social-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .social-box h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--forest-green);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--sand-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background-color: var(--rust-brown);
+        }
+        
+        .social-link i {
+            font-size: 24px;
+            color: var(--carbon-black);
+        }
+        
+        .social-link:hover i {
+            color: white;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            color: var(--forest-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--carbon-black);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--forest-green);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .submit-btn {
+            background-color: var(--rust-brown);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .submit-btn:hover {
+            background-color: #a5522c;
+        }
+        
+        .map-container {
+            margin-top: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="activities.html">ACTIVITIES</a></li>
+                    <li><a href="structure.html">STRUCTURE</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html" class="active">CONTACT US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="first-word">CONTACT</span> <span class="second-word">US</span></h2>
+            </div>
+            
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+                We'd love to hear from you! Whether you have questions about joining Ekiya Rover Crew,
+                want to support our projects, or simply wish to learn more about what we do, please
+                don't hesitate to reach out using any of the methods below.
+            </p>
+            
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <h3>GET IN TOUCH</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+254794808418">+254 794 808 418</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:stareherovercrew@gmail.com">stareherovercrew@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Location</h4>
+                            <p>Starehe Boys Centre & School<br>Starehe, Nairobi<br>Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Meeting Times</h4>
+                            <p>Regular meetings: First Saturday of every month<br>Time: 10:00 AM - 1:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-box">
+                        <h3>FIND US ON SOCIAL MEDIA</h3>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>SEND US A MESSAGE</h3>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>I'm interested in:</label>
+                            <div class="form-check" style="margin-bottom: 5px;">
+                                <input type="checkbox" id="joining" name="interest" value="joining">
+                                <label for="joining" style="font-weight: normal;"> Joining Ekiya Rover Crew</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 5px;">
+                                <input type="checkbox" id="volunteering" name="interest" value="volunteering">
+                                <label for="volunteering" style="font-weight: normal;"> Volunteering for projects</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 5px;">
+                                <input type="checkbox" id="donating" name="interest" value="donating">
+                                <label for="donating" style="font-weight: normal;"> Donating to Ekiya</label>
+                            </div>
+                            <div class="form-check" style="margin-bottom: 5px;">
+                                <input type="checkbox" id="partnering" name="interest" value="partnering">
+                                <label for="partnering" style="font-weight: normal;"> Partnership opportunities</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" id="information" name="interest" value="information">
+                                <label for="information" style="font-weight: normal;"> General information</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Replace with actual Google Maps embed code -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8193214266906!2d36.83313917385167!3d-1.2788431356091095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11c9f462ebb7%3A0x67578c6f75834200!2sStarehe%20Boys&#39;%20Centre%20and%20School!5e0!3m2!1sen!2sus!4v1711326439874!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
+                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="about.html">ABOUT US</a></li>
+                        <li><a href="activities.html">ACTIVITIES</a></li>
+                        <li><a href="structure.html">STRUCTURE</a></li>
+                    </ul>
+                    
+                    <ul>
+                        <li><a href="projects.html">PROJECTS</a></li>
+                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">CONTACT US</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>NEWSLETTER</h3>
+                    <p>Stay updated with our activities and events!</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email">
+                        <button type="submit">SIGN UP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Form Submission JavaScript -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For now, we'll just show an alert
+            alert(`Thank you for your message, ${name}! We will get back to you soon.`);
+            
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

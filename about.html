@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekiya Rover Crew - About Us</title>
+    <!-- Adding Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        .about-section {
+            margin: 60px 0;
+        }
+        
+        .about-header {
+            margin-bottom: 40px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-caption {
+            position: absolute;
+            bottom: -15px;
+            right: 20px;
+            background-color: var(--rust-brown);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .about-text h3 {
+            color: var(--forest-green);
+            margin-bottom: 15px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .quote-box {
+            background-color: var(--sand-gold);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .quote-text {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--carbon-black);
+            position: relative;
+            padding: 0 40px;
+            line-height: 1.6;
+        }
+        
+        .quote-text:before, .quote-text:after {
+            content: """;
+            font-size: 60px;
+            color: rgba(0, 0, 0, 0.1);
+            position: absolute;
+        }
+        
+        .quote-text:before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .quote-text:after {
+            bottom: -50px;
+            right: 0;
+            content: """;
+        }
+        
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            margin-top: 20px;
+            color: var(--rust-brown);
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .principle-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .principle-icon {
+            font-size: 2.5rem;
+            color: var(--forest-green);
+            margin-bottom: 15px;
+        }
+        
+        .principle-box h4 {
+            color: var(--rust-brown);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .principle-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--sand-gold);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--rust-brown);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item.left {
+            left: 0;
+        }
+        
+        .timeline-item.right {
+            left: 50%;
+        }
+        
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h4 {
+            color: var(--forest-green);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content .date {
+            color: var(--rust-brown);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        @media (max-width: 992px) {
+            .about-content, .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+            
+            .timeline-item.right {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 30px;
+            }
+            
+            .timeline-item.right::after {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html" class="active">ABOUT US</a></li>
+                    <li><a href="activities.html">ACTIVITIES</a></li>
+                    <li><a href="structure.html">STRUCTURE</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-header about-header">
+                <h2><span class="first-word">ABOUT</span> <span class="second-word">EKIYA</span></h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/800/500" alt="Ekiya Rover Crew members">
+                    <div class="image-caption">Ekiya members at community service</div>
+                </div>
+                
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>
+                        Ekiya Rover Crew was established by alumni from Starehe Boys and Girls Centre who wanted to continue
+                        the scouting tradition beyond secondary school. As university and college students between the ages of
+                        18 and 26 years, we recognized the need for a platform that would allow us to maintain our scouting
+                        values while addressing the unique challenges and opportunities of higher education.
+                    </p>
+                    <p>
+                        The name "Ekiya" embodies our commitment to unity, strength, and forward movement. Our crew brings
+                        together individuals from various disciplines and backgrounds, united by their shared experience at
+                        Starehe and their dedication to making a positive impact in society.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="quote-box">
+                <div class="quote-text">
+                    The Ekiya Rover Crew has been instrumental in my personal and professional development. Through our
+                    community service initiatives and leadership opportunities, I've gained skills that complement my
+                    academic education and prepared me for future challenges.
+                </div>
+                <div class="quote-author">- Jane Doe, Founding Member</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission and Vision Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="first-word">MISSION</span> <span class="second-word">& VISION</span></h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>
+                        Our mission is to educate young people to play a constructive role in society. We achieve this by
+                        providing a supportive environment where Starehe alumni can continue to develop their leadership
+                        skills, engage in meaningful community service, and pursue personal growth through adventure and
+                        exploration.
+                    </p>
+                    <p>
+                        We are committed to upholding the values instilled in us at Starehe while adapting them to the
+                        context of higher education and young adulthood. Through our activities and initiatives, we aim to
+                        create well-rounded individuals who are equipped to make positive contributions to their communities
+                        and the world at large.
+                    </p>
+                </div>
+                
+                <div class="about-text">
+                    <h3>Our Vision</h3>
+                    <p>
+                        Our vision is creating a better world. We envision a society where young people are empowered to
+                        lead positive change, where service to others is valued as highly as personal achievement, and where
+                        the scouting principles of duty to God, duty to others, and duty to self guide individual and
+                        collective action.
+                    </p>
+                    <p>
+                        We aspire to be a model rover crew that inspires similar initiatives among alumni of other
+                        institutions, creating a network of young adults committed to service, leadership, and lifelong
+                        learning. Through our example and outreach, we hope to demonstrate the enduring relevance of
+                        scouting values in addressing contemporary challenges.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Principles Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="first-word">OUR</span> <span class="second-word">PRINCIPLES</span></h2>
+            </div>
+            
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                At Ekiya Rover Crew, we are guided by three core principles that shape our activities,
+                decision-making, and interactions with the broader community. These principles reflect
+                our commitment to holistic development and positive social impact.
+            </p>
+            
+            <div class="principles-grid">
+                <div class="principle-box">
+                    <div class="principle-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h4>ADVENTURE</h4>
+                    <p>
+                        Ekiya is driven by the spirit of exploration and new challenges. We encourage resilience,
+                        curiosity, and the joy of discovery through various activities that push our members
+                        outside their comfort zones. From challenging hikes to innovative community projects,
+                        adventure helps us develop adaptability and problem-solving skills.
+                    </p>
+                </div>
+                
+                <div class="principle-box">
+                    <div class="principle-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>LEADERSHIP</h4>
+                    <p>
+                        Ekiya emphasizes guiding with integrity and inspirational leadership. We believe in
+                        empowering others within and beyond the crew, developing leaders who lead by example
+                        and inspire positive change. Our leadership structure provides multiple opportunities
+                        for members to develop and demonstrate their leadership abilities.
+                    </p>
+                </div>
+                
+                <div class="principle-box">
+                    <div class="principle-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4>SERVICE</h4>
+                    <p>
+                        Ekiya is about giving back to the community and developing a sense of responsibility.
+                        Through our service initiatives, members develop a deeper connection with the world
+                        around them and recognize their potential to make a positive impact. We believe that
+                        service to others is not just an activity but a way of life.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Journey Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="first-word">OUR</span> <span class="second-word">JOURNEY</span></h2>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="date">2019</span>
+                        <h4>Foundation</h4>
+                        <p>Ekiya Rover Crew was founded by a group of Starehe alumni who wanted to continue their scouting journey beyond secondary school.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="date">2020</span>
+                        <h4>First Projects</h4>
+                        <p>The crew launched its first community service projects, establishing partnerships with local organizations and institutions.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="date">2021</span>
+                        <h4>Expansion</h4>
+                        <p>Membership grew significantly, allowing for the formation of multiple patrols and specialized committees to handle different aspects of the crew's activities.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="date">2022</span>
+                        <h4>Long-term Projects</h4>
+                        <p>The crew initiated its signature long-term projects, including Children's Home Fundraising, Holistic Sexual Health, and Student Mentorship.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <span class="date">2023</span>
+                        <h4>International Engagement</h4>
+                        <p>Ekiya began participating in international scouting events and established connections with rover crews from other countries.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="date">2024</span>
+                        <h4>Digital Transformation</h4>
+                        <p>The crew embraced digital tools to enhance communication, project management, and outreach, launching its official website and expanding its social media presence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-content">
+                <div class="footer-contact">
+                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
+                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="about.html">ABOUT US</a></li>
+                        <li><a href="activities.html">ACTIVITIES</a></li>
+                        <li><a href="structure.html">STRUCTURE</a></li>
+                    </ul>
+                    
+                    <ul>
+                        <li><a href="projects.html">PROJECTS</a></li>
+                        <li><a href="gallery.html">GALLERY</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">CONTACT US</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>NEWSLETTER</h3>
+                    <p>Stay updated with our activities and events!</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email">
+                        <button type="submit">SIGN UP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

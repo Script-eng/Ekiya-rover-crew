@@ -712,6 +712,138 @@ footer {
 .social-icons a:hover {
     color: var(--rust-brown);
 }
+/* Dates & Prices page styles */
+.dates-title {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.dates-title h2 {
+    font-size: 48px;
+}
+
+.dates-title h2 .dates {
+    color: var(--forest-green);
+}
+
+.dates-title h2 .prices {
+    color: var(--rust-brown);
+}
+
+.dates-container {
+    margin-top: 60px;
+}
+
+.date-session {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    gap: 30px;
+    margin-bottom: 80px;
+    position: relative;
+}
+
+.session-icon {
+    grid-column: 2;
+    text-align: center;
+    color: var(--forest-green);
+    font-size: 40px;
+    position: relative;
+}
+
+.session-icon::after {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    width: 2px;
+    height: calc(100% + 50px);
+    background-color: rgba(89, 114, 103, 0.2);
+    transform: translateX(-50%);
+}
+
+.session-icon.last::after {
+    display: none;
+}
+
+.session-details {
+    padding: 0 20px;
+}
+
+.session-dates {
+    color: var(--rust-brown);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.session-features {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.session-features li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+
+.session-features li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--rust-brown);
+    font-size: 20px;
+}
+
+.session-price {
+    color: var(--rust-brown);
+    font-size: 32px;
+    font-weight: 600;
+    margin: 30px 0;
+}
+
+.session-button {
+    display: inline-block;
+    background-color: var(--rust-brown);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.session-button:hover {
+    background-color: #a5522c;
+}
+
+.session-button.sold-out {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+@media (max-width: 992px) {
+    .date-session {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .session-left, .session-right {
+        grid-column: 1;
+    }
+    
+    .session-icon {
+        grid-column: 1;
+        grid-row: 1;
+        margin-bottom: 30px;
+    }
+    
+    .session-icon::after {
+        display: none;
+    }
+}
 
 /* Responsive styles */
 @media (max-width: 1200px) {
