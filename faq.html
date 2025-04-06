@@ -6,17 +6,306 @@
     <title>Ekiya Rover Crew - FAQ</title>
     <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-    <!-- CSS Stylesheet -->
+    <!-- CSS Stylesheet (Ensure this path is correct) -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome for icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        /* Styles specifically for matching the screenshot's FAQ section */
+        .faq-section {
+            padding: 60px 0;
+            background-color: var(--cream-background); /* Base background */
+        }
+
+        .faq-title {
+            text-align: center;
+            color: var(--rust-brown);
+            font-size: 48px; /* Match screenshot size */
+            font-weight: 900; /* Match screenshot weight */
+            margin-bottom: 60px;
+            text-transform: uppercase; /* Match screenshot */
+        }
+
+        .faq-list {
+            max-width: 900px; /* Adjust as needed */
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(183, 95, 52, 0.3); /* Light rust-brown */
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .faq-question-content {
+            display: flex;
+            align-items: baseline;
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+
+        .faq-number {
+            color: var(--rust-brown);
+            font-weight: 600;
+            font-size: 16px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            width: 30px;
+        }
+
+        .faq-question-text {
+            color: var(--rust-brown);
+            font-weight: 600;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .faq-arrow {
+            color: var(--rust-brown);
+            font-size: 24px;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-arrow {
+            transform: rotate(90deg);
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            padding-left: 45px;
+            line-height: 1.7;
+            color: var(--carbon-black);
+            font-size: 15px;
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, margin-top 0.5s ease-out;
+        }
+
+        .faq-item.open .faq-answer {
+             display: block;
+             max-height: 500px;
+             padding-top: 10px;
+             margin-top: 10px;
+             transition: max-height 0.5s ease-in, padding-top 0.5s ease-in, margin-top 0.5s ease-in;
+         }
+
+        .faq-answer p {
+            margin-bottom: 0;
+        }
+
+        .action-button {
+            display: block;
+            width: fit-content;
+            margin: 50px auto 0;
+            background-color: var(--rust-brown);
+            color: white;
+            text-align: center;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .action-button:hover {
+            background-color: #a5522c;
+        }
+
+        /* --- NEW FOOTER STYLES --- */
+        footer {
+            padding: 40px 0; /* Adjusted padding */
+            background-color: var(--cream-background);
+            margin-top: 60px; /* Space above footer */
+            border-top: none; /* Remove default top border if present */
+        }
+
+        .footer-divider-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px; /* Space below divider/logo */
+        }
+
+        .footer-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(183, 95, 52, 0.4); /* Match screenshot line color */
+        }
+
+        .footer-logo-centered {
+            /* Copied Ekiya logo styles */
+            color: var(--rust-brown);
+            font-size: 24px;
+            font-weight: 600;
+            padding: 0 20px; /* Space around logo */
+            flex-shrink: 0;
+        }
+        .footer-logo-centered span {
+             color: var(--forest-green);
+         }
+
+
+        /* Re-style footer content grid */
+        .footer-content-new {
+            display: grid;
+            /* Adjust grid columns if needed to match screenshot proportions */
+            grid-template-columns: auto 1fr auto; /* Example: Contact | Links | Newsletter */
+            gap: 50px; /* Adjust gap between columns */
+            color: var(--rust-brown); /* Default text color for footer elements */
+        }
+
+        /* Left Column: Contact Info */
+        .footer-contact-new a {
+            display: flex;
+            align-items: center;
+            color: var(--rust-brown); /* Text color */
+            text-decoration: none;
+            margin-bottom: 15px; /* Space between items */
+            font-size: 14px; /* Match screenshot text size */
+        }
+        .footer-contact-new a i {
+             color: var(--rust-brown); /* Icon color */
+             margin-right: 12px; /* Space between icon and text */
+             font-size: 18px; /* Icon size */
+             width: 20px; /* Ensure alignment */
+             text-align: center;
+         }
+        .footer-social-new {
+            display: flex;
+            margin-top: 20px;
+        }
+        .footer-social-new a {
+            color: var(--rust-brown); /* Icon color */
+            font-size: 20px; /* Icon size */
+            margin-right: 18px; /* Space between icons */
+        }
+        .footer-social-new a:last-child {
+             margin-right: 0;
+         }
+
+        /* Middle Column: Links */
+        .footer-links-new ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2; /* Display links in two columns */
+            column-gap: 30px;
+        }
+        .footer-links-new ul li {
+            margin-bottom: 12px; /* Space between links */
+        }
+        .footer-links-new ul li a {
+            color: var(--rust-brown); /* Link color */
+            text-decoration: none;
+            font-size: 14px; /* Match screenshot text size */
+            font-weight: 600; /* Match screenshot weight */
+        }
+        .footer-links-new ul li a:hover {
+             text-decoration: underline; /* Optional: Add hover effect */
+         }
+
+        /* Right Column: Newsletter */
+        .footer-newsletter-new h3 {
+            color: var(--rust-brown);
+            font-size: 18px; /* Match screenshot size */
+            font-weight: 600; /* Match screenshot weight */
+            margin-bottom: 10px;
+            text-transform: uppercase; /* Match screenshot */
+        }
+        .footer-newsletter-new p {
+            font-size: 14px; /* Match screenshot text size */
+            color: var(--rust-brown); /* Match screenshot text color */
+            margin-bottom: 20px; /* Space before form */
+        }
+        .newsletter-form-new {
+            display: flex;
+            border: 1px solid rgba(183, 95, 52, 0.5); /* Light border around form */
+            border-radius: 30px; /* Rounded corners for the whole unit */
+            overflow: hidden; /* Clip corners */
+        }
+        .newsletter-form-new input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none; /* Remove default border */
+            outline: none;
+            font-size: 14px;
+            background-color: transparent; /* Match screenshot */
+            color: var(--carbon-black); /* Or --rust-brown if placeholder is that color */
+        }
+         .newsletter-form-new input::placeholder {
+             color: rgba(183, 95, 52, 0.7); /* Placeholder color */
+         }
+
+        .newsletter-form-new button {
+            background-color: var(--rust-brown);
+            color: white;
+            border: none;
+            padding: 10px 25px; /* Adjust padding */
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px; /* Match screenshot text size */
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+            /* No border-radius here, handled by parent */
+        }
+        .newsletter-form-new button:hover {
+            background-color: #a5522c;
+        }
+
+        /* Responsive adjustments for new footer */
+        @media (max-width: 992px) {
+             .footer-content-new {
+                 grid-template-columns: 1fr; /* Stack columns */
+                 gap: 40px;
+                 text-align: center; /* Center text in stacked columns */
+             }
+             .footer-contact-new a {
+                 justify-content: center; /* Center contact items */
+             }
+             .footer-social-new {
+                 justify-content: center; /* Center social icons */
+             }
+             .footer-links-new ul {
+                 columns: 1; /* Single column for links */
+                 text-align: center;
+             }
+             .newsletter-form-new {
+                 max-width: 400px; /* Limit width */
+                 margin: 0 auto; /* Center form */
+             }
+         }
+         @media (max-width: 768px) {
+            .footer-logo-centered {
+                font-size: 20px; /* Slightly smaller logo */
+                padding: 0 10px;
+            }
+            .footer-content-new {
+                 gap: 30px;
+             }
+         }
+
+
+    </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (Ekiya Rover Crew Version) -->
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
             </div>
             <nav>
                 <ul>
@@ -24,6 +313,7 @@
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="activities.html">ACTIVITIES</a></li>
                     <li><a href="structure.html">STRUCTURE</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
                     <li><a href="gallery.html">GALLERY</a></li>
                     <li><a href="faq.html" class="active">FAQ</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
@@ -35,228 +325,223 @@
     <!-- FAQ Section -->
     <section class="faq-section">
         <div class="container">
-            <h2 class="faq-title">FREQUENTLY ASKED QUESTIONS</h2>
-            
+            <h2 class="faq-title">FAQ</h2>
+
             <div class="faq-list">
+                <!-- Q1 -->
                 <div class="faq-item">
                     <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">01.</span>
-                            <h3>HOW IS ONE ELIGIBLE TO JOIN THE CREW?</h3>
+                        <div class="faq-question-content">
+                            <span class="faq-number">01.</span>
+                            <h3 class="faq-question-text">HOW IS ONE ELIGIBLE TO JOIN THE CREW?</h3>
                         </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
+                        <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
                     </div>
                     <div class="faq-answer">
                         <p>To join Ekiya Rover Crew, you need to be an alumnus of Starehe Boys or Girls Centre, currently in university or college, and between the ages of 18-26 years. We welcome those who are interested in continuing their scouting journey in a higher education setting and are committed to our values of adventure, leadership, and service.</p>
                     </div>
                 </div>
-                
+
+                <!-- Q2 -->
                 <div class="faq-item">
                     <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">02.</span>
-                            <h3>WHAT DOES EKIYA DO?</h3>
+                        <div class="faq-question-content">
+                            <span class="faq-number">02.</span>
+                            <h3 class="faq-question-text">WHAT DOES EKIYA DO?</h3>
                         </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
+                        <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
                     </div>
-                    <div class="faq-answer" style="display: none;">
+                    <div class="faq-answer">
                         <p>Ekiya Rover Crew engages in a variety of activities centered around our core principles. We conduct community service initiatives, run long-term projects such as Children's Home Fundraising, Holistic Sexual Health and Support, and Student Mentorship. We also organize in-crew activities like Secret Santa, camps, hikes, town clean-ups, and volunteering opportunities both locally and internationally. Our focus is on personal development, leadership training, and positive community impact.</p>
                     </div>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">03.</span>
-                            <h3>HOW CAN I SUPPORT EKIYA ROVER CREW?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>There are several ways to support Ekiya Rover Crew:
-                        <br>- Donate to our projects and initiatives
-                        <br>- Volunteer your time and expertise for specific activities
-                        <br>- Provide mentorship to our members
-                        <br>- Partner with us for community service projects
-                        <br>- Offer internship or employment opportunities for our members
-                        <br>- Share our mission and activities with your network
-                        <br>- Provide resources or facilities for our events and meetings</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">04.</span>
-                            <h3>HOW IS EKIYA ROVER CREW FUNDED?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>Ekiya Rover Crew is funded through a combination of member contributions, fundraising activities, donations from well-wishers, partnerships with organizations that share our values, and grants from relevant institutions. We maintain transparent financial practices and ensure that all funds are used efficiently to support our mission and activities.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">05.</span>
-                            <h3>WHAT DOES THE NAME "EKIYA" MEAN?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>The name "Ekiya" represents our values and aspirations as a rover crew. It symbolizes unity, strength, and forward movement - all central to our mission of continuing the scouting tradition while making a positive impact in society. The name was chosen to reflect our unique identity within the broader scouting community.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">06.</span>
-                            <h3>DO I NEED PREVIOUS SCOUTING EXPERIENCE TO JOIN?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>While most of our members have previous scouting experience from their time at Starehe, it is not a strict requirement. What's more important is a commitment to our values and a willingness to participate in our activities. If you're a Starehe alumnus within the age range and interested in what we do, you're welcome to join regardless of your previous scouting background.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">07.</span>
-                            <h3>HOW OFTEN DOES THE CREW MEET?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>The Ekiya Rover Crew holds regular meetings, typically monthly for general assembly and more frequently for committee and patrol meetings. We also organize periodic camps, hikes, and community service activities throughout the year. While we encourage consistent participation, we understand the demands of university life and provide flexibility for members to balance their academic commitments with crew activities.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">08.</span>
-                            <h3>CAN I JOIN IF I'M STUDYING IN A DIFFERENT CITY OR COUNTRY?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>Yes, we welcome Starehe alumni studying in different cities or countries. While physical attendance at all activities may not be possible, we facilitate remote participation through online meetings and provide opportunities for international members to contribute to projects and initiatives. We also encourage members studying abroad to represent Ekiya in international scouting events and to initiate community service in their locations.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">09.</span>
-                            <h3>WHAT SKILLS CAN I DEVELOP AS A MEMBER OF EKIYA?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>As a member of Ekiya Rover Crew, you can develop a wide range of skills:
-                        <br>- Leadership and organization
-                        <br>- Project management
-                        <br>- Public speaking and communication
-                        <br>- Teamwork and collaboration
-                        <br>- Problem-solving and critical thinking
-                        <br>- Outdoor and survival skills
-                        <br>- Community service and social responsibility
-                        <br>- Networking and relationship building
-                        <br>- Cultural awareness and global citizenship
-                        <br>We provide a supportive environment for personal and professional growth.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <div class="faq-question-text">
-                            <span class="faq-question-number">10.</span>
-                            <h3>HOW DO I STAY UPDATED WITH EKIYA'S ACTIVITIES?</h3>
-                        </div>
-                        <span class="faq-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </span>
-                    </div>
-                    <div class="faq-answer" style="display: none;">
-                        <p>You can stay updated with Ekiya's activities by:
-                        <br>- Following our social media accounts (Instagram: starehe_ekiyarovercrew, Facebook: Starehe Ekiya Rover Crew, TikTok: Starehe_ekiyarovercrew)
-                        <br>- Subscribing to our newsletter
-                        <br>- Regularly checking our website for announcements
-                        <br>- Joining our WhatsApp or Telegram groups (for members)
-                        <br>- Attending our open events
-                        <br>We strive to maintain transparent and consistent communication with both members and the wider community.</p>
-                    </div>
-                </div>
-            </div>
-            
+
+                <!-- Q3 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">03.</span>
+                             <h3 class="faq-question-text">HOW CAN I SUPPORT EKIYA ROVER CREW?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>There are several ways to support Ekiya Rover Crew:
+                         <br>- Donate to our projects and initiatives
+                         <br>- Volunteer your time and expertise for specific activities
+                         <br>- Provide mentorship to our members
+                         <br>- Partner with us for community service projects
+                         <br>- Offer internship or employment opportunities for our members
+                         <br>- Share our mission and activities with your network
+                         <br>- Provide resources or facilities for our events and meetings</p>
+                     </div>
+                 </div>
+
+                 <!-- Q4 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">04.</span>
+                             <h3 class="faq-question-text">HOW IS EKIYA ROVER CREW FUNDED?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>Ekiya Rover Crew is funded through a combination of member contributions, fundraising activities, donations from well-wishers, partnerships with organizations that share our values, and grants from relevant institutions. We maintain transparent financial practices and ensure that all funds are used efficiently to support our mission and activities.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q5 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">05.</span>
+                             <h3 class="faq-question-text">WHAT DOES THE NAME "EKIYA" MEAN?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>The name "Ekiya" represents our values and aspirations as a rover crew. It symbolizes unity, strength, and forward movement - all central to our mission of continuing the scouting tradition while making a positive impact in society. The name was chosen to reflect our unique identity within the broader scouting community.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q6 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">06.</span>
+                             <h3 class="faq-question-text">DO I NEED PREVIOUS SCOUTING EXPERIENCE TO JOIN?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>While most of our members have previous scouting experience from their time at Starehe, it is not a strict requirement. What's more important is a commitment to our values and a willingness to participate in our activities. If you're a Starehe alumnus within the age range and interested in what we do, you're welcome to join regardless of your previous scouting background.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q7 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">07.</span>
+                             <h3 class="faq-question-text">HOW OFTEN DOES THE CREW MEET?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>The Ekiya Rover Crew holds regular meetings, typically monthly for general assembly and more frequently for committee and patrol meetings. We also organize periodic camps, hikes, and community service activities throughout the year. While we encourage consistent participation, we understand the demands of university life and provide flexibility for members to balance their academic commitments with crew activities.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q8 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">08.</span>
+                             <h3 class="faq-question-text">CAN I JOIN IF I'M STUDYING IN A DIFFERENT CITY OR COUNTRY?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>Yes, we welcome Starehe alumni studying in different cities or countries. While physical attendance at all activities may not be possible, we facilitate remote participation through online meetings and provide opportunities for international members to contribute to projects and initiatives. We also encourage members studying abroad to represent Ekiya in international scouting events and to initiate community service in their locations.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q9 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">09.</span>
+                             <h3 class="faq-question-text">WHAT SKILLS CAN I DEVELOP AS A MEMBER OF EKIYA?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>As a member of Ekiya Rover Crew, you can develop a wide range of skills:
+                         <br>- Leadership and organization
+                         <br>- Project management
+                         <br>- Public speaking and communication
+                         <br>- Teamwork and collaboration
+                         <br>- Problem-solving and critical thinking
+                         <br>- Outdoor and survival skills
+                         <br>- Community service and social responsibility
+                         <br>- Networking and relationship building
+                         <br>- Cultural awareness and global citizenship
+                         <br>We provide a supportive environment for personal and professional growth.</p>
+                     </div>
+                 </div>
+
+                 <!-- Q10 -->
+                 <div class="faq-item">
+                     <div class="faq-question">
+                         <div class="faq-question-content">
+                             <span class="faq-number">10.</span>
+                             <h3 class="faq-question-text">HOW DO I STAY UPDATED WITH EKIYA'S ACTIVITIES?</h3>
+                         </div>
+                         <span class="faq-arrow"><i class="fas fa-chevron-right"></i></span>
+                     </div>
+                     <div class="faq-answer">
+                         <p>You can stay updated with Ekiya's activities by:
+                         <br>- Following our social media accounts (Instagram: starehe_ekiyarovercrew, Facebook: Starehe Ekiya Rover Crew, TikTok: Starehe_ekiyarovercrew)
+                         <br>- Subscribing to our newsletter
+                         <br>- Regularly checking our website for announcements
+                         <br>- Joining our WhatsApp or Telegram groups (for members)
+                         <br>- Attending our open events
+                         <br>We strive to maintain transparent and consistent communication with both members and the wider community.</p>
+                     </div>
+                 </div>
+
+            </div> <!-- end faq-list -->
+
             <a href="contact.html" class="action-button">ASK YOUR QUESTION</a>
-        </div>
+
+        </div> <!-- end container -->
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (New Style Applied) -->
     <footer>
         <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            <!-- Divider Line with Centered Logo -->
+            <div class="footer-divider-container">
+                <div class="footer-line"></div>
+                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                <div class="footer-line"></div>
             </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
+
+            <!-- Footer Content Grid -->
+            <div class="footer-content-new">
+                <!-- Column 1: Contact -->
+                <div class="footer-contact-new">
+                    <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
+                    <div class="footer-social-new">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <!-- Add other icons if needed -->
                     </div>
                 </div>
-                
-                <div class="footer-links">
+
+                <!-- Column 2: Links -->
+                <div class="footer-links-new">
                     <ul>
                         <li><a href="index.html">HOME</a></li>
                         <li><a href="about.html">ABOUT US</a></li>
                         <li><a href="activities.html">ACTIVITIES</a></li>
                         <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
+                        <li><a href="projects.html">PROJECTS</a></li>
                         <li><a href="gallery.html">GALLERY</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">CONTACT US</a></li>
+                        <!-- Add any other relevant links -->
                     </ul>
                 </div>
-                
-                <div class="footer-newsletter">
+
+                <!-- Column 3: Newsletter -->
+                <div class="footer-newsletter-new">
                     <h3>NEWSLETTER</h3>
                     <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
+                    <form class="newsletter-form-new">
                         <input type="email" placeholder="Email">
                         <button type="submit">SIGN UP</button>
                     </form>
@@ -265,38 +550,36 @@
         </div>
     </footer>
 
-    <!-- JavaScript for FAQ functionality -->
+    <!-- JavaScript for FAQ Accordion -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            function closeAllItems() {
+                faqItems.forEach(item => {
+                    item.classList.remove('open');
+                });
+            }
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
                 question.addEventListener('click', function() {
-                    const answer = this.nextElementSibling;
-                    const arrow = this.querySelector('.faq-arrow i');
-                    
-                    // Toggle answer visibility
-                    if (answer.style.display === 'none' || !answer.style.display) {
-                        answer.style.display = 'block';
-                        arrow.classList.add('fa-arrow-down');
-                        arrow.classList.remove('fa-arrow-right');
-                    } else {
-                        answer.style.display = 'none';
-                        arrow.classList.add('fa-arrow-right');
-                        arrow.classList.remove('fa-arrow-down');
+                    const isOpen = item.classList.contains('open');
+                    // Close all *before* deciding whether to open the current one
+                    // This ensures only one is open at a time
+                    closeAllItems();
+                    if (!isOpen) {
+                        item.classList.add('open');
                     }
+                    // If it was already open, closeAllItems() handled it.
                 });
             });
-            
-            // Open the first FAQ item by default
-            const firstQuestion = document.querySelector('.faq-question');
-            const firstAnswer = firstQuestion.nextElementSibling;
-            const firstArrow = firstQuestion.querySelector('.faq-arrow i');
-            
-            firstAnswer.style.display = 'block';
-            firstArrow.classList.add('fa-arrow-down');
-            firstArrow.classList.remove('fa-arrow-right');
+
+            if (faqItems.length > 0) {
+                faqItems[0].classList.add('open');
+            }
         });
     </script>
+
 </body>
 </html>

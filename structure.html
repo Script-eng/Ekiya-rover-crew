@@ -4,353 +4,345 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekiya Rover Crew - Structure</title>
-    <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-    <!-- CSS Stylesheet -->
+    <!-- CSS Stylesheet (Make sure path is correct) -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    
     <style>
-        .structure-box {
-            background-color: white;
+        /* --- Page Specific Styles --- */
+        .structure-section {
+             padding: 60px 0;
+         }
+
+        /* --- Main Structure Cards --- */
+        .structure-card {
+            background-color: white; /* Consistent white background */
             border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .structure-box h3 {
-            color: var(--rust-brown);
-            margin-bottom: 15px;
+         .structure-card:hover {
+              transform: translateY(-5px);
+              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+          }
+         .council-card { border-left: 5px solid var(--rust-brown); }
+         .coh-card { border-left: 5px solid var(--forest-green); }
+         .patrol-card { border-left: 5px solid var(--sand-gold); }
+
+
+        .structure-card h3 {
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        .structure-column {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .leadership-profile {
             display: flex;
-            margin-bottom: 25px;
             align-items: center;
+            font-size: 22px;
         }
-        
-        .profile-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 20px;
-        }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .profile-info h4 {
-            margin: 0 0 5px;
-            color: var(--forest-green);
-        }
-        
-        .profile-info p {
-            margin: 0;
-            font-size: 14px;
-        }
-        
-        .profile-info .position {
-            color: var(--rust-brown);
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .org-chart {
-            max-width: 800px;
-            margin: 40px auto;
-            text-align: center;
-        }
-        
-        .chart-level {
-            margin-bottom: 30px;
-        }
-        
-        .chart-box {
-            display: inline-block;
-            background-color: var(--forest-green);
-            color: white;
-            padding: 15px 30px;
+         .structure-card h3 i {
+             margin-right: 8px; /* <<< UPDATED SPACING */
+             color: var(--forest-green);
+             font-size: 1.2em;
+         }
+         .structure-card h3 .first-word { color: var(--forest-green); margin-right: 0.5em; }
+         .structure-card h3 .second-word { color: var(--rust-brown); }
+
+
+        .structure-card p { margin-bottom: 15px; line-height: 1.7; color: var(--carbon-black); }
+        .structure-card p:last-of-type { margin-bottom: 0; }
+
+        .leadership-profile { display: flex; margin-top: 25px; margin-bottom: 15px; align-items: center; padding: 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.05); }
+        .profile-image { width: 70px; height: 70px; border-radius: 50%; overflow: hidden; margin-right: 20px; flex-shrink: 0; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .profile-image img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-info h4 { margin: 0 0 5px; color: var(--forest-green); font-size: 16px; }
+        .profile-info p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--carbon-black); }
+        .profile-info .position { color: var(--rust-brown); font-weight: 600; margin-bottom: 5px; font-size: 14px; }
+
+        /* --- Committees & Teams Section --- */
+        .committees-header { text-align: center; margin-top: 60px; margin-bottom: 30px; font-size: 28px; color: var(--forest-green); }
+        .committees-header i { margin-right: 10px; }
+
+        .committees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
+
+        .committee-card {
             border-radius: 8px;
-            margin: 0 15px 15px;
-            min-width: 200px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 0;
         }
-        
-        .chart-box.main {
-            background-color: var(--rust-brown);
-            font-weight: 600;
-        }
-        
-        .chart-box.secondary {
-            background-color: var(--sand-gold);
-            color: var(--carbon-black);
-        }
-        
-        .chart-connector {
-            height: 30px;
-            position: relative;
-        }
-        
-        .chart-connector::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 2px;
-            height: 30px;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-        
-        .chart-level-multiple {
+         .committee-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+
+
+        .committees-grid > .committee-card:nth-child(odd) {
+             background-color: white;
+             border-left: 4px solid var(--forest-green);
+         }
+         .committees-grid > .committee-card:nth-child(even) {
+              background-color: rgba(234, 200, 135, 0.05);
+              border-left: 4px solid var(--rust-brown);
+          }
+
+        .committee-card h4 {
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
+            font-size: 18px;
         }
-        
-        @media (max-width: 768px) {
-            .structure-column {
-                grid-template-columns: 1fr;
-            }
+         .committee-card h4 i {
+             margin-right: 8px; /* <<< UPDATED SPACING */
+             color: var(--rust-brown);
+         }
+         .committees-grid > .committee-card:nth-child(even) h4 i { color: var(--forest-green); }
+         .committee-card h4 .first-word { color: var(--forest-green); margin-right: 0.5em; }
+         .committee-card h4 .second-word { color: var(--rust-brown); }
+
+        .committee-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 0;
+            color: var(--carbon-black);
+            margin-top: 15px;
         }
+
+        /* --- NEW FOOTER STYLES --- */
+        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 60px; border-top: none; }
+        .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
+        .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
+        .footer-logo-centered { color: var(--rust-brown); font-size: 24px; font-weight: 600; padding: 0 20px; flex-shrink: 0; }
+        .footer-logo-centered span { color: var(--forest-green); }
+        .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
+        .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
+        .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
+        .footer-social-new { display: flex; margin-top: 20px; }
+        .footer-social-new a { color: var(--rust-brown); font-size: 20px; margin-right: 18px; }
+        .footer-social-new a:last-child { margin-right: 0; }
+        .footer-links-new ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 30px; }
+        .footer-links-new ul li { margin-bottom: 12px; }
+        .footer-links-new ul li a { color: var(--rust-brown); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .footer-links-new ul li a:hover { text-decoration: underline; }
+        .footer-newsletter-new h3 { color: var(--rust-brown); font-size: 18px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-newsletter-new p { font-size: 14px; color: var(--rust-brown); margin-bottom: 20px; }
+        .newsletter-form-new { display: flex; border: 1px solid rgba(183, 95, 52, 0.5); border-radius: 30px; overflow: hidden; }
+        .newsletter-form-new input { flex-grow: 1; padding: 10px 15px; border: none; outline: none; font-size: 14px; background-color: transparent; color: var(--carbon-black); }
+        .newsletter-form-new input::placeholder { color: rgba(183, 95, 52, 0.7); }
+        .newsletter-form-new button { background-color: var(--rust-brown); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background-color 0.3s ease; white-space: nowrap; }
+        .newsletter-form-new button:hover { background-color: #a5522c; }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+             .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-contact-new a { justify-content: center; }
+             .footer-social-new { justify-content: center; }
+             .footer-links-new ul { columns: 1; text-align: center; }
+             .newsletter-form-new { max-width: 400px; margin: 0 auto; }
+             .committees-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+         }
+         @media (max-width: 768px) {
+            .footer-logo-centered { font-size: 20px; padding: 0 10px; }
+            .footer-content-new { gap: 30px; }
+             .committees-grid { grid-template-columns: 1fr; }
+             .leadership-profile { flex-direction: column; text-align: center; padding: 20px 10px;}
+             .profile-image { margin-right: 0; margin-bottom: 15px; width: 80px; height: 80px;}
+             .structure-card h3, .committee-card h4 { flex-wrap: wrap; }
+         }
     </style>
+        
+         
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="about.html">ABOUT US</a></li>
-                    <li><a href="activities.html">ACTIVITIES</a></li>
-                    <li><a href="structure.html" class="active">STRUCTURE</a></li>
-                    <li><a href="gallery.html">GALLERY</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">CONTACT US</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+         <div class="container nav-container">
+             <div class="logo">
+                 <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
+             </div>
+             <nav>
+                 <ul>
+                     <li><a href="index.html">HOME</a></li>
+                     <li><a href="about.html">ABOUT US</a></li>
+                     <li><a href="activities.html">ACTIVITIES</a></li>
+                     <li><a href="structure.html" class="active">STRUCTURE</a></li>
+                     <li><a href="projects.html">PROJECTS</a></li>
+                     <li><a href="gallery.html">GALLERY</a></li>
+                     <li><a href="faq.html">FAQ</a></li>
+                     <li><a href="contact.html">CONTACT US</a></li>
+                 </ul>
+             </nav>
+         </div>
+     </header>
 
     <!-- Structure Overview Section -->
-    <section>
+    <section class="structure-section">
         <div class="container">
             <div class="section-header">
                 <h2><span class="first-word">OUR</span> <span class="second-word">STRUCTURE</span></h2>
             </div>
-            
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
                 The Ekiya Rover Crew is structured to promote effective leadership, clear communication, and
-                distributed responsibility. Our organizational structure allows us to efficiently manage our
-                activities and make the most impact in our community.
+                distributed responsibility. Our organizational framework allows us to efficiently manage our
+                activities, foster collaboration, and maximize our impact in the community.
             </p>
-            
-            <div class="org-chart">
-                <div class="chart-level">
-                    <div class="chart-box main">THE COUNCIL</div>
+
+            <!-- Main Structure Levels Wrapper -->
+            <div class="main-structure-wrapper">
+                <div class="structure-card council-card">
+                    <h3>
+                        <i class="fas fa-landmark" style="margin-right: 8px;"></i>
+                        <span class="first-word">THE</span><span class="second-word">COUNCIL</span>
+                    </h3>
+                    <p>
+                        The Council serves as the highest strategic and decision-making body within the Ekiya Rover Crew. Comprising elected leaders, it provides overall direction, oversees long-term planning, ensures alignment with our mission and vision, and represents the Crew in key external engagements, particularly with the Starehe community and major partners.
+                    </p>
+                     <div class="leadership-profile">
+                        <div class="profile-image">
+                            <img src="/api/placeholder/150/150" alt="Council Chair">
+                        </div>
+                        <div class="profile-info">
+                            <h4>John Doe</h4>
+                            <p class="position">Council Chair</p>
+                            <p>Starehe Boys Alumnus (Class of 2018). Pursuing Engineering. Leads strategic initiatives.</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="chart-connector"></div>
-                
-                <div class="chart-level">
-                    <div class="chart-box">THE COH</div>
+
+                <div class="structure-card coh-card">
+                     <h3>
+                         <i class="fas fa-users-cog" style="margin-right: 8px;"></i>
+                         <span class="first-word">THE</span><span class="second-word">COH</span>
+                     </h3>
+                     <p>
+                         (Court of Honor) The operational heart of the Crew, responsible for implementing Council decisions and managing day-to-day activities. It typically includes patrol leaders and committee heads, ensuring effective coordination and communication between units. The COH translates strategy into action.
+                     </p>
+                 </div>
+
+                <div class="structure-card patrol-card">
+                    <h3>
+                        <i class="fas fa-users" style="margin-right: 8px;"></i>
+                        <span class="first-word">THE</span><span class="second-word">PATROLS</span>
+                    </h3>
+                    <p>
+                        Patrols form the foundational units of Ekiya, fostering camaraderie and teamwork. Each patrol, led by a Patrol Leader, comprises a small group of members. This system encourages peer leadership, facilitates closer bonds, allows for focused participation in activities, and provides a direct channel for member feedback.
+                    </p>
                 </div>
-                
-                <div class="chart-connector"></div>
-                
-                <div class="chart-level">
-                    <div class="chart-box secondary">PATROLS</div>
+            </div><!-- end main-structure-wrapper -->
+
+
+            <!-- Committees & Teams Section -->
+            <h3 class="committees-header"><i class="fas fa-sitemap" style="margin-right: 10px;"></i>Committees & Teams</h3>
+            <div class="committees-grid">
+                <!-- These cards WILL alternate background colors -->
+                <div class="committee-card"> <!-- Odd -> white bg, green border -->
+                    <h4>
+                        <i class="fas fa-bullhorn" style="margin-right: 8px;"></i>
+                        <span class="first-word">PUBLIC</span><span class="second-word">RELATIONS</span>
+                    </h4>
+                    <p>
+                        Manages external image, communications, social media, promotional materials, and stakeholder relationships.
+                    </p>
                 </div>
-                
-                <div class="chart-connector"></div>
-                
-                <div class="chart-level chart-level-multiple">
-                    <div class="chart-box">PUBLIC RELATIONS</div>
-                    <div class="chart-box">DESIGN TEAM</div>
-                    <div class="chart-box">INTERNATIONAL RELATIONS</div>
+
+                <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
+                    <h4>
+                        <i class="fas fa-paint-brush" style="margin-right: 8px;"></i>
+                        <span class="first-word">DESIGN</span><span class="second-word">TEAM</span>
+                    </h4>
+                    <p>
+                        Creates visual content (graphics, posters, merch), ensuring brand consistency across all platforms.
+                    </p>
                 </div>
-                
-                <div class="chart-level chart-level-multiple">
-                    <div class="chart-box">CAREER GROUPS</div>
-                    <div class="chart-box">DANCE TEAM</div>
-                    <div class="chart-box">FOOTBALL TEAM</div>
+
+                <div class="committee-card"> <!-- Odd -> white bg, green border -->
+                    <h4>
+                        <i class="fas fa-globe-africa" style="margin-right: 8px;"></i>
+                        <span class="first-word">INTERNATIONAL</span><span class="second-word">RELATIONS</span>
+                    </h4>
+                    <p>
+                        Builds global scouting connections, coordinates exchanges, and facilitates cross-cultural learning.
+                    </p>
                 </div>
-            </div>
-        </div>
+
+                <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
+                     <h4>
+                         <i class="fas fa-briefcase" style="margin-right: 8px;"></i>
+                         <span class="first-word">CAREER</span><span class="second-word">GROUPS</span>
+                     </h4>
+                     <p>
+                         Supports professional development through networking, mentorship, workshops, and opportunities.
+                     </p>
+                 </div>
+
+                <div class="committee-card"> <!-- Odd -> white bg, green border -->
+                     <h4>
+                         <i class="fas fa-music" style="margin-right: 8px;"></i>
+                         <span class="first-word">DANCE</span><span class="second-word">TEAM</span>
+                     </h4>
+                     <p>
+                         Provides creative expression, performs at events, represents the Crew, and fosters teamwork.
+                     </p>
+                 </div>
+
+                <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
+                    <h4>
+                        <i class="fas fa-futbol" style="margin-right: 8px;"></i>
+                        <span class="first-word">FOOTBALL</span><span class="second-word">TEAM</span>
+                    </h4>
+                    <p>
+                        Promotes fitness, sportsmanship, and team spirit via training and participation in matches.
+                    </p>
+                </div>
+
+            </div> <!-- end committees-grid -->
+        </div> <!-- end container -->
     </section>
 
-    <!-- Structure Details Section -->
-    <section>
-        <div class="container">
-            <div class="structure-box">
-                <h3>THE COUNCIL</h3>
-                <p>
-                    The Council is the highest decision-making body within the Ekiya Rover Crew. It comprises elected
-                    leaders who provide strategic direction, oversee the implementation of plans, and ensure that the
-                    Crew operates in alignment with its mission and vision. Council members serve as the primary
-                    representatives of the Crew in external engagements and are responsible for maintaining relationships
-                    with the Starehe community and other partners.
-                </p>
-                
-                <div class="leadership-profile">
-                    <div class="profile-image">
-                        <img src="/api/placeholder/400/400" alt="Council Chair">
-                    </div>
-                    <div class="profile-info">
-                        <h4>John Doe</h4>
-                        <p class="position">Council Chair</p>
-                        <p>Alumnus of Starehe Boys Centre, Class of 2018. Currently pursuing a degree in Engineering.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="structure-box">
-                <h3>THE COH (COURT OF HONOR)</h3>
-                <p>
-                    The Court of Honor (COH) is responsible for the day-to-day operations of the Crew. It comprises
-                    patrol leaders and committee heads who work together to implement the Council's decisions, coordinate
-                    activities, and address any issues that arise within the Crew. The COH also plays a crucial role in
-                    maintaining discipline and ensuring that members adhere to the Crew's code of conduct.
-                </p>
-            </div>
-            
-            <div class="structure-box">
-                <h3>PATROLS</h3>
-                <p>
-                    Patrols are the foundational units of the Ekiya Rover Crew. Each patrol consists of a small group of
-                    members led by a patrol leader. Patrols facilitate closer bonds among members, encourage teamwork,
-                    and provide a platform for developing leadership skills. They participate in activities together and
-                    often take on specific responsibilities or projects within the larger Crew.
-                </p>
-            </div>
-            
-            <div class="structure-column">
-                <div class="structure-box">
-                    <h3>PUBLIC RELATIONS COMMITTEE</h3>
-                    <p>
-                        The Public Relations Committee is responsible for managing the Crew's image and communication with
-                        external stakeholders. They handle social media accounts, create and distribute promotional
-                        materials, and coordinate media coverage for the Crew's activities. The committee also maintains
-                        relationships with partners, sponsors, and the wider community.
-                    </p>
-                </div>
-                
-                <div class="structure-box">
-                    <h3>DESIGN TEAM</h3>
-                    <p>
-                        The Design Team creates visual content for the Crew's communications, events, and initiatives.
-                        This includes designing posters, social media graphics, merchandise, and other promotional
-                        materials. The team ensures that all visual content aligns with the Crew's brand identity and
-                        effectively communicates its message.
-                    </p>
-                </div>
-                
-                <div class="structure-box">
-                    <h3>INTERNATIONAL RELATIONS</h3>
-                    <p>
-                        The International Relations Committee establishes and maintains connections with scouting
-                        organizations and other relevant groups outside Kenya. They coordinate international exchanges,
-                        identify opportunities for members to participate in global events, and facilitate cross-cultural
-                        learning experiences to broaden the horizons of Crew members.
-                    </p>
-                </div>
-                
-                <div class="structure-box">
-                    <h3>CAREER GROUPS</h3>
-                    <p>
-                        Career Groups bring together members pursuing similar career paths to provide mutual support,
-                        mentorship, and professional development opportunities. These groups organize career-specific
-                        workshops, connect members with industry professionals, and facilitate internship and job
-                        placements to enhance members' career prospects.
-                    </p>
-                </div>
-                
-                <div class="structure-box">
-                    <h3>DANCE TEAM</h3>
-                    <p>
-                        The Dance Team develops and performs choreographed routines for Crew events and external
-                        performances. They represent the Crew in dance competitions, cultural shows, and other public
-                        events. The team provides a creative outlet for members interested in dance and contributes to
-                        the Crew's cultural identity.
-                    </p>
-                </div>
-                
-                <div class="structure-box">
-                    <h3>FOOTBALL TEAM</h3>
-                    <p>
-                        The Ekiya Football Team represents the Crew in football tournaments and friendly matches with
-                        other organizations. The team promotes physical fitness, teamwork, and sportsmanship among
-                        members. Regular training sessions and matches provide an opportunity for members to build
-                        camaraderie while engaging in healthy competition.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Footer (New Style Applied) -->
+    <footer class="site-footer">
+         <div class="container">
+             <div class="footer-divider-container">
+                 <div class="footer-line"></div>
+                 <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                 <div class="footer-line"></div>
+             </div>
+             <div class="footer-content-new">
+                 <div class="footer-contact-new">
+                     <a href="tel:+254794808418"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +254 794 808 418</a>
+                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope" style="margin-right: 10px;"></i> stareherovercrew@gmail.com</a>
+                     <div class="footer-social-new">
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                     </div>
+                 </div>
+                 <div class="footer-links-new">
+                     <ul>
+                         <li><a href="index.html">HOME</a></li>
+                         <li><a href="about.html">ABOUT US</a></li>
+                         <li><a href="activities.html">ACTIVITIES</a></li>
+                         <li><a href="structure.html">STRUCTURE</a></li>
+                         <li><a href="projects.html">PROJECTS</a></li>
+                         <li><a href="gallery.html">GALLERY</a></li>
+                         <li><a href="faq.html">FAQ</a></li>
+                         <li><a href="contact.html">CONTACT US</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-newsletter-new">
+                     <h3>NEWSLETTER</h3>
+                     <p>Stay updated with our activities and events!</p>
+                     <form class="newsletter-form-new">
+                         <input type="email" placeholder="Email">
+                         <button type="submit">SIGN UP</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
-            </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
-                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
-                        <li><a href="activities.html">ACTIVITIES</a></li>
-                        <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
-                        <li><a href="gallery.html">GALLERY</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">CONTACT US</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter">
-                    <h3>NEWSLETTER</h3>
-                    <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Email">
-                        <button type="submit">SIGN UP</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>

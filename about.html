@@ -11,31 +11,32 @@
     <!-- Font Awesome for icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <style>
+        /* Existing About Us page styles */
         .about-section {
             margin: 60px 0;
         }
-        
+
         .about-header {
             margin-bottom: 40px;
         }
-        
+
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
-        
+
         .about-image {
             position: relative;
         }
-        
+
         .about-image img {
             width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .image-caption {
             position: absolute;
             bottom: -15px;
@@ -46,17 +47,17 @@
             border-radius: 4px;
             font-size: 0.8rem;
         }
-        
+
         .about-text h3 {
             color: var(--forest-green);
             margin-bottom: 15px;
         }
-        
+
         .about-text p {
             margin-bottom: 20px;
             line-height: 1.8;
         }
-        
+
         .quote-box {
             background-color: var(--sand-gold);
             padding: 30px;
@@ -64,7 +65,7 @@
             margin: 40px 0;
             position: relative;
         }
-        
+
         .quote-text {
             font-style: italic;
             font-size: 18px;
@@ -73,39 +74,39 @@
             padding: 0 40px;
             line-height: 1.6;
         }
-        
+
+        /* Using pseudo-elements for quote marks might be better, but keeping original style for now */
         .quote-text:before, .quote-text:after {
-            content: "";
-            font-size: 60px;
-            color: rgba(0, 0, 0, 0.1);
-            position: absolute;
+           content: '"'; /* Using actual quote characters */
+           font-size: 60px;
+           color: rgba(0, 0, 0, 0.1);
+           position: absolute;
+           line-height: 1;
         }
-        
         .quote-text:before {
-            top: -20px;
-            left: 0;
+           top: -10px; /* Adjust positioning */
+           left: 0;
         }
-        
         .quote-text:after {
-            bottom: -50px;
-            right: 0;
-            content: "";
+           bottom: -30px; /* Adjust positioning */
+           right: 0;
         }
-        
+
+
         .quote-author {
             text-align: right;
             font-weight: 600;
             margin-top: 20px;
             color: var(--rust-brown);
         }
-        
+
         .principles-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin: 40px 0;
         }
-        
+
         .principle-box {
             background-color: white;
             border-radius: 8px;
@@ -113,30 +114,30 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
-        
+
         .principle-icon {
             font-size: 2.5rem;
             color: var(--forest-green);
             margin-bottom: 15px;
         }
-        
+
         .principle-box h4 {
             color: var(--rust-brown);
             margin-bottom: 15px;
             font-size: 18px;
         }
-        
+
         .principle-box p {
             font-size: 14px;
             line-height: 1.6;
         }
-        
+
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 40px auto;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
@@ -146,85 +147,285 @@
             bottom: 0;
             left: 50%;
             margin-left: -2px;
+            z-index: 0; /* Ensure line is behind circles */
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
             width: 50%;
             box-sizing: border-box;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
             background-color: var(--rust-brown);
+            border: 3px solid var(--cream-background); /* Match background for cutout effect */
             border-radius: 50%;
-            top: 15px;
-            right: -10px;
-            z-index: 1;
+            top: 15px; /* Adjust vertical alignment */
+            z-index: 1; /* Ensure circles are above line */
         }
-        
+
         .timeline-item.left {
             left: 0;
         }
-        
+         .timeline-item.left::after {
+             right: -11px; /* Adjust horizontal position */
+         }
+
+
         .timeline-item.right {
             left: 50%;
         }
-        
         .timeline-item.right::after {
-            left: -10px;
+            left: -11px; /* Adjust horizontal position */
         }
-        
+
         .timeline-content {
             padding: 20px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Needed for stacking context? */
         }
-        
+
         .timeline-content h4 {
             color: var(--forest-green);
             margin-bottom: 10px;
         }
-        
+
         .timeline-content .date {
             color: var(--rust-brown);
             font-weight: 600;
             margin-bottom: 15px;
             display: block;
         }
-        
+
+
+        /* --- NEW FOOTER STYLES (Copied from revised faq.html) --- */
+        /* Ensure footer selector doesn't conflict if base style.css has one */
+        footer.site-footer { /* Added class for specificity */
+            padding: 40px 0;
+            background-color: var(--cream-background);
+            margin-top: 60px;
+            border-top: none;
+        }
+
+        .footer-divider-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(183, 95, 52, 0.4);
+        }
+
+        .footer-logo-centered {
+            color: var(--rust-brown);
+            font-size: 24px;
+            font-weight: 600;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+        .footer-logo-centered span {
+             color: var(--forest-green);
+         }
+
+        .footer-content-new {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 50px;
+            color: var(--rust-brown);
+        }
+
+        .footer-contact-new a {
+            display: flex;
+            align-items: center;
+            color: var(--rust-brown);
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .footer-contact-new a i {
+             color: var(--rust-brown);
+             margin-right: 12px;
+             font-size: 18px;
+             width: 20px;
+             text-align: center;
+         }
+        .footer-social-new {
+            display: flex;
+            margin-top: 20px;
+        }
+        .footer-social-new a {
+            color: var(--rust-brown);
+            font-size: 20px;
+            margin-right: 18px;
+        }
+        .footer-social-new a:last-child {
+             margin-right: 0;
+         }
+
+        .footer-links-new ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+        .footer-links-new ul li {
+            margin-bottom: 12px;
+        }
+        .footer-links-new ul li a {
+            color: var(--rust-brown);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .footer-links-new ul li a:hover {
+             text-decoration: underline;
+         }
+
+        .footer-newsletter-new h3 {
+            color: var(--rust-brown);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .footer-newsletter-new p {
+            font-size: 14px;
+            color: var(--rust-brown);
+            margin-bottom: 20px;
+        }
+        .newsletter-form-new {
+            display: flex;
+            border: 1px solid rgba(183, 95, 52, 0.5);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .newsletter-form-new input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background-color: transparent;
+            color: var(--carbon-black);
+        }
+         .newsletter-form-new input::placeholder {
+             color: rgba(183, 95, 52, 0.7);
+         }
+        .newsletter-form-new button {
+            background-color: var(--rust-brown);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            white-space: nowrap;
+        }
+        .newsletter-form-new button:hover {
+            background-color: #a5522c;
+        }
+
+        /* Responsive adjustments for new footer */
+         @media (max-width: 992px) {
+             .footer-content-new {
+                 grid-template-columns: 1fr;
+                 gap: 40px;
+                 text-align: center;
+             }
+             .footer-contact-new a {
+                 justify-content: center;
+             }
+             .footer-social-new {
+                 justify-content: center;
+             }
+             .footer-links-new ul {
+                 columns: 1;
+                 text-align: center;
+             }
+             .newsletter-form-new {
+                 max-width: 400px;
+                 margin: 0 auto;
+             }
+         }
+         @media (max-width: 768px) {
+            .footer-logo-centered {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+            .footer-content-new {
+                 gap: 30px;
+             }
+         }
+
+
+        /* Responsive styles for About Us page content */
         @media (max-width: 992px) {
             .about-content, .principles-grid {
                 grid-template-columns: 1fr;
             }
-            
+
+            /* Adjust timeline for smaller screens */
             .timeline::after {
-                left: 40px;
+                left: 30px; /* Move line to the left */
+                 margin-left: 0;
             }
-            
+
             .timeline-item {
                 width: 100%;
-                padding-left: 80px;
-                padding-right: 0;
+                padding-left: 70px; /* Add space for line/circle */
+                padding-right: 10px; /* Reduce right padding */
             }
-            
+
             .timeline-item.right {
-                left: 0;
+                left: 0; /* Stack items */
             }
-            
-            .timeline-item::after {
-                left: 30px;
-            }
-            
+
+            .timeline-item.left::after,
             .timeline-item.right::after {
-                left: 30px;
+                left: 20px; /* Position circle relative to new line position */
+                right: auto;
             }
+
+             .about-image { /* Stack image below text */
+                 grid-row: 2;
+                 margin-top: 30px;
+             }
+             .about-text {
+                 grid-column: 1; /* Ensure text takes full width */
+             }
+
         }
+         @media (max-width: 576px) {
+             .principles-grid {
+                 gap: 20px;
+             }
+             .quote-text {
+                 font-size: 16px;
+                 padding: 0 15px;
+             }
+              .quote-text:before, .quote-text:after {
+                  font-size: 40px;
+              }
+              .quote-text:before { top: -5px; left: -5px; }
+              .quote-text:after { bottom: -20px; right: -5px; }
+
+              .timeline::after { left: 20px; }
+              .timeline-item { padding-left: 50px; }
+              .timeline-item::after { left: 10px; width: 15px; height: 15px; border-width: 2px; }
+         }
+
     </style>
 </head>
 <body>
@@ -232,12 +433,12 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="about.html" class="active">ABOUT US</a></li>
+                    <li><a href="about.html" class="active">ABOUT US</a></li> <!-- Set active class -->
                     <li><a href="activities.html">ACTIVITIES</a></li>
                     <li><a href="structure.html">STRUCTURE</a></li>
                     <li><a href="projects.html">PROJECTS</a></li>
@@ -255,13 +456,13 @@
             <div class="section-header about-header">
                 <h2><span class="first-word">ABOUT</span> <span class="second-word">EKIYA</span></h2>
             </div>
-            
+
             <div class="about-content">
                 <div class="about-image">
                     <img src="/api/placeholder/800/500" alt="Ekiya Rover Crew members">
                     <div class="image-caption">Ekiya members at community service</div>
                 </div>
-                
+
                 <div class="about-text">
                     <h3>Our Story</h3>
                     <p>
@@ -277,7 +478,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="quote-box">
                 <div class="quote-text">
                     The Ekiya Rover Crew has been instrumental in my personal and professional development. Through our
@@ -295,7 +496,7 @@
             <div class="section-header">
                 <h2><span class="first-word">MISSION</span> <span class="second-word">& VISION</span></h2>
             </div>
-            
+
             <div class="about-content">
                 <div class="about-text">
                     <h3>Our Mission</h3>
@@ -312,7 +513,7 @@
                         and the world at large.
                     </p>
                 </div>
-                
+
                 <div class="about-text">
                     <h3>Our Vision</h3>
                     <p>
@@ -338,13 +539,13 @@
             <div class="section-header">
                 <h2><span class="first-word">OUR</span> <span class="second-word">PRINCIPLES</span></h2>
             </div>
-            
+
             <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
                 At Ekiya Rover Crew, we are guided by three core principles that shape our activities,
                 decision-making, and interactions with the broader community. These principles reflect
                 our commitment to holistic development and positive social impact.
             </p>
-            
+
             <div class="principles-grid">
                 <div class="principle-box">
                     <div class="principle-icon">
@@ -358,7 +559,7 @@
                         adventure helps us develop adaptability and problem-solving skills.
                     </p>
                 </div>
-                
+
                 <div class="principle-box">
                     <div class="principle-icon">
                         <i class="fas fa-users"></i>
@@ -371,7 +572,7 @@
                         for members to develop and demonstrate their leadership abilities.
                     </p>
                 </div>
-                
+
                 <div class="principle-box">
                     <div class="principle-icon">
                         <i class="fas fa-hands-helping"></i>
@@ -394,7 +595,7 @@
             <div class="section-header">
                 <h2><span class="first-word">OUR</span> <span class="second-word">JOURNEY</span></h2>
             </div>
-            
+
             <div class="timeline">
                 <div class="timeline-item left">
                     <div class="timeline-content">
@@ -403,7 +604,7 @@
                         <p>Ekiya Rover Crew was founded by a group of Starehe alumni who wanted to continue their scouting journey beyond secondary school.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <span class="date">2020</span>
@@ -411,7 +612,7 @@
                         <p>The crew launched its first community service projects, establishing partnerships with local organizations and institutions.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <span class="date">2021</span>
@@ -419,7 +620,7 @@
                         <p>Membership grew significantly, allowing for the formation of multiple patrols and specialized committees to handle different aspects of the crew's activities.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <span class="date">2022</span>
@@ -427,7 +628,7 @@
                         <p>The crew initiated its signature long-term projects, including Children's Home Fundraising, Holistic Sexual Health, and Student Mentorship.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <span class="date">2023</span>
@@ -435,7 +636,7 @@
                         <p>Ekiya began participating in international scouting events and established connections with rover crews from other countries.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <span class="date">2024</span>
@@ -447,48 +648,50 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer (New Style Applied) -->
+    <footer class="site-footer"> <!-- Added class for specificity -->
         <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            <!-- Divider Line with Centered Logo -->
+            <div class="footer-divider-container">
+                <div class="footer-line"></div>
+                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                <div class="footer-line"></div>
             </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
+
+            <!-- Footer Content Grid -->
+            <div class="footer-content-new">
+                <!-- Column 1: Contact -->
+                <div class="footer-contact-new">
+                    <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
+                    <div class="footer-social-new">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <!-- Add other icons if needed -->
                     </div>
                 </div>
-                
-                <div class="footer-links">
+
+                <!-- Column 2: Links -->
+                <div class="footer-links-new">
                     <ul>
                         <li><a href="index.html">HOME</a></li>
                         <li><a href="about.html">ABOUT US</a></li>
                         <li><a href="activities.html">ACTIVITIES</a></li>
                         <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
                         <li><a href="projects.html">PROJECTS</a></li>
                         <li><a href="gallery.html">GALLERY</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">CONTACT US</a></li>
+                        <!-- Add any other relevant links -->
                     </ul>
                 </div>
-                
-                <div class="footer-newsletter">
+
+                <!-- Column 3: Newsletter -->
+                <div class="footer-newsletter-new">
                     <h3>NEWSLETTER</h3>
                     <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
+                    <form class="newsletter-form-new">
                         <input type="email" placeholder="Email">
                         <button type="submit">SIGN UP</button>
                     </form>
@@ -496,5 +699,7 @@
             </div>
         </div>
     </footer>
+
+    <!-- No JS needed specifically for this page's content -->
 </body>
 </html>

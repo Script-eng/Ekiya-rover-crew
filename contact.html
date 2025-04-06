@@ -4,201 +4,650 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekiya Rover Crew - Contact Us</title>
-    <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <style>
-        .contact-layout {
+        /* Base Variables */
+        :root {
+            --cream-background: #f8f6f1;
+            --forest-green: #425938;
+            --rust-brown: #B75F34;
+            --sand-gold: #EAC887;
+            --carbon-black: #2A2A2A;
+        }
+        
+        body {
+            background-color: var(--cream-background, #f8f6f1);
+            color: var(--carbon-black, #2A2A2A);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Page Intro */
+        .page-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: -10px auto 60px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* Contact Cards Layout */
+        .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin: 50px 0;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            margin-bottom: 60px;
         }
-        
-        .contact-info h3 {
+
+        /* Left Side - Contact Info */
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card h3 {
             color: var(--forest-green);
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
         }
-        
+
+        .contact-card h3 i {
+            margin-right: 10px;
+            color: var(--rust-brown);
+        }
+
+        /* Contact Items */
         .contact-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
         .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--sand-gold);
+            width: 42px;
+            height: 42px;
+            background-color: rgba(234, 200, 135, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
             flex-shrink: 0;
+            transition: background-color 0.3s;
         }
-        
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--sand-gold);
+        }
+
         .contact-icon i {
             color: var(--rust-brown);
-            font-size: 20px;
+            font-size: 18px;
         }
-        
+
         .contact-text h4 {
             margin: 0 0 5px;
             color: var(--rust-brown);
+            font-size: 16px;
         }
-        
-        .contact-text p {
+
+        .contact-text p,
+        .contact-text a {
             margin: 0;
             line-height: 1.5;
-        }
-        
-        .contact-text a {
+            font-size: 15px;
             color: var(--carbon-black);
             text-decoration: none;
             transition: color 0.3s;
         }
-        
+
         .contact-text a:hover {
             color: var(--rust-brown);
+            text-decoration: underline;
         }
-        
-        .social-box {
-            background-color: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 40px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-        
-        .social-box h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--forest-green);
-        }
-        
-        .social-links {
+
+        /* Social Media */
+        .social-container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
-        
+
         .social-link {
-            width: 60px;
-            height: 60px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            background-color: var(--sand-gold);
+            background-color: rgba(234, 200, 135, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            text-decoration: none;
         }
-        
+
         .social-link:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background-color: var(--rust-brown);
+            box-shadow: 0 4px 10px rgba(183, 95, 52, 0.3);
         }
-        
+
         .social-link i {
-            font-size: 24px;
-            color: var(--carbon-black);
+            font-size: 20px;
+            color: var(--rust-brown);
+            transition: color 0.3s;
         }
-        
+
         .social-link:hover i {
             color: white;
         }
         
-        .contact-form {
+        /* Specific social media brands - all using the site's rust-brown color scheme */
+        .social-link.instagram i,
+        .social-link.facebook i,
+        .social-link.twitter i,
+        .social-link.tiktok i,
+        .social-link.youtube i,
+        .social-link.linkedin i {
+            color: var(--rust-brown);
+        }
+
+        /* Right Side - Contact Form */
+        .contact-form-card {
             background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
         }
-        
-        .contact-form h3 {
+
+        .contact-form-card h3 {
             color: var(--forest-green);
-            margin-bottom: 20px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 20px;
             text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
+        .contact-form-card h3 i {
+            margin-right: 10px;
+            color: var(--rust-brown);
+        }
+
+        /* Form Elements */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            position: relative;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             color: var(--carbon-black);
             font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
             font-size: 14px;
         }
-        
+
+        .form-control {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: rgba(248, 246, 241, 0.5);
+            box-sizing: border-box;
+        }
+
         .form-control:focus {
             outline: none;
-            border-color: var(--forest-green);
+            border-color: var(--rust-brown);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(183, 95, 52, 0.1);
         }
-        
+
         textarea.form-control {
-            min-height: 150px;
+            min-height: 140px;
             resize: vertical;
         }
-        
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-        
+
+        /* Checkbox styling */
+        .interest-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .form-check input[type="checkbox"] {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: var(--rust-brown);
+        }
+
+        .form-check label {
+            margin-bottom: 0;
+            font-weight: normal;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Submit Button */
         .submit-btn {
             background-color: var(--rust-brown);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 38px;
             border-radius: 30px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
+            font-size: 15px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             display: block;
-            margin: 0 auto;
+            margin: 35px auto 0;
+            white-space: nowrap;
+            box-shadow: 0 4px 10px rgba(183, 95, 52, 0.2);
         }
-        
+
         .submit-btn:hover {
             background-color: #a5522c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(183, 95, 52, 0.3);
         }
-        
+
+        /* Map Section */
+        .map-section {
+            margin-bottom: 60px;
+        }
+
         .map-container {
-            margin-top: 60px;
-            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: 400px;
+            background-color: white;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
         }
-        
-        .map-container iframe {
+
+        .map-info {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .map-info h3 {
+            color: var(--forest-green);
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+        }
+
+        .map-info h3 i {
+            margin-right: 12px;
+            color: var(--rust-brown);
+        }
+
+        .map-info p {
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .map-info .address {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .map-info .address i {
+            margin-right: 15px;
+            color: var(--rust-brown);
+            margin-top: 4px;
+            font-size: 18px;
+        }
+
+        .map-info .address p {
+            margin: 0;
+        }
+
+        .map-directions-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(234, 200, 135, 0.2);
+            color: var(--rust-brown);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin-top: 15px;
+            width: fit-content;
+        }
+
+        .map-directions-btn i {
+            margin-right: 8px;
+        }
+
+        .map-directions-btn:hover {
+            background-color: var(--rust-brown);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(183, 95, 52, 0.2);
+        }
+
+        .map-frame {
+            height: 500px;
+            width: 100%;
+        }
+
+        .map-frame iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
+        }
+
+        /* Footer Styles */
+        footer.site-footer { 
+            padding: 40px 0; 
+            background-color: var(--cream-background, #f8f6f1); 
+            margin-top: 60px; 
+            border-top: 1px solid rgba(183, 95, 52, 0.1);
         }
         
-        @media (max-width: 992px) {
-            .contact-layout {
+        .footer-divider-container { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 40px; 
+        }
+        
+        .footer-line { 
+            flex-grow: 1; 
+            height: 1px; 
+            background-color: rgba(183, 95, 52, 0.4); 
+        }
+        
+        .footer-logo-centered { 
+            color: var(--rust-brown, #B75F34); 
+            font-size: 24px; 
+            font-weight: 600; 
+            padding: 0 20px; 
+            flex-shrink: 0; 
+        }
+        
+        .footer-logo-centered span { 
+            color: var(--forest-green, #425938); 
+        }
+        
+        .footer-content-new { 
+            display: grid; 
+            grid-template-columns: auto 1fr auto; 
+            gap: 50px; 
+            color: var(--rust-brown, #B75F34); 
+        }
+        
+        .footer-contact-new a { 
+            display: flex; 
+            align-items: center; 
+            color: var(--rust-brown, #B75F34); 
+            text-decoration: none; 
+            margin-bottom: 15px; 
+            font-size: 14px; 
+        }
+        
+        .footer-contact-new a i { 
+            color: var(--rust-brown, #B75F34); 
+            margin-right: 12px; 
+            font-size: 18px; 
+            width: 20px; 
+            text-align: center; 
+        }
+        
+        .footer-social-new { 
+            display: flex; 
+            margin-top: 20px; 
+        }
+        
+        .footer-social-new a { 
+            color: var(--rust-brown, #B75F34); 
+            font-size: 20px; 
+            margin-right: 18px; 
+        }
+        
+        /* Ensure footer social icons also use the rust-brown color */
+        .footer-social-new a.instagram i,
+        .footer-social-new a.facebook i,
+        .footer-social-new a.tiktok i,
+        .footer-social-new a.twitter i {
+            color: var(--rust-brown, #B75F34);
+        }
+        
+        .footer-social-new a:last-child { 
+            margin-right: 0; 
+        }
+        
+        .footer-links-new ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+            columns: 2; 
+            column-gap: 30px; 
+        }
+        
+        .footer-links-new ul li { 
+            margin-bottom: 12px; 
+        }
+        
+        .footer-links-new ul li a { 
+            color: var(--rust-brown, #B75F34); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+        }
+        
+        .footer-links-new ul li a:hover { 
+            text-decoration: underline; 
+        }
+        
+        .footer-newsletter-new h3 { 
+            color: var(--rust-brown, #B75F34); 
+            font-size: 18px; 
+            font-weight: 600; 
+            margin-bottom: 10px; 
+            text-transform: uppercase; 
+        }
+        
+        .footer-newsletter-new p { 
+            font-size: 14px; 
+            color: var(--rust-brown, #B75F34); 
+            margin-bottom: 20px; 
+        }
+        
+        .newsletter-form-new { 
+            display: flex; 
+            border: 1px solid rgba(183, 95, 52, 0.5); 
+            border-radius: 30px; 
+            overflow: hidden; 
+        }
+        
+        .newsletter-form-new input { 
+            flex-grow: 1; 
+            padding: 10px 15px; 
+            border: none; 
+            outline: none; 
+            font-size: 14px; 
+            background-color: transparent; 
+            color: var(--carbon-black, #2A2A2A); 
+        }
+        
+        .newsletter-form-new input::placeholder { 
+            color: rgba(183, 95, 52, 0.7); 
+        }
+        
+        .newsletter-form-new button { 
+            background-color: var(--rust-brown, #B75F34); 
+            color: white; 
+            border: none; 
+            padding: 10px 25px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            font-size: 14px; 
+            transition: background-color 0.3s ease; 
+            white-space: nowrap; 
+        }
+        
+        .newsletter-form-new button:hover { 
+            background-color: #a5522c; 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .map-container {
                 grid-template-columns: 1fr;
             }
             
+            .map-frame {
+                height: 400px;
+            }
+            
+            .interest-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .map-info {
+                padding: 25px;
+            }
+            
+            .footer-content-new {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .footer-contact-new a {
+                justify-content: center;
+            }
+            
+            .footer-social-new {
+                justify-content: center;
+            }
+            
+            .footer-links-new ul {
+                columns: 1;
+                text-align: center;
+            }
+            
+            .newsletter-form-new {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .contact-info-container {
+                gap: 15px;
+            }
+            
+            .contact-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-intro {
+                margin-bottom: 30px;
+            }
+            
+            .contact-form-card {
+                padding: 25px;
+            }
+            
+            .contact-card h3, 
+            .contact-form-card h3,
+            .map-info h3 {
+                font-size: 18px;
+            }
+            
+            .map-frame {
+                height: 300px;
+            }
+            
+            .footer-logo-centered {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+            
+            .footer-content-new {
+                gap: 30px;
             }
         }
     </style>
@@ -208,7 +657,7 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
             </div>
             <nav>
                 <ul>
@@ -231,181 +680,226 @@
             <div class="section-header">
                 <h2><span class="first-word">CONTACT</span> <span class="second-word">US</span></h2>
             </div>
-            
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+
+            <p class="page-intro">
                 We'd love to hear from you! Whether you have questions about joining Ekiya Rover Crew,
                 want to support our projects, or simply wish to learn more about what we do, please
-                don't hesitate to reach out using any of the methods below.
+                don't hesitate to reach out using any of the methods below or by filling out the form.
             </p>
-            
-            <div class="contact-layout">
-                <div class="contact-info">
-                    <h3>GET IN TOUCH</h3>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p><a href="tel:+254794808418">+254 794 808 418</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p><a href="mailto:stareherovercrew@gmail.com">stareherovercrew@gmail.com</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Starehe Boys Centre & School<br>Starehe, Nairobi<br>Kenya</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="far fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Meeting Times</h4>
-                            <p>Regular meetings: First Saturday of every month<br>Time: 10:00 AM - 1:00 PM</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-box">
-                        <h3>FIND US ON SOCIAL MEDIA</h3>
+
+            <!-- Contact Cards Layout -->
+            <div class="contact-container">
+                <!-- Left Side - Contact Info -->
+                <div class="contact-info-container">
+                    <div class="contact-card">
+                        <h3><i class="fas fa-address-card" style="margin-right: 10px;"></i>CONTACT DETAILS</h3>
                         
-                        <div class="social-links">
-                            <a href="#" class="social-link">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Starehe Boys Centre & School<br>Nairobi, Kenya</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+254794808418">+254 794 808 418</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:stareherovercrew@gmail.com">stareherovercrew@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3><i class="far fa-clock" style="margin-right: 10px;"></i>MEETING INFORMATION</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Regular Meetings</h4>
+                                <p>First Saturday of the month</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Please Note</h4>
+                                <p>Confirm specific dates via email or our social media channels before attending.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <h3><i class="fas fa-share-alt" style="margin-right: 10px;"></i>CONNECT WITH US</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Follow Our Journey</h4>
+                                <p>Stay updated with our latest activities and events by following us on social media.</p>
+                            </div>
+                        </div>
+
+                        <div class="social-container">
+                            <a href="#" class="social-link instagram" title="Instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="social-link">
+                            <a href="#" class="social-link facebook" title="Facebook">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
-                            <a href="#" class="social-link">
+                            <a href="#" class="social-link tiktok" title="TikTok">
                                 <i class="fab fa-tiktok"></i>
                             </a>
-                            <a href="#" class="social-link">
+                            <a href="#" class="social-link twitter" title="Twitter">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <h3>SEND US A MESSAGE</h3>
-                    
+
+                <!-- Right Side - Contact Form -->
+                <div class="contact-form-card">
+                    <h3><i class="fas fa-paper-plane" style="margin-right: 10px;"></i>SEND US A MESSAGE</h3>
+
                     <form id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Your Name</label>
-                                <input type="text" id="name" class="form-control" required>
+                                <input type="text" id="name" class="form-control" required placeholder="Enter your full name">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="email">Your Email</label>
-                                <input type="email" id="email" class="form-control" required>
+                                <input type="email" id="email" class="form-control" required placeholder="Enter your email address">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" class="form-control" required placeholder="What is your message about?">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" class="form-control" required placeholder="Type your message here..."></textarea>
                         </div>
-                        
+
                         <div class="form-group">
                             <label>I'm interested in:</label>
-                            <div class="form-check" style="margin-bottom: 5px;">
-                                <input type="checkbox" id="joining" name="interest" value="joining">
-                                <label for="joining" style="font-weight: normal;"> Joining Ekiya Rover Crew</label>
-                            </div>
-                            <div class="form-check" style="margin-bottom: 5px;">
-                                <input type="checkbox" id="volunteering" name="interest" value="volunteering">
-                                <label for="volunteering" style="font-weight: normal;"> Volunteering for projects</label>
-                            </div>
-                            <div class="form-check" style="margin-bottom: 5px;">
-                                <input type="checkbox" id="donating" name="interest" value="donating">
-                                <label for="donating" style="font-weight: normal;"> Donating to Ekiya</label>
-                            </div>
-                            <div class="form-check" style="margin-bottom: 5px;">
-                                <input type="checkbox" id="partnering" name="interest" value="partnering">
-                                <label for="partnering" style="font-weight: normal;"> Partnership opportunities</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" id="information" name="interest" value="information">
-                                <label for="information" style="font-weight: normal;"> General information</label>
+                            <div class="interest-options">
+                                <div class="form-check">
+                                    <input type="checkbox" id="joining" name="interest" value="joining">
+                                    <label for="joining">Joining Ekiya Rover Crew</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="volunteering" name="interest" value="volunteering">
+                                    <label for="volunteering">Volunteering for projects</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="donating" name="interest" value="donating">
+                                    <label for="donating">Donating to Ekiya</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="partnering" name="interest" value="partnering">
+                                    <label for="partnering">Partnership opportunities</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="information" name="interest" value="information">
+                                    <label for="information">General information</label>
+                                </div>
                             </div>
                         </div>
-                        
+
                         <button type="submit" class="submit-btn">SEND MESSAGE</button>
                     </form>
                 </div>
             </div>
-            
-            <div class="map-container">
-                <!-- Replace with actual Google Maps embed code -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8193214266906!2d36.83313917385167!3d-1.2788431356091095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11c9f462ebb7%3A0x67578c6f75834200!2sStarehe%20Boys&#39;%20Centre%20and%20School!5e0!3m2!1sen!2sus!4v1711326439874!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            <!-- Map Section With Info -->
+            <div class="map-section">
+                <div class="map-container">
+                    <div class="map-info">
+                        <h3><i class="fas fa-map-marked-alt"></i>FIND US</h3>
+                        <p>We are located at Starehe Boys Centre & School in Nairobi, Kenya. The campus is easily accessible from the city center and provides a central meeting point for all our activities.</p>
+                        
+                        <div class="address">
+                            <i class="fas fa-map-pin"></i>
+                            <p>
+                                Starehe Boys Centre & School<br>
+                                Off Thika Road<br>
+                                Nairobi, Kenya
+                            </p>
+                        </div>
+                        
+                        <a href="https://goo.gl/maps/1UWZbUqvBwGgD6ue8" target="_blank" class="map-directions-btn">
+                            <i class="fas fa-directions"></i>Get Directions
+                        </a>
+                    </div>
+                    
+                    <div class="map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8193214266906!2d36.83313917385167!3d-1.2788431356091095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11c9f462ebb7%3A0x67578c6f75834200!2sStarehe%20Boys'%20Centre%20and%20School!5e0!3m2!1sen!2ske!4v1711326439874!5m2!1sen!2ske" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            <div class="footer-divider-container">
+                <div class="footer-line"></div>
+                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                <div class="footer-line"></div>
             </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
-                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+            <div class="footer-content-new">
+                <div class="footer-contact-new">
+                    <a href="tel:+254794808418"><i class="fas fa-phone-alt" style="margin-right: 12px;"></i> +254 794 808 418</a>
+                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope" style="margin-right: 12px;"></i> stareherovercrew@gmail.com</a>
+                    <div class="footer-social-new">
+                        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="tiktok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                
-                <div class="footer-links">
+                <div class="footer-links-new">
                     <ul>
                         <li><a href="index.html">HOME</a></li>
                         <li><a href="about.html">ABOUT US</a></li>
                         <li><a href="activities.html">ACTIVITIES</a></li>
                         <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
                         <li><a href="projects.html">PROJECTS</a></li>
                         <li><a href="gallery.html">GALLERY</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">CONTACT US</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-newsletter">
+                <div class="footer-newsletter-new">
                     <h3>NEWSLETTER</h3>
                     <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
+                    <form class="newsletter-form-new">
                         <input type="email" placeholder="Email">
                         <button type="submit">SIGN UP</button>
                     </form>
@@ -416,22 +910,28 @@
 
     <!-- Form Submission JavaScript -->
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real implementation, you would send this data to a server
-            // For now, we'll just show an alert
-            alert(`Thank you for your message, ${name}! We will get back to you soon.`);
-            
-            // Reset the form
-            this.reset();
-        });
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                // Basic validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (name === '' || email === '' || message === '') {
+                    alert('Please fill in all required fields (Name, Email, Message).');
+                    return;
+                }
+
+                // Show a confirmation message
+                alert(`Thank you for your message, ${name}! We'll be in touch soon.`);
+
+                // Reset the form
+                this.reset();
+            });
+        }
     </script>
 </body>
 </html>

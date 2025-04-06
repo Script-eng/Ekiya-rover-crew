@@ -6,24 +6,470 @@
     <title>Ekiya Rover Crew - Activities</title>
     <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-    <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome for icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <style>
+        /* KEEPING ORIGINAL <style> block */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* KEEPING ORIGINAL :root variables defined within this page */
+        :root {
+            --sand-gold: #EAC887;
+            --forest-green: #597267;
+            --rust-brown: #b75f34;
+            --cream-background: #FBF9ED;
+            --carbon-black: #151414;
+        }
+
+        body {
+            background-color: var(--cream-background);
+            color: var(--carbon-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px; /* Keep original padding */
+        }
+
+        /* Header and Navigation - Keep original */
+        header {
+            padding: 20px 0;
+            /* Removed background-color as it should come from style.css or be defined if needed */
+            /* background-color: var(--sand-gold); */ /* Let's assume base header has no specific bg color here */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            color: var(--rust-brown);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: var(--forest-green);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--carbon-black);
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--rust-brown);
+        }
+
+        /* Activity Detail Section - Keep original */
+        .activity-detail-section {
+            padding: 60px 0;
+        }
+
+        .activity-title {
+            color: var(--forest-green);
+            text-align: center;
+            font-size: 48px;
+            margin: 50px 0;
+            text-transform: uppercase;
+        }
+
+        .activity-item {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            align-items: center;
+        }
+
+        .activity-number {
+            font-size: 72px;
+            color: var(--rust-brown);
+            font-weight: 600;
+            grid-column: 1;
+            opacity: 0.9;
+        }
+
+        .activity-content {
+            grid-column: 2;
+            padding-right: 20px;
+        }
+
+        .activity-content h3 {
+            color: var(--rust-brown);
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .activity-content p {
+            line-height: 1.8;
+            color: var(--carbon-black);
+        }
+
+        .activity-image {
+            grid-column: 3;
+            position: relative;
+        }
+
+        .activity-image img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+            display: block; /* Add display block */
+        }
+
+        .activity-tape {
+            position: absolute;
+            width: 60px;
+            height: 25px;
+            background-color: var(--sand-gold);
+            opacity: 0.8;
+            top: -10px;
+            right: 30px;
+            z-index: 1;
+        }
+
+        /* Activity Navigation - Keep original */
+        .activity-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 80px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            padding-top: 30px;
+        }
+
+        .prev-activity, .next-activity {
+            display: flex;
+            align-items: center;
+            color: var(--rust-brown);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .prev-activity i, .next-activity i {
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .prev-activity span, .next-activity span {
+            text-transform: uppercase;
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            /* Added color to match original appearance */
+            color: var(--carbon-black); /* Or adjust if it was different */
+        }
+
+        .prev-activity p, .next-activity p {
+            font-weight: 600;
+            margin: 0; /* Added */
+        }
+         .prev-activity div, .next-activity div { /* Added for alignment */
+             text-align: left;
+         }
+         .next-activity div {
+             text-align: right;
+         }
+
+
+        /* --- NEW FOOTER STYLES (Copied from revised faq.html) --- */
+        /* Added class for specificity */
+        footer.site-footer {
+            padding: 40px 0;
+            background-color: var(--cream-background);
+            margin-top: 60px; /* Adjusted from original footer margin */
+            border-top: none; /* Remove default top border if present */
+        }
+
+        .footer-divider-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(183, 95, 52, 0.4);
+        }
+
+        .footer-logo-centered {
+            color: var(--rust-brown);
+            font-size: 24px;
+            font-weight: 600;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+        .footer-logo-centered span {
+             color: var(--forest-green);
+         }
+
+        .footer-content-new {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 50px;
+            color: var(--rust-brown);
+        }
+
+        .footer-contact-new a {
+            display: flex;
+            align-items: center;
+            color: var(--rust-brown);
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .footer-contact-new a i {
+             color: var(--rust-brown);
+             margin-right: 12px;
+             font-size: 18px;
+             width: 20px;
+             text-align: center;
+         }
+        .footer-social-new {
+            display: flex;
+            margin-top: 20px;
+        }
+        .footer-social-new a {
+            color: var(--rust-brown);
+            font-size: 20px;
+            margin-right: 18px;
+        }
+        .footer-social-new a:last-child {
+             margin-right: 0;
+         }
+
+        .footer-links-new ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 30px;
+        }
+        .footer-links-new ul li {
+            margin-bottom: 12px;
+        }
+        .footer-links-new ul li a {
+            color: var(--rust-brown);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .footer-links-new ul li a:hover {
+             text-decoration: underline;
+         }
+
+        .footer-newsletter-new h3 {
+            color: var(--rust-brown);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .footer-newsletter-new p {
+            font-size: 14px;
+            color: var(--rust-brown);
+            margin-bottom: 20px;
+        }
+        .newsletter-form-new {
+            display: flex;
+            border: 1px solid rgba(183, 95, 52, 0.5);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+        .newsletter-form-new input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background-color: transparent;
+            color: var(--carbon-black);
+        }
+         .newsletter-form-new input::placeholder {
+             color: rgba(183, 95, 52, 0.7);
+         }
+        .newsletter-form-new button {
+            background-color: var(--rust-brown);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            white-space: nowrap; /* Prevent text wrap */
+        }
+        .newsletter-form-new button:hover {
+            background-color: #a5522c;
+        }
+
+        /* Responsive adjustments for new footer */
+         @media (max-width: 992px) {
+             .footer-content-new {
+                 grid-template-columns: 1fr;
+                 gap: 40px;
+                 text-align: center;
+             }
+             .footer-contact-new a {
+                 justify-content: center;
+             }
+             .footer-social-new {
+                 justify-content: center;
+             }
+             .footer-links-new ul {
+                 columns: 1;
+                 text-align: center;
+             }
+             .newsletter-form-new {
+                 max-width: 400px;
+                 margin: 0 auto;
+             }
+         }
+         @media (max-width: 768px) {
+            .footer-logo-centered {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+            .footer-content-new {
+                 gap: 30px;
+             }
+         }
+
+
+        /* --- ORIGINAL RESPONSIVE STYLES for Activities --- */
+        @media (max-width: 992px) {
+            .activity-item {
+                /* Stack layout on medium screens */
+                grid-template-columns: 80px 1fr; /* Number | Content */
+                gap: 20px 30px; /* row-gap column-gap */
+                 margin-bottom: 60px;
+            }
+             .activity-number {
+                 grid-row: 1; /* Ensure number stays at top */
+                 align-self: start;
+                 margin-top: 10px; /* Adjust spacing */
+             }
+             .activity-content {
+                 grid-column: 2; /* Content next to number */
+                 grid-row: 1;
+                 padding-right: 0;
+             }
+             .activity-image {
+                 grid-column: 1 / span 2; /* Image spans full width below */
+                 grid-row: 2;
+                 margin-top: 30px; /* Space above image */
+             }
+        }
+
+        @media (max-width: 768px) {
+            .activity-title {
+                font-size: 36px;
+            }
+
+            .activity-number {
+                font-size: 60px;
+                 grid-column: 1 / span 2; /* Number takes full width */
+                 text-align: center;
+                 margin-bottom: 15px;
+            }
+
+             .activity-item {
+                 /* Fully stacked layout */
+                 grid-template-columns: 1fr;
+                 gap: 20px;
+             }
+             .activity-content {
+                 grid-column: 1;
+                 grid-row: 2; /* Content below number */
+                 text-align: center;
+             }
+             .activity-image {
+                 grid-column: 1;
+                 grid-row: 3; /* Image at the bottom */
+                 margin-top: 20px;
+             }
+             .activity-image img {
+                 transform: rotate(0deg); /* Optional: remove rotation on small screens */
+             }
+             .activity-tape {
+                  right: 15px; /* Adjust tape position */
+              }
+
+             .activity-navigation {
+                 flex-direction: column; /* Stack nav buttons */
+                 align-items: center;
+                 gap: 20px;
+             }
+              .prev-activity div, .next-activity div {
+                  text-align: center; /* Center nav text */
+              }
+
+             /* Original responsive nav adjustments from activities.html */
+             nav ul {
+                 flex-wrap: wrap;
+                 justify-content: center; /* Center nav items when wrapped */
+                 margin-top: 15px; /* Add space below logo */
+             }
+
+             nav ul li {
+                 margin: 5px 10px;
+             }
+             .nav-container { /* Allow header to stack */
+                 flex-direction: column;
+             }
+
+        }
+        @media (max-width: 576px) { /* Added small screen adjustments */
+           .activity-number { font-size: 50px; }
+           .activity-title { font-size: 32px; }
+        }
+
+
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">ABOUT US</a></li>
-                    <li><a href="activities.html" class="active">ACTIVITIES</a></li>
+                    <li><a href="activities.html" class="active">ACTIVITIES</a></li> <!-- Ensure active class is correct -->
                     <li><a href="structure.html">STRUCTURE</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
                     <li><a href="gallery.html">GALLERY</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
@@ -32,11 +478,13 @@
         </div>
     </header>
 
-    <!-- Activity Section -->
+    <!-- Activity Section - Original Structure & Content -->
     <section class="activity-detail-section">
         <div class="container">
+            <!-- Original Title -->
             <h2 class="activity-title">COMMUNITY SERVICE</h2>
-            
+
+             <!-- Original Activity Items -->
             <div class="activity-item">
                 <div class="activity-number">01</div>
                 <div class="activity-content">
@@ -47,10 +495,11 @@
                 </div>
                 <div class="activity-image">
                     <div class="activity-tape"></div>
+                    <!-- Using original image path -->
                     <img src="images/activity2.jpeg" alt="Community cleanup">
                 </div>
             </div>
-            
+
             <div class="activity-item">
                 <div class="activity-number">02</div>
                 <div class="activity-content">
@@ -61,10 +510,11 @@
                 </div>
                 <div class="activity-image">
                     <div class="activity-tape"></div>
+                     <!-- Using original image path -->
                     <img src="images/activity3.jpeg" alt="Children's home visit">
                 </div>
             </div>
-            
+
             <div class="activity-item">
                 <div class="activity-number">03</div>
                 <div class="activity-content">
@@ -75,10 +525,11 @@
                 </div>
                 <div class="activity-image">
                     <div class="activity-tape"></div>
-                    <img src="images/camp-cooking.jpg" alt="Workshop session">
+                     <!-- Using original image path -->
+                    <img src="images/activity2.jpeg" alt="Workshop session">
                 </div>
             </div>
-            
+
             <div class="activity-item">
                 <div class="activity-number">04</div>
                 <div class="activity-content">
@@ -89,111 +540,74 @@
                 </div>
                 <div class="activity-image">
                     <div class="activity-tape"></div>
-                    <img src="images/fishing.jpg" alt="Mentorship session">
+                     <!-- Using original image path -->
+                    <img src="images/activity3.jpeg" alt="Mentorship session">
                 </div>
             </div>
-            
-            <h2 class="activity-title" style="margin-top: 60px;">IN-CREW ACTIVITIES</h2>
-            
-            <div class="activity-item">
-                <div class="activity-number">05</div>
-                <div class="activity-content">
-                    <h3>SECRET SANTA</h3>
-                    <p>
-                        During the Christmas season, we organize a Secret Santa event where crew members appreciate one another by exchanging gifts. This tradition strengthens our bonds and creates a festive atmosphere of gratitude and fellowship.
-                    </p>
-                </div>
-                <div class="activity-image">
-                    <div class="activity-tape"></div>
-                    <img src="images/tent-pitching.jpg" alt="Secret Santa event">
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-number">06</div>
-                <div class="activity-content">
-                    <h3>CAMPS AND HIKING</h3>
-                    <p>
-                        We organize regular camps and hiking expeditions to complete our badges while encouraging resilience, curiosity, and the joy of discovery. These outdoor adventures allow members to connect with nature, learn survival skills, and build camaraderie.
-                    </p>
-                </div>
-                <div class="activity-image">
-                    <div class="activity-tape"></div>
-                    <img src="images/fire-building.jpg" alt="Hiking expedition">
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-number">07</div>
-                <div class="activity-content">
-                    <h3>TOWN CLEAN UPS</h3>
-                    <p>
-                        As part of our commitment to community service, we organize town clean-up activities where members work together to beautify public spaces and raise awareness about environmental conservation.
-                    </p>
-                </div>
-                <div class="activity-image">
-                    <div class="activity-tape"></div>
-                    <img src="images/camp-cooking.jpg" alt="Town cleanup">
-                </div>
-            </div>
-            
-            <div class="activity-item">
-                <div class="activity-number">08</div>
-                <div class="activity-content">
-                    <h3>VOLUNTEERING</h3>
-                    <p>
-                        We create opportunities for our members to volunteer within and outside the country, allowing them to gain international exposure, learn from diverse cultures, and develop their skills for personal growth.
-                    </p>
-                </div>
-                <div class="activity-image">
-                    <div class="activity-tape"></div>
-                    <img src="images/fishing.jpg" alt="International volunteering">
-                </div>
+
+            <!-- Original Activity Navigation -->
+            <div class="activity-navigation">
+                <a href="#" class="prev-activity">
+                    <i class="fas fa-arrow-left"></i>
+                    <div>
+                        <span>PREV ACTIVITY</span>
+                        <p>NATURE LEARNING</p>
+                    </div>
+                </a>
+
+                <a href="#" class="next-activity">
+                    <div>
+                        <span>NEXT ACTIVITY</span>
+                        <p>IN-CREW ACTIVITIES</p>
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer (New Style Applied) -->
+    <footer class="site-footer"> <!-- Added class for specificity -->
         <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
+            <!-- Divider Line with Centered Logo -->
+            <div class="footer-divider-container">
+                <div class="footer-line"></div>
+                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                <div class="footer-line"></div>
             </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
+
+            <!-- Footer Content Grid -->
+            <div class="footer-content-new">
+                <!-- Column 1: Contact -->
+                <div class="footer-contact-new">
+                    <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
+                    <div class="footer-social-new">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                
-                <div class="footer-links">
+
+                <!-- Column 2: Links -->
+                <div class="footer-links-new">
                     <ul>
                         <li><a href="index.html">HOME</a></li>
                         <li><a href="about.html">ABOUT US</a></li>
                         <li><a href="activities.html">ACTIVITIES</a></li>
                         <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
+                        <li><a href="projects.html">PROJECTS</a></li>
                         <li><a href="gallery.html">GALLERY</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="contact.html">CONTACT US</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-newsletter">
+
+                <!-- Column 3: Newsletter -->
+                <div class="footer-newsletter-new">
                     <h3>NEWSLETTER</h3>
                     <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
+                    <form class="newsletter-form-new">
                         <input type="email" placeholder="Email">
                         <button type="submit">SIGN UP</button>
                     </form>
@@ -201,5 +615,6 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>
