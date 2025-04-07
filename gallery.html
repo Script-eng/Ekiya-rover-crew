@@ -7,570 +7,203 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Updated Font Awesome to v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        /* --- Page Specific Styles --- */
-        :root {
-            --cream-background: #f8f6f1;
-            --forest-green: #425938;
-            --rust-brown: #B75F34;
-            --sand-gold: #EAC887;
-            --carbon-black: #2A2A2A;
-        }
-        
-        body {
-            background-color: var(--cream-background, #f8f6f1);
-            color: var(--carbon-black, #2A2A2A);
-            font-family: 'Montserrat', sans-serif;
+        /* Keep base styles, but rely on style.css for variables */
+        * {
             margin: 0;
             padding: 0;
-        }
-        
-        .gallery-page-section {
-            padding: 40px 0 60px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
+        /* Removed :root variables - should come from linked style.css */
+
+        body {
+            background-color: var(--cream-background, #f8f6f1); /* Use fallback */
+            color: var(--carbon-black, #2A2A2A);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Ensure Container matches final activities.html --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 30px 20px; /* Exact padding */
+        }
+
+         /* --- Header Style --- */
+         header {
+             background-color: var(--sand-gold);
+             padding: 20px 0;
+         }
+
+         /* --- Header Logo Style (matching final activities.html) --- */
+          .logo-text {
+              color: var(--rust-brown);
+              font-size: 28px;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+          }
+          .logo-text i.fa-mountain {
+              /* color specified inline, !important removed */
+              margin-left: 10px;
+              font-size: 30px;
+              line-height: 1;
+          }
+
+        /* --- Nav styles should be inherited or consistent --- */
+         nav ul { display: flex; list-style: none; }
+         nav ul li { margin-left: 30px; }
+         nav ul li a { text-decoration: none; color: var(--carbon-black); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+         nav ul li a:hover, nav ul li a.active { color: var(--rust-brown); }
+
+        /* --- Page Specific Styles for Gallery --- */
+        .gallery-page-section {
+            padding: 40px 0 60px;
         }
 
         .intro-text {
             text-align: center;
             max-width: 800px;
-            margin: -10px auto 50px;
+            margin: 0 auto 50px; /* Adjusted margin */
             font-size: 16px;
             line-height: 1.7;
             color: var(--carbon-black, #2A2A2A);
         }
 
-        /* Apple-style Modern Gallery Layout */
-        .gallery-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
+        /* Keep Gallery Filters, Masonry, Modal styles as provided */
+        .gallery-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .filter-btn { background-color: transparent; border: none; color: var(--carbon-black, #2A2A2A); padding: 8px 16px; font-size: 14px; font-weight: 600; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn:hover { background-color: rgba(66, 89, 56, 0.1); }
+        .filter-btn.active { background-color: var(--forest-green, #425938); color: white; }
 
-        .filter-btn {
-            background-color: transparent;
-            border: none;
-            color: var(--carbon-black, #2A2A2A);
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+        .masonry-gallery { margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-flow: dense; grid-auto-rows: minmax(100px, auto); gap: 15px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 12px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+        .gallery-item:hover img { transform: scale(1.05); }
 
-        .filter-btn:hover {
-            background-color: rgba(66, 89, 56, 0.1);
-        }
+        /* Grid spans */
+        .gallery-item.featured-large { grid-column: span 7; grid-row: span 3; }
+        .gallery-item.featured-medium { grid-column: span 5; grid-row: span 3; }
+        .gallery-item.standard { grid-column: span 4; grid-row: span 2; }
+        .gallery-item.small { grid-column: span 3; grid-row: span 2; }
+        .gallery-item.tiny { grid-column: span 3; grid-row: span 1; }
+        .gallery-item.vertical { grid-column: span 3; grid-row: span 4; }
 
-        .filter-btn.active {
-            background-color: var(--forest-green, #425938);
-            color: white;
-        }
+        .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); color: white; padding: 50px 20px 15px; opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+        .gallery-caption h3 { margin: 0 0 5px; font-size: 16px; font-weight: 600; }
+        .gallery-caption p { margin: 0; font-size: 14px; opacity: 0.9; }
 
-        .masonry-gallery {
-            margin: 0 auto;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-auto-flow: dense; /* Helps fill gaps automatically */
-            grid-auto-rows: minmax(100px, auto);
-            gap: 15px;
-        }
+        /* Lightbox Modal Styles */
+        .gallery-modal { display: none; position: fixed; z-index: 1000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-modal.show { opacity: 1; display: block; }
+        .modal-content { position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 90%; max-height: 90%; }
+        .modal-img { display: block; max-width: 100%; max-height: 85vh; margin: 0 auto; border-radius: 6px; box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3); }
+        .modal-caption { color: white; text-align: center; margin-top: 20px; }
+        .modal-caption h3 { margin: 0 0 8px; font-size: 20px; font-weight: 600; }
+        .modal-caption p { margin: 0; font-size: 16px; opacity: 0.8; }
+        .modal-close { position: absolute; top: 15px; right: 20px; color: white; font-size: 28px; cursor: pointer; z-index: 1001; width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease; }
+        .modal-close:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; background-color: rgba(255, 255, 255, 0.1); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease; }
+        .modal-nav:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .modal-prev { left: 20px; }
+        .modal-next { right: 20px; }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-        }
+        /* --- FOOTER STYLES --- */
+        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 60px; border-top: none; }
+        .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
+        .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-            display: block;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Define grid area spans for different sized images */
-        .gallery-item.featured-large {
-            grid-column: span 7;
-            grid-row: span 3;
-        }
-
-        .gallery-item.featured-medium {
-            grid-column: span 5;
-            grid-row: span 3;
-        }
-
-        .gallery-item.standard {
-            grid-column: span 4;
-            grid-row: span 2;
-        }
-
-        .gallery-item.small {
-            grid-column: span 3;
-            grid-row: span 2;
-        }
-
-        .gallery-item.tiny {
-            grid-column: span 3;
-            grid-row: span 1;
-        }
-
-        .gallery-item.vertical {
-            grid-column: span 3;
-            grid-row: span 4;
-        }
-
-        /* Caption overlay */
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
-            color: white;
-            padding: 50px 20px 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
-
-        .gallery-caption h3 {
-            margin: 0 0 5px;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .gallery-caption p {
-            margin: 0;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* Lightbox Modal */
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-modal.show {
-            opacity: 1;
-            display: block;
-        }
-
-        .modal-content {
-            position: relative;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .modal-img {
-            display: block;
-            max-width: 100%;
-            max-height: 85vh;
-            margin: 0 auto;
-            border-radius: 6px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-caption {
-            color: white;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .modal-caption h3 {
-            margin: 0 0 8px;
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        .modal-caption p {
-            margin: 0;
-            font-size: 16px;
-            opacity: 0.8;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: white;
+        /* Footer Logo - matching header */
+        .footer-logo-centered {
+            color: var(--rust-brown);
             font-size: 28px;
-            cursor: pointer;
-            z-index: 1001;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
+            font-weight: 600;
+            padding: 0 20px;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
+        }
+        .footer-logo-centered i.fa-mountain {
+            margin-left: 10px;
+            font-size: 30px;
+            line-height: 1;
         }
 
-        .modal-close:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .modal-nav:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .modal-prev {
-            left: 20px;
-        }
-
-        .modal-next {
-            right: 20px;
-        }
-
-        /* Footer Styles */
-        footer.site-footer { 
-            padding: 40px 0; 
-            background-color: var(--cream-background, #f8f6f1); 
-            margin-top: 60px; 
-            border-top: 1px solid rgba(183, 95, 52, 0.1);
-        }
-        
-        .footer-divider-container { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 40px; 
-        }
-        
-        .footer-line { 
-            flex-grow: 1; 
-            height: 1px; 
-            background-color: rgba(183, 95, 52, 0.4); 
-        }
-        
-        .footer-logo-centered { 
-            color: var(--rust-brown, #B75F34); 
-            font-size: 24px; 
-            font-weight: 600; 
-            padding: 0 20px; 
-            flex-shrink: 0; 
-        }
-        
-        .footer-logo-centered span { 
-            color: var(--forest-green, #425938); 
-        }
-        
-        .footer-content-new { 
-            display: grid; 
-            grid-template-columns: auto 1fr auto; 
-            gap: 50px; 
-            color: var(--rust-brown, #B75F34); 
-        }
-        
-        .footer-contact-new a { 
-            display: flex; 
-            align-items: center; 
-            color: var(--rust-brown, #B75F34); 
-            text-decoration: none; 
-            margin-bottom: 15px; 
-            font-size: 14px; 
-        }
-        
-        .footer-contact-new a i { 
-            color: var(--rust-brown, #B75F34); 
-            margin-right: 12px; 
-            font-size: 18px; 
-            width: 20px; 
-            text-align: center; 
-        }
-        
-        .footer-social-new { 
-            display: flex; 
-            margin-top: 20px; 
-        }
-        
-        .footer-social-new a { 
-            color: var(--rust-brown, #B75F34); 
-            font-size: 20px; 
-            margin-right: 18px; 
-        }
-        
-        .footer-social-new a:last-child { 
-            margin-right: 0; 
-        }
-        
-        .footer-links-new ul { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0; 
-            columns: 2; 
-            column-gap: 30px; 
-        }
-        
-        .footer-links-new ul li { 
-            margin-bottom: 12px; 
-        }
-        
-        .footer-links-new ul li a { 
-            color: var(--rust-brown, #B75F34); 
-            text-decoration: none; 
-            font-size: 14px; 
-            font-weight: 600; 
-        }
-        
-        .footer-links-new ul li a:hover { 
-            text-decoration: underline; 
-        }
-        
-        .footer-newsletter-new h3 { 
-            color: var(--rust-brown, #B75F34); 
-            font-size: 18px; 
-            font-weight: 600; 
-            margin-bottom: 10px; 
-            text-transform: uppercase; 
-        }
-        
-        .footer-newsletter-new p { 
-            font-size: 14px; 
-            color: var(--rust-brown, #B75F34); 
-            margin-bottom: 20px; 
-        }
-        
-        .newsletter-form-new { 
-            display: flex; 
-            border: 1px solid rgba(183, 95, 52, 0.5); 
-            border-radius: 30px; 
-            overflow: hidden; 
-        }
-        
-        .newsletter-form-new input { 
-            flex-grow: 1; 
-            padding: 10px 15px; 
-            border: none; 
-            outline: none; 
-            font-size: 14px; 
-            background-color: transparent; 
-            color: var(--carbon-black, #2A2A2A); 
-        }
-        
-        .newsletter-form-new input::placeholder { 
-            color: rgba(183, 95, 52, 0.7); 
-        }
-        
-        .newsletter-form-new button { 
-            background-color: var(--rust-brown, #B75F34); 
-            color: white; 
-            border: none; 
-            padding: 10px 25px; 
-            cursor: pointer; 
-            font-weight: 600; 
-            font-size: 14px; 
-            transition: background-color 0.3s ease; 
-            white-space: nowrap; 
-        }
-        
-        .newsletter-form-new button:hover { 
-            background-color: #a5522c; 
-        }
+        .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
+        .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
+        .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
+        .footer-social-new { display: flex; margin-top: 20px; }
+        .footer-social-new a { color: var(--rust-brown); font-size: 20px; margin-right: 18px; }
+        .footer-social-new a:last-child { margin-right: 0; }
+        .footer-links-new ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 30px; }
+        .footer-links-new ul li { margin-bottom: 12px; }
+        .footer-links-new ul li a { color: var(--rust-brown); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .footer-links-new ul li a:hover { text-decoration: underline; }
+        .footer-newsletter-new h3 { color: var(--rust-brown); font-size: 18px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-newsletter-new p { font-size: 14px; color: var(--rust-brown); margin-bottom: 20px; }
+        .newsletter-form-new { display: flex; border: 1px solid rgba(183, 95, 52, 0.5); border-radius: 30px; overflow: hidden; }
+        .newsletter-form-new input { flex-grow: 1; padding: 10px 15px; border: none; outline: none; font-size: 14px; background-color: transparent; color: var(--carbon-black); }
+        .newsletter-form-new input::placeholder { color: rgba(183, 95, 52, 0.7); }
+        .newsletter-form-new button { background-color: var(--rust-brown); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background-color 0.3s ease; white-space: nowrap; }
+        .newsletter-form-new button:hover { background-color: #a5522c; }
 
         /* Responsive */
         @media (max-width: 1100px) {
-            .masonry-gallery {
-                grid-template-columns: repeat(8, 1fr);
-            }
-            
-            .gallery-item.featured-large {
-                grid-column: span 5;
-                grid-row: span 3;
-            }
-
-            .gallery-item.featured-medium {
-                grid-column: span 4;
-                grid-row: span 2;
-            }
-
-            .gallery-item.standard {
-                grid-column: span 3;
-                grid-row: span 2;
-            }
-
-            .gallery-item.small {
-                grid-column: span 2;
-                grid-row: span 2;
-            }
-
-            .gallery-item.tiny {
-                grid-column: span 3;
-                grid-row: span 1;
-            }
-
-            .gallery-item.vertical {
-                grid-column: span 3;
-                grid-row: span 3;
-            }
+            .masonry-gallery { grid-template-columns: repeat(8, 1fr); }
+            .gallery-item.featured-large { grid-column: span 5; grid-row: span 3; }
+            .gallery-item.featured-medium { grid-column: span 4; grid-row: span 2; }
+            .gallery-item.standard { grid-column: span 3; grid-row: span 2; }
+            .gallery-item.small { grid-column: span 2; grid-row: span 2; }
+            .gallery-item.tiny { grid-column: span 3; grid-row: span 1; }
+            .gallery-item.vertical { grid-column: span 3; grid-row: span 3; }
+             .container { padding: 30px 15px; }
+             .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-contact-new a { justify-content: center; }
+             .footer-social-new { justify-content: center; }
+             .footer-links-new ul { columns: 1; text-align: center; }
+             .newsletter-form-new { max-width: 400px; margin: 0 auto; }
         }
 
         @media (max-width: 768px) {
-            .masonry-gallery {
-                grid-template-columns: repeat(6, 1fr);
-                gap: 10px;
-            }
-            
-            .gallery-item.featured-large {
-                grid-column: span 6;
-                grid-row: span 2;
-            }
+            .masonry-gallery { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+            .gallery-item.featured-large { grid-column: span 6; grid-row: span 2; }
+            .gallery-item.featured-medium { grid-column: span 6; grid-row: span 2; }
+            .gallery-item.standard { grid-column: span 3; grid-row: span 2; }
+            .gallery-item.small { grid-column: span 3; grid-row: span 1; }
+            .gallery-item.tiny { grid-column: span 3; grid-row: span 1; }
+            .gallery-item.vertical { grid-column: span 3; grid-row: span 3; }
+            .gallery-caption h3 { font-size: 14px; }
+            .gallery-caption p { font-size: 12px; }
 
-            .gallery-item.featured-medium {
-                grid-column: span 6;
-                grid-row: span 2;
-            }
+             .container { padding: 20px 10px; }
+             .nav-container { flex-direction: column; }
+             nav ul { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+             nav ul li { margin: 5px 10px;}
 
-            .gallery-item.standard {
-                grid-column: span 3;
-                grid-row: span 2;
-            }
-
-            .gallery-item.small {
-                grid-column: span 3;
-                grid-row: span 1;
-            }
-
-            .gallery-item.tiny {
-                grid-column: span 3;
-                grid-row: span 1;
-            }
-
-            .gallery-item.vertical {
-                grid-column: span 3;
-                grid-row: span 3;
-            }
-            
-            .footer-content-new {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            
-            .footer-contact-new a {
-                justify-content: center;
-            }
-            
-            .footer-social-new {
-                justify-content: center;
-            }
-            
-            .footer-links-new ul {
-                columns: 1;
-                text-align: center;
-            }
-            
-            .newsletter-form-new {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .gallery-caption h3 {
-                font-size: 14px;
-            }
-            
-            .gallery-caption p {
-                font-size: 12px;
-            }
+             .footer-logo-centered, .logo-text { font-size: 24px; }
+             .footer-logo-centered i.fa-mountain, .logo-text i.fa-mountain { font-size: 26px; }
+             .footer-content-new { gap: 30px; }
+             .modal-nav { width: 40px; height: 40px; font-size: 20px; }
+             .modal-prev { left: 15px; }
+             .modal-next { right: 15px; }
         }
 
         @media (max-width: 576px) {
-            .masonry-gallery {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 8px;
-            }
-            
-            .gallery-item.featured-large,
-            .gallery-item.featured-medium,
-            .gallery-item.vertical {
-                grid-column: span 4;
-                grid-row: span 2;
-            }
-
-            .gallery-item.standard,
-            .gallery-item.small,
-            .gallery-item.tiny {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
-            
-            .footer-logo-centered {
-                font-size: 20px;
-                padding: 0 10px;
-            }
-            
-            .footer-content-new {
-                gap: 30px;
-            }
-            
-            .modal-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-            
-            .modal-prev {
-                left: 10px;
-            }
-            
-            .modal-next {
-                right: 10px;
-            }
+            .masonry-gallery { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+            .gallery-item.featured-large, .gallery-item.featured-medium, .gallery-item.vertical { grid-column: span 4; grid-row: span 2; }
+            .gallery-item.standard, .gallery-item.small, .gallery-item.tiny { grid-column: span 2; grid-row: span 1; }
+            .modal-nav { width: 35px; height: 35px; font-size: 18px; }
+            .modal-prev { left: 10px; }
+            .modal-next { right: 10px; }
         }
     </style>
 </head>
@@ -578,9 +211,13 @@
     <!-- Header -->
     <header>
         <div class="container nav-container">
+            <!-- Updated Header Logo -->
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
-            </div>
+                 <div class="logo-text">
+                     EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+             </div>
+            <!-- End Updated Header Logo -->
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
@@ -588,7 +225,7 @@
                     <li><a href="activities.html">ACTIVITIES</a></li>
                     <li><a href="structure.html">STRUCTURE</a></li>
                     <li><a href="projects.html">PROJECTS</a></li>
-                    <li><a href="gallery.html" class="active">GALLERY</a></li>
+                    <li><a href="gallery.html" class="active">GALLERY</a></li> <!-- Active Link -->
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
                 </ul>
@@ -598,14 +235,14 @@
 
     <!-- Gallery Section -->
     <section class="gallery-page-section">
-        <div class="container">
+        <div class="container"> <!-- Added Container -->
             <div class="section-header">
                 <h2><span class="first-word">OUR</span> <span class="second-word">GALLERY</span></h2>
             </div>
 
             <p class="intro-text">
                 Explore the moments that define Ekiya Rover Crew. From community service initiatives and leadership training
-                to adventurous camps and team building activities, this visual journey showcases our commitment to scouting 
+                to adventurous camps and team building activities, this visual journey showcases our commitment to scouting
                 principles and the impact we have on our communities and each other.
             </p>
 
@@ -620,118 +257,98 @@
 
             <!-- Apple-style Masonry Gallery Grid -->
             <div class="masonry-gallery">
-                <!-- Featured Large Image -->
+                <!-- Add gallery items with correct data-category and sizes -->
+                <!-- Example Items (Replace with actual images and categories) -->
                 <div class="gallery-item featured-large" data-category="leadership">
                     <img src="images/activity1.jpeg" alt="Leadership Workshop">
                     <div class="gallery-caption">
                         <h3>Leadership Training</h3>
-                        <p>Developing skills through hands-on activities and team collaboration.</p>
+                        <p>Developing skills through hands-on activities.</p>
                     </div>
                 </div>
-                
-                <!-- Medium Image to the right -->
                 <div class="gallery-item standard" data-category="community">
                     <img src="images/activity2.jpeg" alt="Community Project">
                     <div class="gallery-caption">
                         <h3>Community Impact</h3>
-                        <p>Working with local partners to make a difference.</p>
+                        <p>Working with local partners.</p>
                     </div>
                 </div>
-                
-                <!-- Small Image -->
-                <div class="gallery-item tiny" data-category="events">
-                    <img src="images/activity3.jpeg" alt="Graduation Ceremony">
-                    <div class="gallery-caption">
-                        <h3>Graduation Day</h3>
-                        <p>Celebrating achievements together.</p>
-                    </div>
-                </div>
-                
-                <!-- Vertical Image -->
-                <div class="gallery-item vertical" data-category="adventure">
-                    <img src="images/activity2.jpeg" alt="Mountain Hiking">
-                    <div class="gallery-caption">
-                        <h3>Mountain Expedition</h3>
-                        <p>Challenging ourselves through nature exploration.</p>
-                    </div>
-                </div>
-                
-                <!-- Standard Image -->
-                <div class="gallery-item small" data-category="leadership">
-                    <img src="images/activity3.jpeg" alt="Team Planning">
-                    <div class="gallery-caption">
-                        <h3>Strategic Planning</h3>
-                        <p>Working together to create our future initiatives.</p>
-                    </div>
-                </div>
-                
-                <!-- Standard Image -->
-                <div class="gallery-item standard" data-category="community">
-                    <img src="images/activity1.jpeg" alt="Tree Planting">
-                    <div class="gallery-caption">
-                        <h3>Environmental Care</h3>
-                        <p>Restoring local ecosystems through planting initiatives.</p>
-                    </div>
-                </div>
-                
-                <!-- Small Image -->
-                <div class="gallery-item tiny" data-category="events">
-                    <img src="images/activity2.jpeg" alt="Cultural Day">
-                    <div class="gallery-caption">
-                        <h3>Cultural Celebration</h3>
-                        <p>Honoring our diverse heritage.</p>
-                    </div>
-                </div>
-                
-                <!-- Featured Medium Image -->
-                <div class="gallery-item featured-medium" data-category="adventure">
-                    <img src="images/activity3.jpeg" alt="River Rafting">
-                    <div class="gallery-caption">
-                        <h3>River Adventure</h3>
-                        <p>Team building through challenging outdoor activities.</p>
-                    </div>
-                </div>
-                
-                <!-- Small Image -->
-                <div class="gallery-item small" data-category="leadership">
-                    <img src="images/activity1.jpeg" alt="Mentorship Session">
-                    <div class="gallery-caption">
-                        <h3>Mentorship Program</h3>
-                        <p>Experienced rovers guiding newcomers.</p>
-                    </div>
-                </div>
-                
-                <!-- Tiny Image -->
-                <div class="gallery-item tiny" data-category="events">
-                    <img src="images/activity2.jpeg" alt="Annual Dinner">
-                    <div class="gallery-caption">
-                        <h3>Annual Gala</h3>
-                        <p>Recognizing excellence in service.</p>
-                    </div>
-                </div>
-                
-                <!-- Standard Image -->
-                <div class="gallery-item standard" data-category="community">
-                    <img src="images/activity3.jpeg" alt="Food Drive">
-                    <div class="gallery-caption">
-                        <h3>Food Distribution</h3>
-                        <p>Supporting local communities with essential resources.</p>
-                    </div>
-                </div>
-                
-                <!-- Vertical Image -->
-                <div class="gallery-item vertical" data-category="adventure">
-                    <img src="images/activity1.jpeg" alt="Camping">
-                    <div class="gallery-caption">
-                        <h3>Wilderness Camp</h3>
-                        <p>Living off the land and building survival skills.</p>
-                    </div>
-                </div>
+                 <div class="gallery-item tiny" data-category="events">
+                     <img src="images/activity3.jpeg" alt="Graduation Ceremony">
+                     <div class="gallery-caption">
+                         <h3>Graduation Day</h3>
+                         <p>Celebrating achievements.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item vertical" data-category="adventure">
+                     <img src="images/activity2.jpeg" alt="Mountain Hiking">
+                     <div class="gallery-caption">
+                         <h3>Mountain Expedition</h3>
+                         <p>Challenging ourselves outdoors.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item small" data-category="leadership">
+                     <img src="images/activity3.jpeg" alt="Team Planning">
+                     <div class="gallery-caption">
+                         <h3>Strategic Planning</h3>
+                         <p>Collaborating on future initiatives.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item standard" data-category="community">
+                     <img src="images/activity1.jpeg" alt="Tree Planting">
+                     <div class="gallery-caption">
+                         <h3>Environmental Care</h3>
+                         <p>Planting for a greener future.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item tiny" data-category="events">
+                     <img src="images/activity2.jpeg" alt="Cultural Day">
+                     <div class="gallery-caption">
+                         <h3>Cultural Celebration</h3>
+                         <p>Honoring diverse heritage.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item featured-medium" data-category="adventure">
+                     <img src="images/activity3.jpeg" alt="River Rafting">
+                     <div class="gallery-caption">
+                         <h3>River Adventure</h3>
+                         <p>Team building through challenges.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item small" data-category="leadership">
+                     <img src="images/activity1.jpeg" alt="Mentorship Session">
+                     <div class="gallery-caption">
+                         <h3>Mentorship Program</h3>
+                         <p>Guidance for newcomers.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item tiny" data-category="events">
+                     <img src="images/activity2.jpeg" alt="Annual Dinner">
+                     <div class="gallery-caption">
+                         <h3>Annual Gala</h3>
+                         <p>Recognizing excellence.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item standard" data-category="community">
+                     <img src="images/activity3.jpeg" alt="Food Drive">
+                     <div class="gallery-caption">
+                         <h3>Food Distribution</h3>
+                         <p>Supporting local communities.</p>
+                     </div>
+                 </div>
+                 <div class="gallery-item vertical" data-category="adventure">
+                     <img src="images/activity1.jpeg" alt="Camping">
+                     <div class="gallery-caption">
+                         <h3>Wilderness Camp</h3>
+                         <p>Building survival skills.</p>
+                     </div>
+                 </div>
+                <!-- Add more items -->
             </div>
 
-            <!-- Lightbox Modal -->
+            <!-- Lightbox Modal Structure -->
             <div class="gallery-modal">
-                <span class="modal-close">&times;</span>
+                <span class="modal-close">×</span>
                 <div class="modal-content">
                     <img class="modal-img" src="" alt="">
                     <div class="modal-caption">
@@ -742,76 +359,81 @@
                 <button class="modal-nav modal-prev"><i class="fas fa-chevron-left"></i></button>
                 <button class="modal-nav modal-next"><i class="fas fa-chevron-right"></i></button>
             </div>
-        </div>
+
+        </div> <!-- End Container -->
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Matching final activities.html) -->
     <footer class="site-footer">
-        <div class="container">
-            <div class="footer-divider-container">
-                <div class="footer-line"></div>
-                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
-                <div class="footer-line"></div>
-            </div>
-            <div class="footer-content-new">
-                <div class="footer-contact-new">
-                    <a href="tel:+254794808418"><i class="fas fa-phone-alt" style="margin-right: 12px;"></i> +254 794 808 418</a>
-                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope" style="margin-right: 12px;"></i> stareherovercrew@gmail.com</a>
-                    <div class="footer-social-new">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links-new">
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
-                        <li><a href="activities.html">ACTIVITIES</a></li>
-                        <li><a href="structure.html">STRUCTURE</a></li>
-                        <li><a href="projects.html">PROJECTS</a></li>
-                        <li><a href="gallery.html">GALLERY</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">CONTACT US</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter-new">
-                    <h3>NEWSLETTER</h3>
-                    <p>Stay updated with our activities and events!</p>
-                    <form class="newsletter-form-new">
-                        <input type="email" placeholder="Email">
-                        <button type="submit">SIGN UP</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </footer>
+         <div class="container">
+             <div class="footer-divider-container">
+                 <div class="footer-line"></div>
+                 <!-- Updated Footer Logo -->
+                 <div class="footer-logo-centered">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+                 <!-- End Updated Footer Logo -->
+                 <div class="footer-line"></div>
+             </div>
+             <div class="footer-content-new">
+                 <div class="footer-contact-new">
+                     <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
+                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
+                     <div class="footer-social-new">
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                     </div>
+                 </div>
+                 <div class="footer-links-new">
+                     <ul>
+                         <li><a href="index.html">HOME</a></li>
+                         <li><a href="about.html">ABOUT US</a></li>
+                         <li><a href="activities.html">ACTIVITIES</a></li>
+                         <li><a href="structure.html">STRUCTURE</a></li>
+                         <li><a href="projects.html">PROJECTS</a></li>
+                         <li><a href="gallery.html">GALLERY</a></li>
+                         <li><a href="faq.html">FAQ</a></li>
+                         <li><a href="contact.html">CONTACT US</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-newsletter-new">
+                     <h3>NEWSLETTER</h3>
+                     <p>Stay updated with our activities and events!</p>
+                     <form class="newsletter-form-new">
+                         <input type="email" placeholder="Email">
+                         <button type="submit">SIGN UP</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript (Keep as provided) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
-            
+
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Update active button
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    
                     const filterValue = button.getAttribute('data-filter');
-                    
                     galleryItems.forEach(item => {
                         if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
+                            item.style.display = 'block'; // Use block to make it visible for grid
                         } else {
                             item.style.display = 'none';
                         }
                     });
+                     // NOTE: Recalculating grid layout after filtering might be needed
+                     // for perfect masonry effect with JS libraries, but basic CSS grid
+                     // with dense flow should handle it reasonably well.
                 });
             });
-            
+
             // Lightbox/Modal functionality
             const modal = document.querySelector('.gallery-modal');
             const modalImg = document.querySelector('.modal-img');
@@ -820,67 +442,71 @@
             const modalPrev = document.querySelector('.modal-prev');
             const modalNext = document.querySelector('.modal-next');
             let currentImageIndex = 0;
-            let visibleItems = [];
-            
-            function updateVisibleItems() {
-                visibleItems = [];
-                galleryItems.forEach((item, index) => {
-                    if (item.style.display !== 'none') {
-                        visibleItems.push(index);
-                    }
-                });
-            }
-            
+            let visibleItems = []; // Array to store indices of currently visible items
+
+             function updateVisibleItems() {
+                 visibleItems = [];
+                 galleryItems.forEach((item, index) => {
+                     // Check computed style in case display is set via CSS rule initially
+                     const style = window.getComputedStyle(item);
+                     if (style.display !== 'none') {
+                         visibleItems.push(index);
+                     }
+                 });
+             }
+
+             function showModal(itemIndexInVisibleArray) {
+                 if(visibleItems.length === 0 || itemIndexInVisibleArray < 0 || itemIndexInVisibleArray >= visibleItems.length) return;
+
+                 currentImageIndex = itemIndexInVisibleArray;
+                 const actualItemIndex = visibleItems[currentImageIndex];
+                 const item = galleryItems[actualItemIndex];
+
+                 const imgSrc = item.querySelector('img').src;
+                 const title = item.querySelector('h3')?.textContent || ''; // Handle cases where h3 might be missing
+                 const description = item.querySelector('p')?.textContent || ''; // Handle cases where p might be missing
+
+                 modalImg.src = imgSrc;
+                 modalCaption.querySelector('h3').textContent = title;
+                 modalCaption.querySelector('p').textContent = description;
+                 modal.classList.add('show');
+             }
+
+
             galleryItems.forEach((item, index) => {
                 item.addEventListener('click', () => {
-                    updateVisibleItems();
-                    const imgSrc = item.querySelector('img').src;
-                    const title = item.querySelector('h3').textContent;
-                    const description = item.querySelector('p').textContent;
-                    
-                    modalImg.src = imgSrc;
-                    modalCaption.querySelector('h3').textContent = title;
-                    modalCaption.querySelector('p').textContent = description;
-                    
-                    modal.classList.add('show');
-                    currentImageIndex = visibleItems.indexOf(index);
+                    updateVisibleItems(); // Update list of visible items based on current filter
+                    const indexInVisible = visibleItems.indexOf(index);
+                    if(indexInVisible !== -1) { // Only open if the clicked item is currently visible
+                       showModal(indexInVisible);
+                    }
                 });
             });
-            
+
             modalClose.addEventListener('click', () => {
                 modal.classList.remove('show');
             });
-            
+
             modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+                if (e.target === modal) { // Click outside the image/content area
                     modal.classList.remove('show');
                 }
             });
-            
+
             modalPrev.addEventListener('click', () => {
-                if (visibleItems.length > 0) {
-                    currentImageIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
-                    const itemIndex = visibleItems[currentImageIndex];
-                    const item = galleryItems[itemIndex];
-                    
-                    modalImg.src = item.querySelector('img').src;
-                    modalCaption.querySelector('h3').textContent = item.querySelector('h3').textContent;
-                    modalCaption.querySelector('p').textContent = item.querySelector('p').textContent;
+                 if (visibleItems.length > 0) {
+                    let prevIndex = (currentImageIndex - 1 + visibleItems.length) % visibleItems.length;
+                    showModal(prevIndex);
                 }
             });
-            
+
             modalNext.addEventListener('click', () => {
-                if (visibleItems.length > 0) {
-                    currentImageIndex = (currentImageIndex + 1) % visibleItems.length;
-                    const itemIndex = visibleItems[currentImageIndex];
-                    const item = galleryItems[itemIndex];
-                    
-                    modalImg.src = item.querySelector('img').src;
-                    modalCaption.querySelector('h3').textContent = item.querySelector('h3').textContent;
-                    modalCaption.querySelector('p').textContent = item.querySelector('p').textContent;
+                 if (visibleItems.length > 0) {
+                    let nextIndex = (currentImageIndex + 1) % visibleItems.length;
+                    showModal(nextIndex);
                 }
             });
-            
+
             // Keyboard navigation for modal
             document.addEventListener('keydown', (e) => {
                 if (modal.classList.contains('show')) {
@@ -893,6 +519,9 @@
                     }
                 }
             });
+
+            // Initial update in case some items are hidden by default via CSS
+             updateVisibleItems();
         });
     </script>
 </body>
