@@ -5,51 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekiya Rover Crew - Structure</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-    <!-- CSS Stylesheet (Make sure path is correct) -->
+    <!-- CSS Stylesheet - Keep linked, internal styles will specify container -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
-    
+    <!-- Updated Font Awesome to v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        /* --- Page Specific Styles --- */
+        /* --- Ensure Container matches final activities.html --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px; /* Exact padding from activities.html */
+        }
+
+        /* --- Header Style --- */
+        header {
+            background-color: var(--sand-gold);
+             /* Padding should match activities.html - likely comes from style.css or default body margin */
+             padding: 20px 0; /* Explicitly match padding if needed */
+        }
+
+        /* --- Header Logo Style (matching final activities.html) --- */
+         .logo-text {
+             color: var(--rust-brown);
+             font-size: 28px; /* Match final size */
+             font-weight: 600;
+             display: flex;
+             align-items: center;
+         }
+         .logo-text i.fa-mountain {
+             /* color specified inline now, !important removed */
+             margin-left: 10px;
+             font-size: 30px; /* Match final size */
+             line-height: 1;
+         }
+
+        /* --- Nav styles should be inherited or consistent --- */
+         nav ul { display: flex; list-style: none; }
+         nav ul li { margin-left: 30px; }
+         nav ul li a { text-decoration: none; color: var(--carbon-black); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+         nav ul li a:hover, nav ul li a.active { color: var(--rust-brown); }
+
+
+        /* --- Page Specific Styles for Structure --- */
         .structure-section {
              padding: 60px 0;
+             /* Container padding handles left/right */
          }
 
         /* --- Main Structure Cards --- */
-        .structure-card {
-            background-color: white; /* Consistent white background */
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-         .structure-card:hover {
-              transform: translateY(-5px);
-              box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-          }
-         .council-card { border-left: 5px solid var(--rust-brown); }
-         .coh-card { border-left: 5px solid var(--forest-green); }
-         .patrol-card { border-left: 5px solid var(--sand-gold); }
+        .structure-card { background-color: white; border-radius: 8px; padding: 30px; margin-bottom: 40px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .structure-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+        .council-card { border-left: 5px solid var(--rust-brown); }
+        .coh-card { border-left: 5px solid var(--forest-green); }
+        .patrol-card { border-left: 5px solid var(--sand-gold); }
 
-
-        .structure-card h3 {
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            font-size: 22px;
-        }
-         .structure-card h3 i {
-             margin-right: 8px; /* <<< UPDATED SPACING */
-             color: var(--forest-green);
-             font-size: 1.2em;
-         }
-         .structure-card h3 .first-word { color: var(--forest-green); margin-right: 0.5em; }
-         .structure-card h3 .second-word { color: var(--rust-brown); }
-
+        .structure-card h3 { margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); display: flex; align-items: center; font-size: 22px; }
+        .structure-card h3 i { margin-right: 8px; color: var(--forest-green); font-size: 1.2em; }
+        .structure-card h3 .first-word { color: var(--forest-green); margin-right: 0.5em; }
+        .structure-card h3 .second-word { color: var(--rust-brown); }
 
         .structure-card p { margin-bottom: 15px; line-height: 1.7; color: var(--carbon-black); }
         .structure-card p:last-of-type { margin-bottom: 0; }
@@ -67,55 +80,42 @@
 
         .committees-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
 
-        .committee-card {
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 0;
-        }
-         .committee-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+        .committee-card { border-radius: 8px; padding: 25px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; margin-bottom: 0; }
+        .committee-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
 
+        .committees-grid > .committee-card:nth-child(odd) { background-color: white; border-left: 4px solid var(--forest-green); }
+        .committees-grid > .committee-card:nth-child(even) { background-color: rgba(234, 200, 135, 0.05); border-left: 4px solid var(--rust-brown); }
 
-        .committees-grid > .committee-card:nth-child(odd) {
-             background-color: white;
-             border-left: 4px solid var(--forest-green);
-         }
-         .committees-grid > .committee-card:nth-child(even) {
-              background-color: rgba(234, 200, 135, 0.05);
-              border-left: 4px solid var(--rust-brown);
-          }
+        .committee-card h4 { margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(0, 0, 0, 0.08); display: flex; align-items: center; font-size: 18px; }
+        .committee-card h4 i { margin-right: 8px; color: var(--rust-brown); }
+        .committees-grid > .committee-card:nth-child(even) h4 i { color: var(--forest-green); }
+        .committee-card h4 .first-word { color: var(--forest-green); margin-right: 0.5em; }
+        .committee-card h4 .second-word { color: var(--rust-brown); }
 
-        .committee-card h4 {
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: center;
-            font-size: 18px;
-        }
-         .committee-card h4 i {
-             margin-right: 8px; /* <<< UPDATED SPACING */
-             color: var(--rust-brown);
-         }
-         .committees-grid > .committee-card:nth-child(even) h4 i { color: var(--forest-green); }
-         .committee-card h4 .first-word { color: var(--forest-green); margin-right: 0.5em; }
-         .committee-card h4 .second-word { color: var(--rust-brown); }
+        .committee-card p { font-size: 14px; line-height: 1.6; margin-bottom: 0; color: var(--carbon-black); margin-top: 15px; }
 
-        .committee-card p {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 0;
-            color: var(--carbon-black);
-            margin-top: 15px;
-        }
-
-        /* --- NEW FOOTER STYLES --- */
+        /* --- FOOTER STYLES --- */
         footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 60px; border-top: none; }
         .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
         .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
-        .footer-logo-centered { color: var(--rust-brown); font-size: 24px; font-weight: 600; padding: 0 20px; flex-shrink: 0; }
-        .footer-logo-centered span { color: var(--forest-green); }
+
+        /* Footer Logo - matching header */
+        .footer-logo-centered {
+            color: var(--rust-brown);
+            font-size: 28px; /* Match header size */
+            font-weight: 600;
+            padding: 0 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo-centered i.fa-mountain {
+             /* color specified inline now, !important removed */
+            margin-left: 10px;
+            font-size: 30px; /* Match header icon size */
+            line-height: 1;
+        }
+
         .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
         .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
         .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
@@ -136,6 +136,7 @@
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
+             .container { padding: 30px 15px; } /* Slightly reduce padding on medium screens */
              .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
              .footer-contact-new a { justify-content: center; }
              .footer-social-new { justify-content: center; }
@@ -144,24 +145,34 @@
              .committees-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
          }
          @media (max-width: 768px) {
-            .footer-logo-centered { font-size: 20px; padding: 0 10px; }
-            .footer-content-new { gap: 30px; }
+             .container { padding: 20px 10px; } /* Reduce padding further */
+             .nav-container { flex-direction: column; }
+             nav ul { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+             nav ul li { margin: 5px 10px;}
+
+             .footer-logo-centered, .logo-text { font-size: 24px; }
+             .footer-logo-centered i.fa-mountain, .logo-text i.fa-mountain { font-size: 26px; }
+
+             .footer-content-new { gap: 30px; }
              .committees-grid { grid-template-columns: 1fr; }
              .leadership-profile { flex-direction: column; text-align: center; padding: 20px 10px;}
              .profile-image { margin-right: 0; margin-bottom: 15px; width: 80px; height: 80px;}
              .structure-card h3, .committee-card h4 { flex-wrap: wrap; }
          }
+
     </style>
-        
-         
 </head>
 <body>
     <!-- Header -->
     <header>
          <div class="container nav-container">
+             <!-- Updated Header Logo to match final activities.html -->
              <div class="logo">
-                 <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
-             </div>
+                  <div class="logo-text">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                  </div>
+              </div>
+             <!-- End Updated Header Logo -->
              <nav>
                  <ul>
                      <li><a href="index.html">HOME</a></li>
@@ -179,7 +190,7 @@
 
     <!-- Structure Overview Section -->
     <section class="structure-section">
-        <div class="container">
+        <div class="container"> <!-- This container now respects the rule added in <style> -->
             <div class="section-header">
                 <h2><span class="first-word">OUR</span> <span class="second-word">STRUCTURE</span></h2>
             </div>
@@ -194,7 +205,7 @@
             <div class="main-structure-wrapper">
                 <div class="structure-card council-card">
                     <h3>
-                        <i class="fas fa-landmark" style="margin-right: 8px;"></i>
+                        <i class="fas fa-landmark"></i>
                         <span class="first-word">THE</span><span class="second-word">COUNCIL</span>
                     </h3>
                     <p>
@@ -214,7 +225,7 @@
 
                 <div class="structure-card coh-card">
                      <h3>
-                         <i class="fas fa-users-cog" style="margin-right: 8px;"></i>
+                         <i class="fas fa-users-cog"></i>
                          <span class="first-word">THE</span><span class="second-word">COH</span>
                      </h3>
                      <p>
@@ -224,7 +235,7 @@
 
                 <div class="structure-card patrol-card">
                     <h3>
-                        <i class="fas fa-users" style="margin-right: 8px;"></i>
+                        <i class="fas fa-users"></i>
                         <span class="first-word">THE</span><span class="second-word">PATROLS</span>
                     </h3>
                     <p>
@@ -235,12 +246,12 @@
 
 
             <!-- Committees & Teams Section -->
-            <h3 class="committees-header"><i class="fas fa-sitemap" style="margin-right: 10px;"></i>Committees & Teams</h3>
+            <h3 class="committees-header"><i class="fas fa-sitemap"></i>Committees & Teams</h3>
             <div class="committees-grid">
                 <!-- These cards WILL alternate background colors -->
                 <div class="committee-card"> <!-- Odd -> white bg, green border -->
                     <h4>
-                        <i class="fas fa-bullhorn" style="margin-right: 8px;"></i>
+                        <i class="fas fa-bullhorn"></i>
                         <span class="first-word">PUBLIC</span><span class="second-word">RELATIONS</span>
                     </h4>
                     <p>
@@ -250,7 +261,7 @@
 
                 <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
                     <h4>
-                        <i class="fas fa-paint-brush" style="margin-right: 8px;"></i>
+                        <i class="fas fa-paint-brush"></i>
                         <span class="first-word">DESIGN</span><span class="second-word">TEAM</span>
                     </h4>
                     <p>
@@ -260,7 +271,7 @@
 
                 <div class="committee-card"> <!-- Odd -> white bg, green border -->
                     <h4>
-                        <i class="fas fa-globe-africa" style="margin-right: 8px;"></i>
+                        <i class="fas fa-globe-africa"></i>
                         <span class="first-word">INTERNATIONAL</span><span class="second-word">RELATIONS</span>
                     </h4>
                     <p>
@@ -270,7 +281,7 @@
 
                 <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
                      <h4>
-                         <i class="fas fa-briefcase" style="margin-right: 8px;"></i>
+                         <i class="fas fa-briefcase"></i>
                          <span class="first-word">CAREER</span><span class="second-word">GROUPS</span>
                      </h4>
                      <p>
@@ -280,7 +291,7 @@
 
                 <div class="committee-card"> <!-- Odd -> white bg, green border -->
                      <h4>
-                         <i class="fas fa-music" style="margin-right: 8px;"></i>
+                         <i class="fas fa-music"></i>
                          <span class="first-word">DANCE</span><span class="second-word">TEAM</span>
                      </h4>
                      <p>
@@ -290,7 +301,7 @@
 
                 <div class="committee-card"> <!-- Even -> light gold bg, rust border -->
                     <h4>
-                        <i class="fas fa-futbol" style="margin-right: 8px;"></i>
+                        <i class="fas fa-futbol"></i>
                         <span class="first-word">FOOTBALL</span><span class="second-word">TEAM</span>
                     </h4>
                     <p>
@@ -302,18 +313,22 @@
         </div> <!-- end container -->
     </section>
 
-    <!-- Footer (New Style Applied) -->
+    <!-- Footer (Matching final activities.html) -->
     <footer class="site-footer">
          <div class="container">
              <div class="footer-divider-container">
                  <div class="footer-line"></div>
-                 <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                 <!-- Updated Footer Logo -->
+                 <div class="footer-logo-centered">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+                 <!-- End Updated Footer Logo -->
                  <div class="footer-line"></div>
              </div>
              <div class="footer-content-new">
                  <div class="footer-contact-new">
-                     <a href="tel:+254794808418"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +254 794 808 418</a>
-                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope" style="margin-right: 10px;"></i> stareherovercrew@gmail.com</a>
+                     <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
+                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
                      <div class="footer-social-new">
                          <a href="#"><i class="fab fa-instagram"></i></a>
                          <a href="#"><i class="fab fa-facebook-f"></i></a>
