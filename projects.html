@@ -4,213 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekiya Rover Crew - Projects</title>
-    <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Updated Font Awesome to v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        /* Existing page styles */
+        /* --- Ensure Container matches final activities.html --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px; /* Exact padding */
+        }
+
+        /* --- Header Style --- */
+        header {
+            background-color: var(--sand-gold); /* Added background */
+            padding: 20px 0; /* Match padding */
+        }
+
+        /* --- Header Logo Style (matching final activities.html) --- */
+         .logo-text {
+             color: var(--rust-brown);
+             font-size: 28px; /* Match final size */
+             font-weight: 600;
+             display: flex;
+             align-items: center;
+         }
+         .logo-text i.fa-mountain {
+             /* color specified inline, !important removed */
+             margin-left: 10px;
+             font-size: 30px; /* Match final size */
+             line-height: 1;
+         }
+
+        /* --- Nav styles should be inherited or consistent --- */
+         nav ul { display: flex; list-style: none; }
+         nav ul li { margin-left: 30px; }
+         nav ul li a { text-decoration: none; color: var(--carbon-black); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+         nav ul li a:hover, nav ul li a.active { color: var(--rust-brown); }
+
+        /* --- Existing page styles for Projects --- */
         .project-section {
-            padding: 40px 0;
+            padding: 40px 0; /* Vertical padding only */
         }
 
         .project-card {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Default: Image | Content */
+            grid-template-columns: 1fr 1fr;
             gap: 30px;
             margin-bottom: 60px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            overflow: hidden; /* Contain image zoom */
-        }
-
-        /* --- FIX for Alternating Layout --- */
-        .project-card:nth-child(even) .project-image {
-             order: 2; /* Make image second on even cards */
-        }
-        .project-card:nth-child(even) .project-content {
-             order: 1; /* Make content first on even cards */
-        }
-        /* --- End Fix --- */
-
-
-        .project-image {
-            height: 100%;
             overflow: hidden;
-             /* order: 1; /* Default order */ 
         }
 
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            display: block; /* Remove bottom space */
-        }
+        .project-card:nth-child(even) .project-image { order: 2; }
+        .project-card:nth-child(even) .project-content { order: 1; }
 
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
-        }
+        .project-image { height: 100%; overflow: hidden; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+        .project-card:hover .project-image img { transform: scale(1.05); }
 
-        .project-content {
-            padding: 30px;
-             /* order: 2; /* Default order */ 
-        }
+        .project-content { padding: 30px; }
+        .project-title { color: var(--forest-green); margin-bottom: 15px; font-size: 28px; }
+        .project-description { margin-bottom: 20px; line-height: 1.8; color: var(--carbon-black); }
+        .project-description p { margin-bottom: 1em; }
+        .project-description p:last-child { margin-bottom: 0; }
 
-        .project-title {
-            color: var(--forest-green);
-            margin-bottom: 15px;
-            font-size: 28px;
-        }
+        .project-meta { display: flex; align-items: center; margin-bottom: 20px; }
+        .project-status { background-color: var(--sand-gold); color: var(--carbon-black); padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-right: 15px; text-transform: uppercase; }
+        .project-status.active { background-color: #90EE90; }
+        .project-status.planning { background-color: #FFD700; }
+        .project-duration { color: var(--rust-brown); font-size: 14px; font-weight: 600; }
 
-        .project-description {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            color: var(--carbon-black); /* Ensure text color */
-        }
-         .project-description p { /* Ensure paragraphs have margin */
-             margin-bottom: 1em;
-         }
-         .project-description p:last-child {
-             margin-bottom: 0;
-         }
+        .project-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 25px; }
+        .stat-box { text-align: center; padding: 15px; background-color: rgba(234, 200, 135, 0.15); border-radius: 8px; }
+        .stat-number { font-size: 24px; font-weight: 600; color: var(--rust-brown); margin-bottom: 5px; }
+        .stat-label { font-size: 11px; color: var(--carbon-black); text-transform: uppercase; font-weight: 600; }
 
+        .project-cta { margin-top: 25px; }
+        .project-cta .cta-button { font-size: 14px; /* Base CTA style likely inherited */ }
 
-        .project-meta {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .project-status {
-            background-color: var(--sand-gold);
-            color: var(--carbon-black); /* Ensure contrast */
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600; /* Make status text bolder */
-            margin-right: 15px;
-            text-transform: uppercase; /* Style tweak */
-        }
-
-        .project-status.active { background-color: #90EE90; } /* Light Green */
-        .project-status.planning { background-color: #FFD700; } /* Gold */
-
-        .project-duration {
-            color: var(--rust-brown);
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .project-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .stat-box {
-            text-align: center;
-            padding: 15px;
-            background-color: rgba(234, 200, 135, 0.15); /* Slightly stronger tint */
-            border-radius: 8px;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--rust-brown);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 11px; /* Slightly smaller */
-            color: var(--carbon-black);
-            text-transform: uppercase; /* Style tweak */
-            font-weight: 600; /* Make bolder */
-        }
-
-        .project-cta {
-            margin-top: 25px;
-            /* Relies on base .cta-button style from style.css */
-        }
-         .project-cta .cta-button {
-             /* Add any project-specific button overrides here if needed */
-             font-size: 14px;
-         }
-
-        .involvement-section {
-            background-color: rgba(234, 200, 135, 0.3); /* Lighter gold background */
-            padding: 60px 0;
-            margin: 40px 0;
-            border-top: 1px solid rgba(0,0,0,0.05); /* Subtle separation */
-             border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .involvement-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .involvement-header h2 {
-            color: var(--rust-brown); /* Match theme heading */
-            font-size: 28px;
-        }
-
-        .involvement-options {
-            display: grid;
-            /* Responsive grid */
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
-        }
-
-        .involvement-card {
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .involvement-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .involvement-icon {
-            font-size: 2.5rem;
-            color: var(--forest-green);
-            margin-bottom: 15px;
-        }
-
-        .involvement-card h4 {
-            color: var(--rust-brown);
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .involvement-card p {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--carbon-black);
-        }
-         .involvement-card .cta-button {
-             font-size: 13px; /* Slightly smaller button text */
-             padding: 10px 25px;
-         }
+        .involvement-section { background-color: rgba(234, 200, 135, 0.3); padding: 60px 0; margin: 40px 0; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .involvement-header { text-align: center; margin-bottom: 40px; }
+        .involvement-header h2 { color: var(--rust-brown); font-size: 28px; }
+        .involvement-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .involvement-card { background-color: white; padding: 25px; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .involvement-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+        .involvement-icon { font-size: 2.5rem; color: var(--forest-green); margin-bottom: 15px; }
+        .involvement-card h4 { color: var(--rust-brown); margin-bottom: 15px; font-size: 18px; }
+        .involvement-card p { font-size: 14px; line-height: 1.6; margin-bottom: 20px; color: var(--carbon-black); }
+        .involvement-card .cta-button { font-size: 13px; padding: 10px 25px; }
 
 
-        /* --- NEW FOOTER STYLES --- */
-        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 0; /* Remove margin if it follows colored section */ border-top: none; }
+        /* --- FOOTER STYLES --- */
+        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 0; border-top: none; }
         .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
         .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
-        .footer-logo-centered { color: var(--rust-brown); font-size: 24px; font-weight: 600; padding: 0 20px; flex-shrink: 0; }
-        .footer-logo-centered span { color: var(--forest-green); }
+
+        /* Footer Logo - matching header */
+        .footer-logo-centered {
+            color: var(--rust-brown);
+            font-size: 28px; /* Match header size */
+            font-weight: 600;
+            padding: 0 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo-centered i.fa-mountain {
+             /* color specified inline, !important removed */
+            margin-left: 10px;
+            font-size: 30px; /* Match header icon size */
+            line-height: 1;
+        }
+
         .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
         .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
         .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
@@ -230,37 +140,38 @@
         .newsletter-form-new button:hover { background-color: #a5522c; }
 
 
-        /* Responsive Styles */
+        /* --- Responsive Styles --- */
         @media (max-width: 992px) {
-            .project-card,
-            .project-card:nth-child(even) { /* Ensure consistency */
-                 grid-template-columns: 1fr; /* Stack on medium screens */
-             }
-             .project-card:nth-child(even) .project-image,
-             .project-card:nth-child(even) .project-content {
-                 order: initial; /* Reset order when stacked */
-             }
-            .project-image { height: 300px; } /* Fixed height for stacked images */
+             .container { padding: 30px 15px; }
+             .project-card, .project-card:nth-child(even) { grid-template-columns: 1fr; }
+             .project-card:nth-child(even) .project-image, .project-card:nth-child(even) .project-content { order: initial; }
+             .project-image { height: 300px; }
+             .involvement-options { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+             .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-contact-new a { justify-content: center; }
+             .footer-social-new { justify-content: center; }
+             .footer-links-new ul { columns: 1; text-align: center; }
+             .newsletter-form-new { max-width: 400px; margin: 0 auto; }
+        }
 
-            .involvement-options { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } /* Allow 2 columns if space */
+        @media (max-width: 768px) {
+            .container { padding: 20px 10px; }
+             .nav-container { flex-direction: column; }
+             nav ul { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+             nav ul li { margin: 5px 10px;}
 
-            .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .footer-contact-new a { justify-content: center; }
-            .footer-social-new { justify-content: center; }
-            .footer-links-new ul { columns: 1; text-align: center; }
-            .newsletter-form-new { max-width: 400px; margin: 0 auto; }
-
+            .footer-logo-centered, .logo-text { font-size: 24px; }
+            .footer-logo-centered i.fa-mountain, .logo-text i.fa-mountain { font-size: 26px; }
+            .footer-content-new { gap: 30px; }
         }
 
         @media (max-width: 576px) {
-            .project-stats { grid-template-columns: 1fr; } /* Stack stats */
-            .involvement-options { grid-template-columns: 1fr; } /* Stack involvement cards */
+            .project-stats { grid-template-columns: 1fr; }
+            .involvement-options { grid-template-columns: 1fr; }
             .project-title { font-size: 24px; }
              .stat-number { font-size: 22px; }
              .stat-label { font-size: 10px; }
              .involvement-card { padding: 20px; }
-             .footer-logo-centered { font-size: 20px; padding: 0 10px; }
-             .footer-content-new { gap: 30px; }
         }
     </style>
 </head>
@@ -268,9 +179,13 @@
     <!-- Header -->
     <header>
         <div class="container nav-container">
+            <!-- Updated Header Logo -->
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
-            </div>
+                 <div class="logo-text">
+                     EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+             </div>
+            <!-- End Updated Header Logo -->
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
@@ -288,9 +203,8 @@
 
     <!-- Projects Overview Section -->
     <section>
-        <div class="container">
+        <div class="container"> <!-- Container added -->
             <div class="section-header">
-                <!-- Added spans for two-word title style -->
                 <h2><span class="first-word">OUR</span> <span class="second-word">PROJECTS</span></h2>
             </div>
 
@@ -304,21 +218,19 @@
 
     <!-- Project 1: Children's Home Fundraising -->
     <section class="project-section">
-        <div class="container">
-            <div class="project-card"> <!-- Odd: Image | Content -->
+        <div class="container"> <!-- Container added -->
+            <div class="project-card">
                 <div class="project-image">
-                    <!-- UPDATED IMAGE SRC -->
+                    <!-- Actual image path -->
                     <img src="images/activity1.jpeg" alt="Children's Home Fundraising">
                 </div>
-
                 <div class="project-content">
+                    <!-- UNMODIFIED ORIGINAL CONTENT -->
                     <h3 class="project-title">Children's Home Fundraising</h3>
-
                     <div class="project-meta">
                         <span class="project-status active">Active</span>
                         <span class="project-duration">Since 2021</span>
                     </div>
-
                     <div class="project-description">
                         <p>
                             Our Children's Home Fundraising project aims to provide essential resources and support to
@@ -332,7 +244,6 @@
                             nurturing environment where these children can thrive despite challenging circumstances.
                         </p>
                     </div>
-
                     <div class="project-stats">
                         <div class="stat-box">
                             <div class="stat-number">3</div>
@@ -347,10 +258,10 @@
                             <div class="stat-label">Children Supported</div>
                         </div>
                     </div>
-
                     <div class="project-cta">
-                        <a href="contact.html" class="cta-button">GET INVOLVED</a> <!-- Link to contact -->
+                        <a href="contact.html" class="cta-button">GET INVOLVED</a>
                     </div>
+                    <!-- END UNMODIFIED ORIGINAL CONTENT -->
                 </div>
             </div>
         </div>
@@ -358,20 +269,19 @@
 
     <!-- Project 2: Holistic Sexual Health -->
     <section class="project-section">
-        <div class="container">
-            <div class="project-card"> <!-- Even: Content | Image -->
-                 <div class="project-image"> <!-- HTML order still image first -->
-                     <!-- UPDATED IMAGE SRC -->
+        <div class="container"> <!-- Container added -->
+            <div class="project-card">
+                 <div class="project-image">
+                      <!-- Actual image path -->
                      <img src="images/activity2.jpeg" alt="Holistic Sexual Health Workshop">
                  </div>
-                <div class="project-content"> <!-- CSS 'order' property swaps these visually -->
+                <div class="project-content">
+                    <!-- UNMODIFIED ORIGINAL CONTENT -->
                     <h3 class="project-title">Holistic Sexual Health and Support</h3>
-
                     <div class="project-meta">
                         <span class="project-status active">Active</span>
                         <span class="project-duration">Since 2022</span>
                     </div>
-
                     <div class="project-description">
                         <p>
                             The Holistic Sexual Health and Support project addresses the need for comprehensive and
@@ -385,7 +295,6 @@
                             a support component, connecting individuals with appropriate resources when needed.
                         </p>
                     </div>
-
                     <div class="project-stats">
                         <div class="stat-box">
                             <div class="stat-number">12</div>
@@ -400,65 +309,61 @@
                             <div class="stat-label">Expert Partners</div>
                         </div>
                     </div>
-
                     <div class="project-cta">
-                        <a href="#" class="cta-button">LEARN MORE</a> <!-- Link TBD -->
+                        <a href="#" class="cta-button">LEARN MORE</a>
                     </div>
+                    <!-- END UNMODIFIED ORIGINAL CONTENT -->
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Project 3: Student Mentorship -->
     <section class="project-section">
-        <div class="container">
-            <div class="project-card"> <!-- Odd: Image | Content -->
+        <div class="container"> <!-- Container added -->
+            <div class="project-card">
                 <div class="project-image">
-                     <!-- UPDATED IMAGE SRC -->
+                     <!-- Actual image path -->
                     <img src="images/activity3.jpeg" alt="Student Mentorship">
                 </div>
-
                 <div class="project-content">
-                    <h3 class="project-title">Student Mentorship Project</h3>
-
-                    <div class="project-meta">
-                        <span class="project-status active">Active</span>
-                        <span class="project-duration">Since 2022</span>
-                    </div>
-
-                    <div class="project-description">
-                        <p>
-                            Our Student Mentorship Project connects Ekiya members with younger scouts, providing guidance,
-                            support, and inspiration. As former Starehe students, we are uniquely positioned to understand
-                            the challenges and opportunities faced by current students and to help them navigate their
-                            educational and personal development journey.
-                        </p>
-                        <p>
-                            The mentorship program includes regular one-on-one sessions, group activities, career guidance,
-                            and academic support. We work closely with school scout units to ensure that our efforts complement
-                            their existing programs and address the specific needs of their scouts.
-                        </p>
-                    </div>
-
-                    <div class="project-stats">
-                        <div class="stat-box">
-                            <div class="stat-number">40+</div>
-                            <div class="stat-label">Active Mentors</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">120+</div>
-                            <div class="stat-label">Mentees</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">8</div>
-                            <div class="stat-label">School Partners</div>
-                        </div>
-                    </div>
-
-                    <div class="project-cta">
-                        <a href="contact.html" class="cta-button">BECOME A MENTOR</a> <!-- Link to contact -->
-                    </div>
+                    <!-- UNMODIFIED ORIGINAL CONTENT -->
+                     <h3 class="project-title">Student Mentorship Project</h3>
+                     <div class="project-meta">
+                         <span class="project-status active">Active</span>
+                         <span class="project-duration">Since 2022</span>
+                     </div>
+                     <div class="project-description">
+                         <p>
+                             Our Student Mentorship Project connects Ekiya members with younger scouts, providing guidance,
+                             support, and inspiration. As former Starehe students, we are uniquely positioned to understand
+                             the challenges and opportunities faced by current students and to help them navigate their
+                             educational and personal development journey.
+                         </p>
+                         <p>
+                             The mentorship program includes regular one-on-one sessions, group activities, career guidance,
+                             and academic support. We work closely with school scout units to ensure that our efforts complement
+                             their existing programs and address the specific needs of their scouts.
+                         </p>
+                     </div>
+                     <div class="project-stats">
+                         <div class="stat-box">
+                             <div class="stat-number">40+</div>
+                             <div class="stat-label">Active Mentors</div>
+                         </div>
+                         <div class="stat-box">
+                             <div class="stat-number">120+</div>
+                             <div class="stat-label">Mentees</div>
+                         </div>
+                         <div class="stat-box">
+                             <div class="stat-number">8</div>
+                             <div class="stat-label">School Partners</div>
+                         </div>
+                     </div>
+                     <div class="project-cta">
+                         <a href="contact.html" class="cta-button">BECOME A MENTOR</a>
+                     </div>
+                     <!-- END UNMODIFIED ORIGINAL CONTENT -->
                 </div>
             </div>
         </div>
@@ -466,122 +371,122 @@
 
     <!-- Project 4: Future Project -->
     <section class="project-section">
-        <div class="container">
-             <div class="project-card"> <!-- Even: Content | Image -->
-                 <div class="project-image"> <!-- HTML order still image first -->
-                      <!-- UPDATED IMAGE SRC -->
+        <div class="container"> <!-- Container added -->
+             <div class="project-card">
+                 <div class="project-image">
+                      <!-- Actual image path -->
                      <img src="images/activity4.jpeg" alt="Environmental Conservation">
                  </div>
-                <div class="project-content"> <!-- CSS 'order' property swaps these visually -->
-                    <h3 class="project-title">Environmental Conservation Initiative</h3>
-
-                    <div class="project-meta">
-                        <span class="project-status planning">Planning</span>
-                        <span class="project-duration">Launch: 2024</span>
-                    </div>
-
-                    <div class="project-description">
-                        <p>
-                            Our upcoming Environmental Conservation Initiative will focus on addressing environmental
-                            challenges through education, advocacy, and direct action. The project will include regular
-                            clean-up activities, tree planting, awareness campaigns, and partnerships with environmental
-                            organizations.
-                        </p>
-                        <p>
-                            We believe that scouts have a special responsibility to protect and preserve the natural
-                            world. This initiative will provide opportunities for our members to fulfill this responsibility
-                            while developing their understanding of environmental issues and sustainable practices.
-                        </p>
-                    </div>
-
-                    <div class="project-stats">
-                        <div class="stat-box">
-                            <div class="stat-number">5000+</div>
-                            <div class="stat-label">Trees Target</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">12</div>
-                            <div class="stat-label">Clean-ups Planned</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-number">3</div>
-                            <div class="stat-label">Partner Orgs</div>
-                        </div>
-                    </div>
-
-                    <div class="project-cta">
-                         <a href="contact.html" class="cta-button">JOIN PLANNING TEAM</a> <!-- Link to contact -->
-                    </div>
+                <div class="project-content">
+                    <!-- UNMODIFIED ORIGINAL CONTENT -->
+                     <h3 class="project-title">Environmental Conservation Initiative</h3>
+                     <div class="project-meta">
+                         <span class="project-status planning">Planning</span>
+                         <span class="project-duration">Launch: 2024</span>
+                     </div>
+                     <div class="project-description">
+                         <p>
+                             Our upcoming Environmental Conservation Initiative will focus on addressing environmental
+                             challenges through education, advocacy, and direct action. The project will include regular
+                             clean-up activities, tree planting, awareness campaigns, and partnerships with environmental
+                             organizations.
+                         </p>
+                         <p>
+                             We believe that scouts have a special responsibility to protect and preserve the natural
+                             world. This initiative will provide opportunities for our members to fulfill this responsibility
+                             while developing their understanding of environmental issues and sustainable practices.
+                         </p>
+                     </div>
+                     <div class="project-stats">
+                         <div class="stat-box">
+                             <div class="stat-number">5000+</div>
+                             <div class="stat-label">Trees Target</div>
+                         </div>
+                         <div class="stat-box">
+                             <div class="stat-number">12</div>
+                             <div class="stat-label">Clean-ups Planned</div>
+                         </div>
+                         <div class="stat-box">
+                             <div class="stat-number">3</div>
+                             <div class="stat-label">Partner Orgs</div>
+                         </div>
+                     </div>
+                     <div class="project-cta">
+                          <a href="contact.html" class="cta-button">JOIN PLANNING TEAM</a>
+                     </div>
+                     <!-- END UNMODIFIED ORIGINAL CONTENT -->
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Get Involved Section -->
     <section class="involvement-section">
-        <div class="container">
+         <div class="container"> <!-- Container added -->
             <div class="involvement-header">
                 <h2>HOW YOU CAN GET INVOLVED</h2>
             </div>
-
             <div class="involvement-options">
-                <div class="involvement-card">
-                    <div class="involvement-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h4>VOLUNTEER</h4>
-                    <p>
-                        Contribute your time and skills to our projects. Whether you can commit regularly or just for an event, your help makes a difference.
-                    </p>
-                    <a href="contact.html" class="cta-button">VOLUNTEER</a> <!-- Link to contact -->
-                </div>
-
-                <div class="involvement-card">
-                    <div class="involvement-icon">
-                        <i class="fas fa-donate"></i>
-                    </div>
-                    <h4>DONATE</h4>
-                    <p>
-                        Support our projects financially. Every contribution, no matter the size, helps us extend our reach and impact in the community.
-                    </p>
-                     <a href="contact.html" class="cta-button">DONATE</a> <!-- Link to contact -->
-                </div>
-
-                <div class="involvement-card">
-                    <div class="involvement-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h4>PARTNER</h4>
-                    <p>
-                        If your organization shares our goals, we welcome partnerships that can multiply our collective impact on the community.
-                    </p>
-                    <a href="contact.html" class="cta-button">PARTNER</a> <!-- Link to contact -->
-                </div>
-
-                <div class="involvement-card">
-                    <div class="involvement-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h4>SPREAD THE WORD</h4>
-                    <p>
-                        Help us reach more people by sharing information about our projects and initiatives within your personal and professional networks.
-                    </p>
-                    <a href="#" class="cta-button">SHARE</a> <!-- Link TBD (maybe social share links?) -->
-                </div>
+                <!-- UNMODIFIED ORIGINAL CONTENT -->
+                 <div class="involvement-card">
+                     <div class="involvement-icon">
+                         <i class="fas fa-hands-helping"></i>
+                     </div>
+                     <h4>VOLUNTEER</h4>
+                     <p>
+                         Contribute your time and skills to our projects. Whether you can commit regularly or just for an event, your help makes a difference.
+                     </p>
+                     <a href="contact.html" class="cta-button">VOLUNTEER</a>
+                 </div>
+                 <div class="involvement-card">
+                     <div class="involvement-icon">
+                         <i class="fas fa-donate"></i>
+                     </div>
+                     <h4>DONATE</h4>
+                     <p>
+                         Support our projects financially. Every contribution, no matter the size, helps us extend our reach and impact in the community.
+                     </p>
+                      <a href="contact.html" class="cta-button">DONATE</a>
+                 </div>
+                 <div class="involvement-card">
+                     <div class="involvement-icon">
+                         <i class="fas fa-handshake"></i>
+                     </div>
+                     <h4>PARTNER</h4>
+                     <p>
+                         If your organization shares our goals, we welcome partnerships that can multiply our collective impact on the community.
+                     </p>
+                     <a href="contact.html" class="cta-button">PARTNER</a>
+                 </div>
+                 <div class="involvement-card">
+                     <div class="involvement-icon">
+                         <i class="fas fa-bullhorn"></i>
+                     </div>
+                     <h4>SPREAD THE WORD</h4>
+                     <p>
+                         Help us reach more people by sharing information about our projects and initiatives within your personal and professional networks.
+                     </p>
+                     <a href="#" class="cta-button">SHARE</a>
+                 </div>
+                 <!-- END UNMODIFIED ORIGINAL CONTENT -->
             </div>
         </div>
     </section>
 
-    <!-- Footer (New Style Applied) -->
+    <!-- Footer (Matching final activities.html) -->
     <footer class="site-footer">
          <div class="container">
              <div class="footer-divider-container">
                  <div class="footer-line"></div>
-                 <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
+                 <!-- Updated Footer Logo -->
+                 <div class="footer-logo-centered">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+                 <!-- End Updated Footer Logo -->
                  <div class="footer-line"></div>
              </div>
              <div class="footer-content-new">
+                 <!-- UNMODIFIED FOOTER CONTENT COLUMNS -->
                  <div class="footer-contact-new">
                      <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
                      <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
@@ -611,6 +516,7 @@
                          <button type="submit">SIGN UP</button>
                      </form>
                  </div>
+                 <!-- END UNMODIFIED FOOTER CONTENT COLUMNS -->
              </div>
          </div>
      </footer>

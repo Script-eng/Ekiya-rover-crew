@@ -6,712 +6,224 @@
     <title>Ekiya Rover Crew - Home</title>
     <!-- Adding Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Updated Font Awesome to v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-        body {
-            background-color: #FBF9ED;
-            color: #151414;
-            line-height: 1.6;
-        }
+        body { background-color: #FBF9ED; color: #151414; line-height: 1.6; }
 
+        /* --- Ensure Container matches final activities.html --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 30px 20px; /* Exact padding */
         }
 
         /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 800;
-        }
+        h1, h2, h3, h4, h5, h6 { font-weight: 800; }
+        p { font-weight: 400; font-size: 16px; margin-bottom: 20px; }
 
-        p {
-            font-weight: 400;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        /* Header and Navigation */
+        /* --- Header Style --- */
         header {
-            padding: 20px 0;
-            background-color: #EAC887;
+            background-color: var(--sand-gold, #EAC887); /* Keep background */
+            padding: 20px 0; /* Keep padding */
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* --- Header Logo Style (matching final activities.html) --- */
+         .logo-text {
+             color: var(--rust-brown, #B75F34);
+             font-size: 28px; /* Match final size */
+             font-weight: 600;
+             display: flex;
+             align-items: center;
+         }
+         .logo-text i.fa-mountain {
+             /* color specified inline */
+             margin-left: 10px;
+             font-size: 30px; /* Match final size */
+             line-height: 1;
+         }
+         /* Hide old triangle span */
+          .logo-text span { display: none; }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
+         /* --- Nav Styles --- */
+         .nav-container { display: flex; justify-content: space-between; align-items: center; }
+         nav ul { display: flex; list-style: none; }
+         nav ul li { margin-left: 30px; }
+         nav ul li a { text-decoration: none; color: var(--carbon-black, #151414); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+         nav ul li a:hover, nav ul li a.active { color: var(--rust-brown, #B75F34); }
 
-        .logo-text {
-            color: #B75F34;
-            font-size: 24px;
-            font-weight: 600;
-        }
 
-        .logo-text span {
-            color: #597267;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #151414;
-            font-weight: 600;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: #B75F34;
-        }
-
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
-            background-color: #EAC887;
+            background-color: var(--sand-gold, #EAC887);
             padding: 60px 0 80px;
             text-align: center;
             position: relative;
         }
+        .hero h1 { font-size: 72px; line-height: 1.2; margin-bottom: 50px; }
+        .hero h1 .summer { color: #FBF9ED; }
+        .hero h1 .scout { color: #597267; }
+        .hero h1 .camp { color: #B75F34; }
+        .hero-description { max-width: 600px; margin: 30px auto 40px; font-size: 18px; color: var(--carbon-black, #151414); }
 
-        .hero h1 {
-            font-size: 72px;
-            line-height: 1.2;
-            margin-bottom: 50px;
-        }
+        /* --- Clothesline Styles --- */
+        .clothesline { position: relative; height: 200px; margin: 50px 0; }
+        .clothesline::before { content: ""; position: absolute; top: 20px; left: 0; right: 0; height: 1px; background-color: #FBF9ED; z-index: 1; }
+        .polaroid { background: white; padding: 10px 10px 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: absolute; z-index: 2; transform: rotate(-5deg); top: 0; }
+        .polaroid:nth-child(1) { left: 10%; }
+        .polaroid:nth-child(2) { left: 32%; transform: rotate(3deg); }
+        .polaroid:nth-child(3) { left: 54%; transform: rotate(-2deg); }
+        .polaroid:nth-child(4) { left: 76%; transform: rotate(4deg); }
+        .polaroid img { width: 150px; height: 150px; object-fit: cover; display: block; }
+        .clothespin { width: 25px; height: 15px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 3; border-radius: 3px; }
+        .clothespin-green { background-color: #597267; }
+        .clothespin-brown { background-color: #B75F34; }
 
-        .hero h1 .summer {
-            color: #FBF9ED; /*#FBF9ED;*/
-        }
+        /* --- CTA Button --- */
+        .cta-button { display: inline-block; background-color: #B75F34; color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: background-color 0.3s; }
+        .cta-button:hover { background-color: #a5522c; }
 
-        .hero h1 .scout {
-            color: #597267;
-        }
+        /* --- Program Section --- */
+        .program-section { padding: 80px 0; }
+        .section-header { margin-bottom: 40px; text-align: center; }
+        .section-header h2 { font-size: 36px; margin-bottom: 20px; }
+        .first-word { color: #597267; }
+        .second-word { color: #B75F34; }
 
-        .hero h1 .camp {
-            color: #B75F34;
-        }
+        .program-content { display: grid; grid-template-columns: 40% 60%; gap: 40px; align-items: center; }
+        .program-image { position: relative; }
+        .program-image img { width: 100%; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block;}
+        .tape { position: absolute; width: 50px; height: 20px; background-color: #EAC887; opacity: 0.7; }
+        .tape-top-left { top: -10px; left: 30px; transform: rotate(-10deg); }
+        .tape-bottom-right { bottom: -10px; right: 30px; transform: rotate(10deg); }
+        .program-text p { margin-bottom: 20px; line-height: 1.8; color: var(--carbon-black, #151414);}
+        .highlight-text { font-size: 24px; color: #B75F34; font-weight: 600; margin: 30px 0; }
 
-        .hero-description {
-            max-width: 600px;
-            margin: 30px auto 40px;
-            font-size: 18px;
-        }
+        /* --- Features Section --- */
+        .features-section { padding: 80px 0; }
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature { text-align: center; }
+        .feature-icon { margin-bottom: 20px; }
+        .feature-icon svg { width: 60px; height: 60px; color: #597267; }
+        .feature h3 { color: #B75F34; margin-bottom: 15px; font-size: 18px; }
+        .feature p { font-size: 14px; color: var(--carbon-black, #151414); margin-bottom: 0; } /* Removed bottom margin */
 
-        .clothesline {
-            position: relative;
-            height: 200px;
-            margin: 50px 0;
-        }
+        /* --- Activities Section Preview --- */
+        .activities-section { padding: 80px 0; }
+        .activities-list { margin-bottom: 40px; }
+        .activity { padding: 15px 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+        .activity h3 { color: #151414; font-weight: 600; font-size: 18px; }
+        .activities-display { display: flex; justify-content: space-between; align-items: flex-start; }
+        .activity-images { display: flex; flex-direction: column; }
+        .activity-image { position: relative; margin-bottom: 20px; }
+        .activity-image img { width: 220px; height: 150px; object-fit: cover; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .activity-tag { position: absolute; bottom: -10px; right: 10px; background-color: #B75F34; color: white; padding: 5px 10px; font-size: 12px; border-radius: 3px; }
+        .arrow-nav { text-align: right; margin-top: 20px; }
+        .arrow-nav a { color: #B75F34; font-size: 24px; }
 
-        .clothesline::before {
-            content: "";
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: #FBF9ED;
-            z-index: 1;
-        }
+        /* --- How It Was Section --- */
+        .how-it-was-section { padding: 80px 0; background-color: #FBF9ED; }
+        .was-title { text-align: center; font-size: 48px; margin-bottom: 60px; }
+        .first-words { color: #B75F34; }
+        .last-words { color: #597267; }
+        .was-content { position: relative; }
+        .top-images { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+        .subtitle-content { max-width: 400px; margin: 0 20px; }
+        .was-subtitle { color: #B75F34; font-size: 24px; margin-bottom: 20px; }
+        .was-text { line-height: 1.8; color: var(--carbon-black, #151414); margin-bottom: 0; } /* Removed bottom margin */
+        .was-image { position: relative; max-width: 350px; }
+        .was-image img { width: 100%; height: auto; border-radius: 3px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: block; }
+        .left-image { transform: rotate(-5deg); }
+        .right-image { transform: rotate(5deg); }
+        .tape { position: absolute; width: 50px; height: 20px; background-color: #EAC887; opacity: 0.8; top: -10px; left: 50%; transform: translateX(-50%); z-index: 1; }
+        .bottom-images { display: flex; justify-content: space-between; }
+        .bottom-left { transform: rotate(-7deg); }
+        .bottom-center { transform: rotate(2deg); }
+        .bottom-right { transform: rotate(-4deg); }
 
-        .polaroid {
-            background: white;
-            padding: 10px 10px 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: absolute;
-            z-index: 2;
-            transform: rotate(-5deg);
-            top: 0;
-        }
 
-        .polaroid:nth-child(1) {
-            left: 10%;
-        }
+        /* --- FOOTER STYLES --- */
+        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 60px; border-top: none; }
+        .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
+        .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
 
-        .polaroid:nth-child(2) {
-            left: 32%;
-            transform: rotate(3deg);
-        }
-
-        .polaroid:nth-child(3) {
-            left: 54%;
-            transform: rotate(-2deg);
-        }
-
-        .polaroid:nth-child(4) {
-            left: 76%;
-            transform: rotate(4deg);
-        }
-
-        .polaroid img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .clothespin {
-            width: 25px;
-            height: 15px;
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            border-radius: 3px;
-        }
-
-        .clothespin-green {
-            background-color: #597267;
-        }
-
-        .clothespin-brown {
-            background-color: #B75F34;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #B75F34;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
+        /* Footer Logo - matching header */
+        .footer-logo-centered {
+            color: var(--rust-brown);
+            font-size: 28px;
             font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #a5522c;
-        }
-
-        /* Program Section */
-        .program-section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .section-header h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .first-word {
-            color: #597267;
-        }
-
-        .second-word {
-            color: #B75F34;
-        }
-
-        .program-content {
-            display: grid;
-            grid-template-columns: 40% 60%;
-            gap: 40px;
+            padding: 0 20px;
+            flex-shrink: 0;
+            display: flex;
             align-items: center;
         }
+        .footer-logo-centered i.fa-mountain {
+            margin-left: 10px;
+            font-size: 30px;
+            line-height: 1;
+        }
+        /* Hide old span */
+         .footer-logo-centered span { display: none; }
 
-        .program-image {
-            position: relative;
-        }
-
-        .program-image img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .tape {
-            position: absolute;
-            width: 50px;
-            height: 20px;
-            background-color: #EAC887;
-            opacity: 0.7;
-        }
-
-        .tape-top-left {
-            top: -10px;
-            left: 30px;
-            transform: rotate(-10deg);
-        }
-
-        .tape-bottom-right {
-            bottom: -10px;
-            right: 30px;
-            transform: rotate(10deg);
-        }
-
-        .program-text p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .highlight-text {
-            font-size: 24px;
-            color: #B75F34;
-            font-weight: 600;
-            margin: 30px 0;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 80px 0;
-            
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature-icon {
-            margin-bottom: 20px;
-        }
-
-        .feature-icon svg {
-            width: 60px;
-            height: 60px;
-            color: #597267;
-        }
-
-        .feature h3 {
-            color: #B75F34;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .feature p {
-            font-size: 14px;
-            color: #151414;
-        }
-
-        /* Activities Section */
-        .activities-section {
-            padding: 80px 0;
-        }
-
-        .activities-list {
-            margin-bottom: 40px;
-        }
-
-        .activity {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .activity h3 {
-            color: #151414;
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-        .activities-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .activity-images {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .activity-image {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .activity-image img {
-            width: 220px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .activity-tag {
-            position: absolute;
-            bottom: -10px;
-            right: 10px;
-            background-color: #B75F34;
-            color: white;
-            padding: 5px 10px;
-            font-size: 12px;
-            border-radius: 3px;
-        }
-
-        .arrow-nav {
-            text-align: right;
-            margin-top: 20px;
-        }
-
-        .arrow-nav a {
-            color: #B75F34;
-            font-size: 24px;
-        }
-
-        /* Gallery/Structure Section */
-        .structure-section {
-            padding: 80px 0;
-            background-color: #EAC887;
-        }
-
-        .gallery-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .gallery-title h2 {
-            font-size: 36px;
-        }
-
-        .first-words {
-            color: #597267;
-        }
-
-        .last-words {
-            color: #B75F34;
-        }
-
-        .gallery-highlight {
-            font-size: 20px;
-            color: #B75F34;
-            font-weight: 600;
-        }
-
-        .gallery-description {
-            margin-bottom: 40px;
-            text-align: center;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .footer-divider {
-            height: 1px;
-            background-color: rgba(0, 0, 0, 0.1);
-            margin: 20px 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .footer-contact a {
-            display: block;
-            color: #151414;
-            text-decoration: none;
-            margin-bottom: 10px;
-        }
-
-        .footer-contact a i {
-            color: #B75F34;
-            margin-right: 10px;
-            width: 15px;
-        }
-
-        .social-icons {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #151414;
-            margin-right: 15px;
-            font-size: 18px;
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links ul li a {
-            color: #151414;
-            text-decoration: none;
-        }
-
-        .footer-newsletter h3 {
-            color: #B75F34;
-            margin-bottom: 15px;
-        }
-
-        .newsletter-form {
-            display: flex;
-        }
-
-        .newsletter-form input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 30px 0 0 30px;
-            outline: none;
-        }
-
-        .newsletter-form button {
-            background-color: #B75F34;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 0 30px 30px 0;
-            cursor: pointer;
-        }
-        .how-it-was-section {
-            padding: 80px 0;
-            background-color: #FBF9ED;
-        }
-        
-        .was-title {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 60px;
-        }
-        
-        .first-words {
-            color: #B75F34;
-        }
-        
-        .last-words {
-            color: #597267;
-        }
-        
-        .was-content {
-            position: relative;
-        }
-        
-        .top-images {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-        
-        .subtitle-content {
-            max-width: 400px;
-            margin: 0 20px;
-        }
-        
-        .was-subtitle {
-            color: #B75F34;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .was-text {
-            line-height: 1.8;
-        }
-        
-        .was-image {
-            position: relative;
-            max-width: 350px;
-        }
-        
-        .was-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 3px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: block;
-        }
-        
-        .left-image {
-            transform: rotate(-5deg);
-        }
-        
-        .right-image {
-            transform: rotate(5deg);
-        }
-        
-        .tape {
-            position: absolute;
-            width: 50px;
-            height: 20px;
-            background-color: #EAC887;
-            opacity: 0.8;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-        
-        .bottom-images {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .bottom-left {
-            transform: rotate(-7deg);
-        }
-        
-        .bottom-center {
-            transform: rotate(2deg);
-        }
-        
-        .bottom-right {
-            transform: rotate(-4deg);
-        }
-        
-        @media (max-width: 992px) {
-            .top-images, .bottom-images {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .was-image {
-                margin-bottom: 30px;
-            }
-            
-            .subtitle-content {
-                order: -1;
-                margin-bottom: 30px;
-                text-align: center;
-            }
-        }
+        .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
+        .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
+        .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
+        .footer-social-new { display: flex; margin-top: 20px; }
+        .footer-social-new a { color: var(--rust-brown); font-size: 20px; margin-right: 18px; }
+        .footer-social-new a:last-child { margin-right: 0; }
+        .footer-links-new ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 30px; }
+        .footer-links-new ul li { margin-bottom: 12px; }
+        .footer-links-new ul li a { color: var(--rust-brown); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .footer-links-new ul li a:hover { text-decoration: underline; }
+        .footer-newsletter-new h3 { color: var(--rust-brown); font-size: 18px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-newsletter-new p { font-size: 14px; color: var(--rust-brown); margin-bottom: 20px; }
+        .newsletter-form-new { display: flex; border: 1px solid rgba(183, 95, 52, 0.5); border-radius: 30px; overflow: hidden; }
+        .newsletter-form-new input { flex-grow: 1; padding: 10px 15px; border: none; outline: none; font-size: 14px; background-color: transparent; color: var(--carbon-black); }
+        .newsletter-form-new input::placeholder { color: rgba(183, 95, 52, 0.7); }
+        .newsletter-form-new button { background-color: var(--rust-brown); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background-color 0.3s ease; white-space: nowrap; }
+        .newsletter-form-new button:hover { background-color: #a5522c; }
 
         /* Responsive styles */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 56px;
-            }
-
-            .program-content {
-                grid-template-columns: 1fr;
-            }
-
-            .program-image {
-                margin-bottom: 30px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 30px 15px; }
+            .hero h1 { font-size: 56px; }
+            .program-content { grid-template-columns: 1fr; }
+            .program-image { margin-bottom: 30px; }
+            .features { grid-template-columns: 1fr; gap: 40px; }
+            .top-images, .bottom-images { flex-direction: column; align-items: center; }
+            .was-image { margin-bottom: 30px; }
+            .subtitle-content { order: -1; margin-bottom: 30px; text-align: center; }
+             .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-contact-new a { justify-content: center; }
+             .footer-social-new { justify-content: center; }
+             .footer-links-new ul { columns: 1; text-align: center; }
+             .newsletter-form-new { max-width: 400px; margin: 0 auto; }
+             /* Remove old footer responsive */
+             .footer-content { display: none; }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
-            }
+             .container { padding: 20px 10px; }
+             .nav-container { flex-direction: column; }
+             nav ul { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+             nav ul li { margin: 5px 10px;}
 
-            .polaroid {
-                width: 100px;
-            }
+            .hero h1 { font-size: 42px; }
+            .polaroid { width: 100px; }
+            .polaroid img { width: 80px; height: 80px; }
+            .polaroid:nth-child(1) { left: 5%; }
+            .polaroid:nth-child(2) { left: 28%; }
+            .polaroid:nth-child(3) { left: 52%; }
+            .polaroid:nth-child(4) { left: 75%; }
 
-            .polaroid img {
-                width: 80px;
-                height: 80px;
-            }
-
-            .polaroid:nth-child(1) {
-                left: 5%;
-            }
-
-            .polaroid:nth-child(2) {
-                left: 28%;
-            }
-
-            .polaroid:nth-child(3) {
-                left: 52%;
-            }
-
-            .polaroid:nth-child(4) {
-                left: 75%;
-            }
-
-            .gallery-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .gallery-highlight {
-                margin-top: 10px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-            }
-
-            nav ul li {
-                margin: 5px 10px;
-            }
+             .footer-logo-centered, .logo-text { font-size: 24px; }
+             .footer-logo-centered i.fa-mountain, .logo-text i.fa-mountain { font-size: 26px; }
+             .footer-content-new { gap: 30px; }
         }
     </style>
 </head>
@@ -719,15 +231,20 @@
     <!-- Header -->
     <header>
         <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
-            </div>
+             <!-- Updated Header Logo -->
+             <div class="logo">
+                  <div class="logo-text">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                  </div>
+              </div>
+             <!-- End Updated Header Logo -->
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="index.html" class="active">HOME</a></li> <!-- Active Link -->
                     <li><a href="about.html">ABOUT US</a></li>
                     <li><a href="activities.html">ACTIVITIES</a></li>
                     <li><a href="structure.html">STRUCTURE</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
                     <li><a href="gallery.html">GALLERY</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">CONTACT US</a></li>
@@ -738,12 +255,13 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Container wraps content INSIDE hero -->
         <div class="container">
             <h1>
                 <span class="summer">STAREHE</span> <span class="scout">EKIYA</span><br>
                 <span class="camp">ROVER CREW</span>
             </h1>
-            
+
             <div class="clothesline">
                 <div class="polaroid">
                     <div class="clothespin clothespin-green"></div>
@@ -762,50 +280,49 @@
                     <img src="images/camp4.jpg" alt="Community service">
                 </div>
             </div>
-            
+
             <p class="hero-description">
                 Continuing the scouting tradition in higher education. Established by Starehe Boys and Girls alumni
                 between the ages of 18 and 26 years.
             </p>
-            
+
             <a href="#" class="cta-button">JOIN OUR CREW</a>
         </div>
     </section>
 
     <!-- Program Section -->
     <section class="program-section">
-        <div class="container">
+        <div class="container"> <!-- Content wrapped in container -->
             <div class="section-header">
                 <h2><span class="first-word">EKIYA</span> <span class="second-word">PROGRAM</span></h2>
             </div>
-            
+
             <div class="program-content">
                 <div class="program-image">
                     <div class="tape tape-top-left"></div>
                     <div class="tape tape-bottom-right"></div>
                     <img src="images/program.jpeg" alt="Ekiya members at community service">
                 </div>
-                
+
                 <div class="program-text">
+                    <!-- ** FULL ORIGINAL TEXT ** -->
                     <p>
                         Our mission is to educate young people to play a constructive role in society.
                         As Ekiya Rover Crew, we bring together alumni from Starehe Boys and Girls who
                         are now in universities and colleges to continue the scouting tradition in a
                         higher education setting.
                     </p>
-                    
                     <p>
                         We focus on personal development, community service, and building leadership
                         skills among our members while staying true to scouting principles and values.
                         Our activities are designed to create well-rounded individuals who contribute
                         positively to society.
                     </p>
-                    
                     <div class="highlight-text">
                         CREATING A BETTER WORLD
                     </div>
-                    
                     <a href="about.html" class="cta-button">LEARN MORE</a>
+                     <!-- ** END FULL ORIGINAL TEXT ** -->
                 </div>
             </div>
         </div>
@@ -813,12 +330,13 @@
 
     <!-- Features Section -->
     <section class="features-section">
-        <div class="container">
+        <div class="container"> <!-- Content wrapped in container -->
             <div class="section-header">
                 <h2><span class="first-word">CREW</span> <span class="second-word">FEATURES</span></h2>
             </div>
-            
+
             <div class="features">
+                 <!-- ** FULL ORIGINAL FEATURE CONTENT ** -->
                 <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -833,7 +351,6 @@
                         resilience, curiosity, and joy of discovery through camps, hikes, and outdoor activities.
                     </p>
                 </div>
-                
                 <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -851,7 +368,6 @@
                         empowering others within and beyond the crew through mentorship and training.
                     </p>
                 </div>
-                
                 <div class="feature">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
@@ -867,40 +383,37 @@
                         and a deeper connection with the world around us through various service projects.
                     </p>
                 </div>
+                 <!-- ** END FULL ORIGINAL FEATURE CONTENT ** -->
             </div>
         </div>
     </section>
 
     <!-- Activities Section -->
     <section class="activities-section">
-        <div class="container">
+        <div class="container"> <!-- Content wrapped in container -->
             <div class="section-header">
                 <h2><span class="first-word">EKIYA</span> <span class="second-word">ACTIVITIES</span></h2>
             </div>
-            
+
             <div class="activities-display">
+                 <!-- ** FULL ORIGINAL ACTIVITIES PREVIEW CONTENT ** -->
                 <div class="activities-list">
                     <div class="activity">
                         <h3>COMMUNITY SERVICE</h3>
                     </div>
-                    
                     <div class="activity">
                         <h3>LONG-TERM PROJECTS</h3>
                     </div>
-                    
                     <div class="activity">
                         <h3>IN-CREW ACTIVITIES</h3>
                     </div>
-                    
                     <div class="activity">
                         <h3>MENTORSHIP PROGRAMS</h3>
                     </div>
-                    
                     <div class="activity">
                         <h3>VOLUNTEER OPPORTUNITIES</h3>
                     </div>
                 </div>
-                
                 <div class="activity-images">
                     <div class="activity-image">
                         <img src="images/activity1.jpeg" alt="Children's home fundraising">
@@ -911,109 +424,105 @@
                         <div class="activity-tag">MENTORSHIP</div>
                     </div>
                 </div>
+                 <!-- ** END FULL ORIGINAL ACTIVITIES PREVIEW CONTENT ** -->
             </div>
-            
+
             <div class="arrow-nav">
                 <a href="activities.html"><i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Structure Section -->
     <!-- How It Was Section -->
-<section class="how-it-was-section">
-    <div class="container">
-        <h2 class="was-title"><span class="first-words">HOW IT</span> <span class="last-words">WAS</span></h2>
-        
-        <div class="was-content">
-            <div class="top-images">
-                <div class="was-image left-image">
-                    <div class="tape"></div>
-                    <img src="images/activity4.jpeg" alt="Scouts with binoculars">
-                </div>
-                
-                <div class="subtitle-content">
-                    <h3 class="was-subtitle">IT WAS LEGENDARY</h3>
-                    <p class="was-text">
-                        The Ekiya Rover Crew project is in its third year. The first two seasons were held
-                        in different places and became a real symbol of discovery, adventure and
-                        the best traditions of applied leadership and service.
-                    </p>
-                </div>
-                
-                <div class="was-image right-image">
-                    <div class="tape"></div>
-                    <img src="images/activity4.jpeg" alt="Scout with equipment">
-                </div>
-            </div>
-            
-            <div class="bottom-images">
-                <div class="was-image bottom-left">
-                    <div class="tape"></div>
-                    <img src="images/activity4.jpeg" alt="Group of scouts">
-                </div>
-                
-                <div class="was-image bottom-center">
-                    <div class="tape"></div>
-                    <img src="images/activity4.jpeg" alt="Scouts exploring">
-                </div>
-                
-                <div class="was-image bottom-right">
-                    <div class="tape"></div>
-                    <img src="images/activity4.jpeg" alt="Scouts at camp">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <section class="how-it-was-section">
+        <div class="container"> <!-- Content wrapped in container -->
+            <h2 class="was-title"><span class="first-words">HOW IT</span> <span class="last-words">WAS</span></h2>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>&#9650;</span></div>
-            </div>
-            
-            <div class="footer-divider"></div>
-            
-            <div class="footer-content">
-                <div class="footer-contact">
-                    <a href="tel:+254794808418"><i class="fas fa-phone"></i> +254 794 808 418</a>
-                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+            <div class="was-content">
+                 <!-- ** FULL ORIGINAL HOW IT WAS CONTENT ** -->
+                <div class="top-images">
+                    <div class="was-image left-image">
+                        <div class="tape"></div>
+                        <img src="images/activity4.jpeg" alt="Scouts with binoculars">
+                    </div>
+                    <div class="subtitle-content">
+                        <h3 class="was-subtitle">IT WAS LEGENDARY</h3>
+                        <p class="was-text">
+                            The Ekiya Rover Crew project is in its third year. The first two seasons were held
+                            in different places and became a real symbol of discovery, adventure and
+                            the best traditions of applied leadership and service.
+                        </p>
+                    </div>
+                    <div class="was-image right-image">
+                        <div class="tape"></div>
+                        <img src="images/activity4.jpeg" alt="Scout with equipment">
                     </div>
                 </div>
-                
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
-                        <li><a href="activities.html">ACTIVITIES</a></li>
-                        <li><a href="structure.html">STRUCTURE</a></li>
-                    </ul>
-                    
-                    <ul>
-                        <li><a href="gallery.html">GALLERY</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">CONTACT US</a></li>
-                    </ul>
+                <div class="bottom-images">
+                    <div class="was-image bottom-left">
+                        <div class="tape"></div>
+                        <img src="images/activity4.jpeg" alt="Group of scouts">
+                    </div>
+                    <div class="was-image bottom-center">
+                        <div class="tape"></div>
+                        <img src="images/activity4.jpeg" alt="Scouts exploring">
+                    </div>
+                    <div class="was-image bottom-right">
+                        <div class="tape"></div>
+                        <img src="images/activity4.jpeg" alt="Scouts at camp">
+                    </div>
                 </div>
-                
-                <div class="footer-newsletter">
-                    <h3>NEWSLETTER</h3>
-                    <p>Stay updated with our activities and events!</p>
-                    
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Email">
-                        <button type="submit">SIGN UP</button>
-                    </form>
-                </div>
+                 <!-- ** END FULL ORIGINAL HOW IT WAS CONTENT ** -->
             </div>
         </div>
-    </footer>
+    </section>
+
+    <!-- Footer (Matching final activities.html) -->
+    <footer class="site-footer">
+         <div class="container">
+             <div class="footer-divider-container">
+                 <div class="footer-line"></div>
+                 <!-- Updated Footer Logo -->
+                 <div class="footer-logo-centered">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+                 <!-- End Updated Footer Logo -->
+                 <div class="footer-line"></div>
+             </div>
+             <div class="footer-content-new">
+                  <!-- ** FULL ORIGINAL FOOTER CONTENT COLUMNS ** -->
+                 <div class="footer-contact-new">
+                     <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
+                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
+                     <div class="footer-social-new">
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                     </div>
+                 </div>
+                 <div class="footer-links-new">
+                     <ul>
+                         <li><a href="index.html">HOME</a></li>
+                         <li><a href="about.html">ABOUT US</a></li>
+                         <li><a href="activities.html">ACTIVITIES</a></li>
+                         <li><a href="structure.html">STRUCTURE</a></li>
+                         <li><a href="projects.html">PROJECTS</a></li>
+                         <li><a href="gallery.html">GALLERY</a></li>
+                         <li><a href="faq.html">FAQ</a></li>
+                         <li><a href="contact.html">CONTACT US</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-newsletter-new">
+                     <h3>NEWSLETTER</h3>
+                     <p>Stay updated with our activities and events!</p>
+                     <form class="newsletter-form-new">
+                         <input type="email" placeholder="Email">
+                         <button type="submit">SIGN UP</button>
+                     </form>
+                 </div>
+                 <!-- ** END FULL ORIGINAL FOOTER CONTENT COLUMNS ** -->
+             </div>
+         </div>
+     </footer>
 </body>
 </html>
