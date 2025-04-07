@@ -8,305 +8,165 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet (Ensure this path is correct) -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Updated Font Awesome to v6 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
-        /* Styles specifically for matching the screenshot's FAQ section */
+        /* --- Ensure Container matches final activities.html --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px; /* Exact padding */
+        }
+
+        /* --- Header Style --- */
+        header {
+            background-color: var(--sand-gold); /* Added background */
+            padding: 20px 0; /* Match padding */
+        }
+
+        /* --- Header Logo Style (matching final activities.html) --- */
+         .logo-text {
+             color: var(--rust-brown);
+             font-size: 28px; /* Match final size */
+             font-weight: 600;
+             display: flex;
+             align-items: center;
+         }
+         .logo-text i.fa-mountain {
+             /* color specified inline, !important removed */
+             margin-left: 10px;
+             font-size: 30px; /* Match final size */
+             line-height: 1;
+         }
+
+        /* --- Nav styles should be inherited or consistent --- */
+         nav ul { display: flex; list-style: none; }
+         nav ul li { margin-left: 30px; }
+         nav ul li a { text-decoration: none; color: var(--carbon-black); font-weight: 600; font-size: 14px; transition: color 0.3s; }
+         nav ul li a:hover, nav ul li a.active { color: var(--rust-brown); }
+
+        /* --- FAQ Specific Styles (Keep as provided, inside container) --- */
         .faq-section {
-            padding: 60px 0;
-            background-color: var(--cream-background); /* Base background */
+            padding: 60px 0; /* Vertical padding */
+            /* background-color: var(--cream-background); /* Inherited from body */
         }
 
         .faq-title {
             text-align: center;
             color: var(--rust-brown);
-            font-size: 48px; /* Match screenshot size */
-            font-weight: 900; /* Match screenshot weight */
+            font-size: 48px;
+            font-weight: 900;
             margin-bottom: 60px;
-            text-transform: uppercase; /* Match screenshot */
+            text-transform: uppercase;
         }
 
         .faq-list {
-            max-width: 900px; /* Adjust as needed */
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .faq-item {
-            border-bottom: 1px solid rgba(183, 95, 52, 0.3); /* Light rust-brown */
+            border-bottom: 1px solid rgba(183, 95, 52, 0.3);
             margin-bottom: 15px;
             padding-bottom: 15px;
         }
 
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            padding: 10px 0;
-        }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 10px 0; }
+        .faq-question-content { display: flex; align-items: baseline; flex-grow: 1; margin-right: 20px; }
+        .faq-number { color: var(--rust-brown); font-weight: 600; font-size: 16px; margin-right: 15px; flex-shrink: 0; width: 30px; }
+        .faq-question-text { color: var(--rust-brown); font-weight: 600; margin: 0; font-size: 16px; }
+        .faq-arrow { color: var(--rust-brown); font-size: 24px; transition: transform 0.3s ease; flex-shrink: 0; }
+        .faq-item.open .faq-arrow { transform: rotate(90deg); }
 
-        .faq-question-content {
-            display: flex;
-            align-items: baseline;
-            flex-grow: 1;
-            margin-right: 20px;
-        }
+        .faq-answer { margin-top: 10px; padding-left: 45px; line-height: 1.7; color: var(--carbon-black); font-size: 15px; display: none; max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, margin-top 0.5s ease-out; }
+        .faq-item.open .faq-answer { display: block; max-height: 500px; padding-top: 10px; margin-top: 10px; transition: max-height 0.5s ease-in, padding-top 0.5s ease-in, margin-top 0.5s ease-in; }
+        .faq-answer p { margin-bottom: 0; }
 
-        .faq-number {
-            color: var(--rust-brown);
-            font-weight: 600;
-            font-size: 16px;
-            margin-right: 15px;
-            flex-shrink: 0;
-            width: 30px;
-        }
+        .action-button { display: block; width: fit-content; margin: 50px auto 0; background-color: var(--rust-brown); color: white; text-align: center; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; border: none; cursor: pointer; transition: background-color 0.3s ease; white-space: nowrap; }
+        .action-button:hover { background-color: #a5522c; }
 
-        .faq-question-text {
-            color: var(--rust-brown);
-            font-weight: 600;
-            margin: 0;
-            font-size: 16px;
-        }
 
-        .faq-arrow {
-            color: var(--rust-brown);
-            font-size: 24px;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-        }
+        /* --- FOOTER STYLES --- */
+        footer.site-footer { padding: 40px 0; background-color: var(--cream-background); margin-top: 60px; border-top: none; }
+        .footer-divider-container { display: flex; align-items: center; margin-bottom: 40px; }
+        .footer-line { flex-grow: 1; height: 1px; background-color: rgba(183, 95, 52, 0.4); }
 
-        .faq-item.open .faq-arrow {
-            transform: rotate(90deg);
-        }
-
-        .faq-answer {
-            margin-top: 10px;
-            padding-left: 45px;
-            line-height: 1.7;
-            color: var(--carbon-black);
-            font-size: 15px;
-            display: none;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, margin-top 0.5s ease-out;
-        }
-
-        .faq-item.open .faq-answer {
-             display: block;
-             max-height: 500px;
-             padding-top: 10px;
-             margin-top: 10px;
-             transition: max-height 0.5s ease-in, padding-top 0.5s ease-in, margin-top 0.5s ease-in;
-         }
-
-        .faq-answer p {
-            margin-bottom: 0;
-        }
-
-        .action-button {
-            display: block;
-            width: fit-content;
-            margin: 50px auto 0;
-            background-color: var(--rust-brown);
-            color: white;
-            text-align: center;
-            padding: 12px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .action-button:hover {
-            background-color: #a5522c;
-        }
-
-        /* --- NEW FOOTER STYLES --- */
-        footer {
-            padding: 40px 0; /* Adjusted padding */
-            background-color: var(--cream-background);
-            margin-top: 60px; /* Space above footer */
-            border-top: none; /* Remove default top border if present */
-        }
-
-        .footer-divider-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px; /* Space below divider/logo */
-        }
-
-        .footer-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: rgba(183, 95, 52, 0.4); /* Match screenshot line color */
-        }
-
+        /* Footer Logo - matching header */
         .footer-logo-centered {
-            /* Copied Ekiya logo styles */
             color: var(--rust-brown);
-            font-size: 24px;
+            font-size: 28px; /* Match header size */
             font-weight: 600;
-            padding: 0 20px; /* Space around logo */
+            padding: 0 20px;
             flex-shrink: 0;
-        }
-        .footer-logo-centered span {
-             color: var(--forest-green);
-         }
-
-
-        /* Re-style footer content grid */
-        .footer-content-new {
-            display: grid;
-            /* Adjust grid columns if needed to match screenshot proportions */
-            grid-template-columns: auto 1fr auto; /* Example: Contact | Links | Newsletter */
-            gap: 50px; /* Adjust gap between columns */
-            color: var(--rust-brown); /* Default text color for footer elements */
-        }
-
-        /* Left Column: Contact Info */
-        .footer-contact-new a {
             display: flex;
             align-items: center;
-            color: var(--rust-brown); /* Text color */
-            text-decoration: none;
-            margin-bottom: 15px; /* Space between items */
-            font-size: 14px; /* Match screenshot text size */
         }
-        .footer-contact-new a i {
-             color: var(--rust-brown); /* Icon color */
-             margin-right: 12px; /* Space between icon and text */
-             font-size: 18px; /* Icon size */
-             width: 20px; /* Ensure alignment */
-             text-align: center;
-         }
-        .footer-social-new {
-            display: flex;
-            margin-top: 20px;
+        .footer-logo-centered i.fa-mountain {
+             /* color specified inline, !important removed */
+            margin-left: 10px;
+            font-size: 30px; /* Match header icon size */
+            line-height: 1;
         }
-        .footer-social-new a {
-            color: var(--rust-brown); /* Icon color */
-            font-size: 20px; /* Icon size */
-            margin-right: 18px; /* Space between icons */
-        }
-        .footer-social-new a:last-child {
-             margin-right: 0;
-         }
+        /* Remove old span style if present */
+         .footer-logo-centered span { display: none; }
 
-        /* Middle Column: Links */
-        .footer-links-new ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            columns: 2; /* Display links in two columns */
-            column-gap: 30px;
-        }
-        .footer-links-new ul li {
-            margin-bottom: 12px; /* Space between links */
-        }
-        .footer-links-new ul li a {
-            color: var(--rust-brown); /* Link color */
-            text-decoration: none;
-            font-size: 14px; /* Match screenshot text size */
-            font-weight: 600; /* Match screenshot weight */
-        }
-        .footer-links-new ul li a:hover {
-             text-decoration: underline; /* Optional: Add hover effect */
-         }
+        .footer-content-new { display: grid; grid-template-columns: auto 1fr auto; gap: 50px; color: var(--rust-brown); }
+        .footer-contact-new a { display: flex; align-items: center; color: var(--rust-brown); text-decoration: none; margin-bottom: 15px; font-size: 14px; }
+        .footer-contact-new a i { color: var(--rust-brown); margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
+        .footer-social-new { display: flex; margin-top: 20px; }
+        .footer-social-new a { color: var(--rust-brown); font-size: 20px; margin-right: 18px; }
+        .footer-social-new a:last-child { margin-right: 0; }
+        .footer-links-new ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 30px; }
+        .footer-links-new ul li { margin-bottom: 12px; }
+        .footer-links-new ul li a { color: var(--rust-brown); text-decoration: none; font-size: 14px; font-weight: 600; }
+        .footer-links-new ul li a:hover { text-decoration: underline; }
+        .footer-newsletter-new h3 { color: var(--rust-brown); font-size: 18px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+        .footer-newsletter-new p { font-size: 14px; color: var(--rust-brown); margin-bottom: 20px; }
+        .newsletter-form-new { display: flex; border: 1px solid rgba(183, 95, 52, 0.5); border-radius: 30px; overflow: hidden; }
+        .newsletter-form-new input { flex-grow: 1; padding: 10px 15px; border: none; outline: none; font-size: 14px; background-color: transparent; color: var(--carbon-black); }
+        .newsletter-form-new input::placeholder { color: rgba(183, 95, 52, 0.7); }
+        .newsletter-form-new button { background-color: var(--rust-brown); color: white; border: none; padding: 10px 25px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background-color 0.3s ease; white-space: nowrap; }
+        .newsletter-form-new button:hover { background-color: #a5522c; }
 
-        /* Right Column: Newsletter */
-        .footer-newsletter-new h3 {
-            color: var(--rust-brown);
-            font-size: 18px; /* Match screenshot size */
-            font-weight: 600; /* Match screenshot weight */
-            margin-bottom: 10px;
-            text-transform: uppercase; /* Match screenshot */
-        }
-        .footer-newsletter-new p {
-            font-size: 14px; /* Match screenshot text size */
-            color: var(--rust-brown); /* Match screenshot text color */
-            margin-bottom: 20px; /* Space before form */
-        }
-        .newsletter-form-new {
-            display: flex;
-            border: 1px solid rgba(183, 95, 52, 0.5); /* Light border around form */
-            border-radius: 30px; /* Rounded corners for the whole unit */
-            overflow: hidden; /* Clip corners */
-        }
-        .newsletter-form-new input {
-            flex-grow: 1;
-            padding: 10px 15px;
-            border: none; /* Remove default border */
-            outline: none;
-            font-size: 14px;
-            background-color: transparent; /* Match screenshot */
-            color: var(--carbon-black); /* Or --rust-brown if placeholder is that color */
-        }
-         .newsletter-form-new input::placeholder {
-             color: rgba(183, 95, 52, 0.7); /* Placeholder color */
-         }
-
-        .newsletter-form-new button {
-            background-color: var(--rust-brown);
-            color: white;
-            border: none;
-            padding: 10px 25px; /* Adjust padding */
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px; /* Match screenshot text size */
-            transition: background-color 0.3s ease;
-            white-space: nowrap;
-            /* No border-radius here, handled by parent */
-        }
-        .newsletter-form-new button:hover {
-            background-color: #a5522c;
-        }
-
-        /* Responsive adjustments for new footer */
+        /* --- Responsive --- */
         @media (max-width: 992px) {
-             .footer-content-new {
-                 grid-template-columns: 1fr; /* Stack columns */
-                 gap: 40px;
-                 text-align: center; /* Center text in stacked columns */
-             }
-             .footer-contact-new a {
-                 justify-content: center; /* Center contact items */
-             }
-             .footer-social-new {
-                 justify-content: center; /* Center social icons */
-             }
-             .footer-links-new ul {
-                 columns: 1; /* Single column for links */
-                 text-align: center;
-             }
-             .newsletter-form-new {
-                 max-width: 400px; /* Limit width */
-                 margin: 0 auto; /* Center form */
-             }
+             .container { padding: 30px 15px; }
+             .footer-content-new { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+             .footer-contact-new a { justify-content: center; }
+             .footer-social-new { justify-content: center; }
+             .footer-links-new ul { columns: 1; text-align: center; }
+             .newsletter-form-new { max-width: 400px; margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+             .container { padding: 20px 10px; }
+             .nav-container { flex-direction: column; }
+             nav ul { margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+             nav ul li { margin: 5px 10px;}
+             .footer-logo-centered, .logo-text { font-size: 24px; }
+             .footer-logo-centered i.fa-mountain, .logo-text i.fa-mountain { font-size: 26px; }
+             .footer-content-new { gap: 30px; }
+             .faq-title { font-size: 36px; }
+        }
+         @media (max-width: 576px) {
+            .faq-title { font-size: 32px; }
+            .faq-question-text { font-size: 15px;}
+            .faq-answer { font-size: 14px; padding-left: 20px;} /* Adjust answer indent */
+            .faq-number { width: auto; margin-right: 10px; } /* Adjust number spacing */
          }
-         @media (max-width: 768px) {
-            .footer-logo-centered {
-                font-size: 20px; /* Slightly smaller logo */
-                padding: 0 10px;
-            }
-            .footer-content-new {
-                 gap: 30px;
-             }
-         }
-
 
     </style>
 </head>
 <body>
-    <!-- Header (Ekiya Rover Crew Version) -->
+    <!-- Header -->
     <header>
         <div class="container nav-container">
+            <!-- Updated Header Logo -->
             <div class="logo">
-                <div class="logo-text">EKIYA ROVER CREW <span>▲</span></div>
-            </div>
+                 <div class="logo-text">
+                     EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+             </div>
+            <!-- End Updated Header Logo -->
             <nav>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
@@ -315,7 +175,7 @@
                     <li><a href="structure.html">STRUCTURE</a></li>
                     <li><a href="projects.html">PROJECTS</a></li>
                     <li><a href="gallery.html">GALLERY</a></li>
-                    <li><a href="faq.html" class="active">FAQ</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li> <!-- Active Link -->
                     <li><a href="contact.html">CONTACT US</a></li>
                 </ul>
             </nav>
@@ -324,7 +184,7 @@
 
     <!-- FAQ Section -->
     <section class="faq-section">
-        <div class="container">
+        <div class="container"> <!-- Content Wrapped in Container -->
             <h2 class="faq-title">FAQ</h2>
 
             <div class="faq-list">
@@ -498,59 +358,53 @@
         </div> <!-- end container -->
     </section>
 
-    <!-- Footer (New Style Applied) -->
-    <footer>
-        <div class="container">
-            <!-- Divider Line with Centered Logo -->
-            <div class="footer-divider-container">
-                <div class="footer-line"></div>
-                <div class="footer-logo-centered">EKIYA ROVER CREW <span>▲</span></div>
-                <div class="footer-line"></div>
-            </div>
+    <!-- Footer (Matching final activities.html) -->
+    <footer class="site-footer">
+         <div class="container">
+             <div class="footer-divider-container">
+                 <div class="footer-line"></div>
+                 <!-- Updated Footer Logo -->
+                 <div class="footer-logo-centered">
+                      EKIYA ROVER CREW <i class="fa-solid fa-mountain" style="color: #597267;"></i>
+                 </div>
+                 <!-- End Updated Footer Logo -->
+                 <div class="footer-line"></div>
+             </div>
+             <div class="footer-content-new">
+                 <div class="footer-contact-new">
+                     <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
+                     <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
+                     <div class="footer-social-new">
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-tiktok"></i></a>
+                     </div>
+                 </div>
+                 <div class="footer-links-new">
+                     <ul>
+                         <li><a href="index.html">HOME</a></li>
+                         <li><a href="about.html">ABOUT US</a></li>
+                         <li><a href="activities.html">ACTIVITIES</a></li>
+                         <li><a href="structure.html">STRUCTURE</a></li>
+                         <li><a href="projects.html">PROJECTS</a></li>
+                         <li><a href="gallery.html">GALLERY</a></li>
+                         <li><a href="faq.html">FAQ</a></li>
+                         <li><a href="contact.html">CONTACT US</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-newsletter-new">
+                     <h3>NEWSLETTER</h3>
+                     <p>Stay updated with our activities and events!</p>
+                     <form class="newsletter-form-new">
+                         <input type="email" placeholder="Email">
+                         <button type="submit">SIGN UP</button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </footer>
 
-            <!-- Footer Content Grid -->
-            <div class="footer-content-new">
-                <!-- Column 1: Contact -->
-                <div class="footer-contact-new">
-                    <a href="tel:+254794808418"><i class="fas fa-phone-alt"></i> +254 794 808 418</a>
-                    <a href="mailto:stareherovercrew@gmail.com"><i class="fas fa-envelope"></i> stareherovercrew@gmail.com</a>
-                    <div class="footer-social-new">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <!-- Add other icons if needed -->
-                    </div>
-                </div>
-
-                <!-- Column 2: Links -->
-                <div class="footer-links-new">
-                    <ul>
-                        <li><a href="index.html">HOME</a></li>
-                        <li><a href="about.html">ABOUT US</a></li>
-                        <li><a href="activities.html">ACTIVITIES</a></li>
-                        <li><a href="structure.html">STRUCTURE</a></li>
-                        <li><a href="projects.html">PROJECTS</a></li>
-                        <li><a href="gallery.html">GALLERY</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="contact.html">CONTACT US</a></li>
-                        <!-- Add any other relevant links -->
-                    </ul>
-                </div>
-
-                <!-- Column 3: Newsletter -->
-                <div class="footer-newsletter-new">
-                    <h3>NEWSLETTER</h3>
-                    <p>Stay updated with our activities and events!</p>
-                    <form class="newsletter-form-new">
-                        <input type="email" placeholder="Email">
-                        <button type="submit">SIGN UP</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript for FAQ Accordion -->
+    <!-- JavaScript for FAQ Accordion (Keep as provided) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const faqItems = document.querySelectorAll('.faq-item');
@@ -565,13 +419,10 @@
                 const question = item.querySelector('.faq-question');
                 question.addEventListener('click', function() {
                     const isOpen = item.classList.contains('open');
-                    // Close all *before* deciding whether to open the current one
-                    // This ensures only one is open at a time
                     closeAllItems();
                     if (!isOpen) {
                         item.classList.add('open');
                     }
-                    // If it was already open, closeAllItems() handled it.
                 });
             });
 
